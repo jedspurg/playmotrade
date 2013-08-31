@@ -56,14 +56,13 @@
                    
                       <div class="form profile">
                         <!-- Edit profile form (not working)-->
-                        <%= form_for @user do |f| ?>
+                        <%= form_for @user do |f| %>
                         <form class="form-horizontal">
                             <!-- Name -->
                             <div class="control-group">
-                              <label class="control-label" for="name1">Name</label>
+                              <label class="control-label" for="name1">First Name</label>
                               <div class="controls">
                                 <%= f.text_field :first_name, :class => "input-large" %>
-                                <input type="text" class="input-large" id="name1">
                               </div>
                             </div>   
                             <!-- Email -->
