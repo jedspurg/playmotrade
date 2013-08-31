@@ -20,7 +20,7 @@ development:
   database: playmotrade_development
   pool: 5
   username: playmotrade
-  password:
+  password: r2d2c3po
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -49,7 +49,7 @@ test:
   database: playmotrade_test
   pool: 5
   username: playmotrade
-  password:
+  password: r2d2c3po
 
 production:
   adapter: postgresql
@@ -57,4 +57,4 @@ production:
   database: playmotrade_production
   pool: 5
   username: playmotrade
-  password:
+  password: r2d2c3po
