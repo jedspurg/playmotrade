@@ -19,8 +19,8 @@ development:
   encoding: unicode
   database: playmotrade_development
   pool: 5
-  username: root
-  password: 
+  username: playmotrade
+  password: r2d2c3po
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -48,13 +48,13 @@ test:
   encoding: unicode
   database: playmotrade_test
   pool: 5
-  username: root
-  password: 
+  username: playmotrade
+  password: r2d2c3po
 
 production:
   adapter: postgresql
   encoding: unicode
   database: playmotrade_production
   pool: 5
-  username: root
-  password: 
+  username: playmotrade
+  password: r2d2c3po
