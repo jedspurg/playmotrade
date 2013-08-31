@@ -1,14 +1,311 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Playmotrade</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <!-- Title and other stuffs -->
+  <title><%= full_title(yield(:title)) %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
+
+  <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= csrf_meta_tags %>
+
+
+  <!-- Stylesheets -->
+  <link href="style/bootstrap.css" rel="stylesheet">
+  <!-- Font awesome icon -->
+  <link rel="stylesheet" href="style/font-awesome.css"> 
+  <!-- jQuery UI -->
+  <link rel="stylesheet" href="style/jquery-ui.css"> 
+  <!-- Calendar -->
+  <link rel="stylesheet" href="style/fullcalendar.css">
+  <!-- prettyPhoto -->
+  <link rel="stylesheet" href="style/prettyPhoto.css">   
+  <!-- Star rating -->
+  <link rel="stylesheet" href="style/rateit.css">
+  <!-- Date picker -->
+  <link rel="stylesheet" href="style/bootstrap-datetimepicker.min.css">
+  <!-- jQuery Gritter -->
+  <link rel="stylesheet" href="style/jquery.gritter.css">
+  <!-- CLEditor -->
+  <link rel="stylesheet" href="style/jquery.cleditor.css"> 
+  <!-- Bootstrap toggle -->
+  <link rel="stylesheet" href="style/bootstrap-toggle-buttons.css">
+  <!-- Main stylesheet -->
+  <link href="style/style.css" rel="stylesheet">
+  <!-- Widgets stylesheet -->
+  <link href="style/widgets.css" rel="stylesheet">   
+  <!-- Responsive style (from Bootstrap) -->
+  <link href="style/bootstrap-responsive.css" rel="stylesheet">
+  
+  <!-- HTML5 Support for IE -->
+  <!--[if lt IE 9]>
+  <script src="js/html5shim.js"></script>
+  <![endif]-->
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="img/favicon/favicon.png">
 </head>
+
 <body>
 
+<div class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      <!-- Menu button for smallar screens -->
+      <a class="btn btn-navbar mobile-btn-bar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+      </a>
+      <!-- Site name for smallar screens -->
+      <a href="index.html" class="brand">
+        <img src="img/logo.png" alt="Playmotrade - Playmobil Marketplace"/>
+      </a>
+
+      <!-- Navigation starts -->
+      <div class="nav-collapse collapse">        
+
+
+
+        <!-- Links -->
+        <ul class="nav pull-right">
+          <li class="dropdown pull-right">            
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+              <img src="img/user.jpg" alt="" class="nav-user-pic" /> Admin <b class="caret"></b>              
+            </a>
+            
+            <!-- Dropdown menu -->
+            <ul class="dropdown-menu">
+              <li><a href="#"><i class="icon-user"></i> Profile</a></li>
+              <li><a href="#"><i class="icon-cogs"></i> Settings</a></li>
+              <li><a href="login.html"><i class="icon-off"></i> Logout</a></li>
+            </ul>
+          </li>
+          
+        </ul>
+
+        <!-- Notifications -->
+        <ul class="nav pull-right">
+          
+          <!-- Comment button with number of latest comments count -->
+            <li class="dropdown dropdown-big">
+              <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                <i class="icon-comments"></i> Catalog <span   class="badge badge-info">6</span> 
+              </a>
+
+                <ul class="dropdown-menu">
+                  <li>
+                    <!-- Heading - h5 -->
+                    <h5><i class="icon-comments"></i> Chats</h5>
+                    <!-- Use hr tag to add border -->
+                    <hr />
+                  </li>
+                  <li>
+                    <!-- List item heading h6 -->
+                    <a href="#">Hi :)</a> <span class="label label-warning pull-right">10:42</span>
+                    <div class="clearfix"></div>
+                    <hr />
+                  </li>
+                  <li>
+                    <a href="#">How are you?</a> <span class="label label-warning pull-right">20:42</span>
+                    <div class="clearfix"></div>
+                    <hr />
+                  </li>
+                  <li>
+                    <a href="#">What are you doing?</a> <span class="label label-warning pull-right">14:42</span>
+                    <div class="clearfix"></div>
+                    <hr />
+                  </li>                  
+                  <li>
+                    <div class="drop-foot">
+                      <a href="#">View All</a>
+                    </div>
+                  </li>                                    
+                </ul>
+            </li>
+
+            <!-- Message button with number of latest messages count-->
+            <li class="dropdown dropdown-big">
+              <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                <i class="icon-envelope-alt"></i> Inbox <span class="badge badge-important">6</span> 
+              </a>
+
+                <ul class="dropdown-menu">
+                  <li>
+                    <!-- Heading - h5 -->
+                    <h5><i class="icon-envelope-alt"></i> Messages</h5>
+                    <!-- Use hr tag to add border -->
+                    <hr />
+                  </li>
+                  <li>
+                    <!-- List item heading h6 -->
+                    <a href="#">Hello how are you?</a>
+                    <!-- List item para -->
+                    <p>Quisque eu consectetur erat eget  semper...</p>
+                    <hr />
+                  </li>
+                  <li>
+                    <a href="#">Today is wonderful?</a>
+                    <p>Quisque eu consectetur erat eget  semper...</p>
+                    <hr />
+                  </li>
+                  <li>
+                    <div class="drop-foot">
+                      <a href="#">View All</a>
+                    </div>
+                  </li>                                    
+                </ul>
+            </li>
+
+            <!-- Members button with number of latest members count -->
+            <li class="dropdown dropdown-big">
+              <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                <i class="icon-user"></i> Users <span   class="badge badge-success">6</span> 
+              </a>
+
+                <ul class="dropdown-menu">
+                  <li>
+                    <!-- Heading - h5 -->
+                    <h5><i class="icon-user"></i> Users</h5>
+                    <!-- Use hr tag to add border -->
+                    <hr />
+                  </li>
+                  <li>
+                    <!-- List item heading h6-->
+                    <a href="#">Ravi Kumar</a> <span class="label label-warning pull-right">Free</span>
+                    <div class="clearfix"></div>
+                    <hr />
+                  </li>
+                  <li>
+                    <a href="#">Balaji</a> <span class="label label-important pull-right">Premium</span>
+                    <div class="clearfix"></div>
+                    <hr />
+                  </li>
+                  <li>
+                    <a href="#">Kumarasamy</a> <span class="label label-warning pull-right">Free</span>
+                    <div class="clearfix"></div>
+                    <hr />
+                  </li>                  
+                  <li>
+                    <div class="drop-foot">
+                      <a href="#">View All</a>
+                    </div>
+                  </li>                                    
+                </ul>
+            </li> 
+
+        </ul>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Main content starts -->
 <%= yield %>
+<!-- Content ends -->
+
+<!-- Notification box starts -->
+   <div class="slide-box">
+
+        <!-- Notification box head -->
+        <div class="slide-box-head bred">
+          <!-- Title -->
+          <div class="pull-left">Notification Box</div>          
+          <!-- Icon -->
+          <div class="slide-icons pull-right">
+            <a href="#" class="sminimize"><i class="icon-chevron-down"></i></a> 
+            <a href="#" class="sclose"><i class="icon-remove"></i></a>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+
+        <div class="slide-content">
+
+          <!-- It is default bootstrap nav tabs. See official bootstrap doc for doubts -->
+            <ul class="nav nav-tabs">
+              <!-- Tab links -->
+              <li class="active"><a href="#tab1" data-toggle="tab"><i class="icon-bar-chart"></i></a></li>
+              <li><a href="#tab2" data-toggle="tab"><i class="icon-phone"></i></a></li>
+              <li><a href="#tab3" data-toggle="tab"><i class="icon-comments"></i></a></li>
+            </ul>
+
+            <!-- Tab content -->
+            
+            <div class="tab-content">
+
+              <div class="tab-pane active" id="tab1">
+
+                <!-- Graph #1 -->
+                <div class="slide-data">
+                  <div class="slide-data-text">Today Earnings</div>
+                  <div class="slide-data-result">$5,0000 <i class="icon-arrow-up red"></i> </div>
+                  <div class="clearfix"></div>
+                  <hr />
+                  <span id="todayspark4" class="spark"></span>
+                </div>
+
+                <!-- Graph #2 -->
+                <div class="slide-data">
+                  <div class="slide-data-text">Yesterday Earnings</div>
+                  <div class="slide-data-result">$4,6000 <i class="icon-arrow-down green"></i> </div>
+                  <div class="clearfix"></div>
+                  <hr />
+                  <span id="todayspark5" class="spark"></span>
+                </div>                
+
+              </div>
+
+              <div class="tab-pane" id="tab2">
+                <h5>Have some content here.</h5>
+                <p>Aliquam dui libero, pharetra nec venenatis in, scelerisque quis odio. In hac habitasse platea dictumst. Etiam porta placerat turpis, eget fermentum neque egestas at. Vestibulum ullamcorper, augue a sollicitudin vestibulum, orci purus semper felis, lobortis consequat nisi nunc eu enim. </p>
+              </div>
+
+              <div class="tab-pane" id="tab3">
+                <h5>Have some content here.</h5>
+                <p>Aliquam dui libero, pharetra nec venenatis in, scelerisque quis odio. In hac habitasse platea dictumst. Etiam porta placerat turpis, eget fermentum neque egestas at. Vestibulum ullamcorper, augue a sollicitudin vestibulum, orci purus semper felis, lobortis consequat nisi nunc eu enim.</p>
+              </div>              
+
+            </div>
+
+        </div>
+      
+    </div>
+
+<!-- Notification box ends -->  
+
+<!-- Scroll to top -->
+<span class="totop"><a href="#"><i class="icon-chevron-up"></i></a></span> 
+<%= javascript_include_tag "application" %>
+<!-- JS -->
+<script src="js/jquery.js"></script> <!-- jQuery -->
+<script src="js/bootstrap.js"></script> <!-- Bootstrap -->
+<script src="js/jquery-ui-1.10.2.custom.min.js"></script> <!-- jQuery UI -->
+<script src="js/fullcalendar.min.js"></script> <!-- Full Google Calendar - Calendar -->
+<script src="js/jquery.rateit.min.js"></script> <!-- RateIt - Star rating -->
+<script src="js/jquery.prettyPhoto.js"></script> <!-- prettyPhoto -->
+
+<!-- jQuery Flot -->
+<script src="js/excanvas.min.js"></script>
+<script src="js/jquery.flot.js"></script>
+<script src="js/jquery.flot.resize.js"></script>
+<script src="js/jquery.flot.pie.js"></script>
+<script src="js/jquery.flot.stack.js"></script>
+
+<script src="js/jquery.gritter.min.js"></script> <!-- jQuery Gritter -->
+<script src="js/sparklines.js"></script> <!-- Sparklines -->
+<script src="js/jquery.cleditor.min.js"></script> <!-- CLEditor -->
+<script src="js/bootstrap-datetimepicker.min.js"></script> <!-- Date picker -->
+<script src="js/jquery.toggle.buttons.js"></script> <!-- Bootstrap Toggle -->
+<script src="js/filter.js"></script> <!-- Filter for support page -->
+<script src="js/custom.js"></script> <!-- Custom codes -->
+<script src="js/charts.js"></script> <!-- Custom chart codes -->
 
 </body>
 </html>
