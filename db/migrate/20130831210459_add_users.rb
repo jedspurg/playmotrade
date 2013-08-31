@@ -18,5 +18,6 @@ class AddUsers < ActiveRecord::Migration
       t.text :about
  
       t.timestamps
+    end
   end
 end
