@@ -59,72 +59,99 @@
                         <%= form_for @user, :html => {:class => "form-horizontal"} do |f| %>
                             <!-- Name -->
                             <div class="control-group">
-                              <label class="control-label" for="name1">First Name</label>
+                              <label class="control-label" for="user[first_name]">First Name</label>
                               <div class="controls">
-                                <%= f.text_field :first_name %>
+                                <%= f.text_field :first_name, :html => {:class => "input-large"} %>
+                              </div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label" for="user[last_name]">Last Name</label>
+                              <div class="controls">
+                                <%= f.text_field :last_name, :html => {:class => "input-large"} %>
                               </div>
                             </div>   
                             <!-- Email -->
                             <div class="control-group">
-                              <label class="control-label" for="email1">Email</label>
+                              <label class="control-label" for="user[email]">Email</label>
                               <div class="controls">
-                                <input type="text" class="input-large" id="email1">
+                                <%= f.email_field :email, :html => {:class => "input-large"} %>
                               </div>
                             </div>
                             <!-- Telephone -->
                             <div class="control-group">
-                              <label class="control-label" for="telephone">Telephone</label>
+                              <label class="control-label" for="user[telephone]">Telephone</label>
                               <div class="controls">
-                                <input type="text" class="input-large" id="telephone">
+                                <%= f.telephone_field :telephone, :html => {:class => "input-large"} %>
                               </div>
                             </div>  
                             <!-- Address -->
                             <div class="control-group">
-                              <label class="control-label" for="address">Address</label>
+                              <label class="control-label" for="user[address1]">Address 1</label>
                               <div class="controls">
-                                <textarea class="input-large" id="address"></textarea>
+                                <%= f.text_field :address1, :html => {:class => "input-large"} %>
+                              </div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label" for="user[address2]">Address 2</label>
+                              <div class="controls">
+                                <%= f.text_field :address2, :html => {:class => "input-large"} %>
                               </div>
                             </div>                           
                             <!-- Country -->
                             <div class="control-group">
                               <label class="control-label">Country</label>
-                              <div class="controls">                               
-                                 <%= render "shared/country_select" %>  
+                              <div class="controls">  
+                                <select name="user[country]">                            
+                                 <%= render "shared/country_select" %>
+                                </select>
                               </div>
                             </div>  
                             <!-- State -->
                             <div class="control-group">
-                              <label class="control-label" for="city">State</label>
+                              <label class="control-label" for="user[state]">State</label>
                               <div class="controls">
-                                <input type="text" class="input-large" id="state">
+                                <%= f.text_field :state, :html => {:class => "input-large"} %>
                               </div>
                             </div>                                               
                             <!-- City -->
                             <div class="control-group">
-                              <label class="control-label" for="city">City</label>
+                              <label class="control-label" for="user[city]">City</label>
                               <div class="controls">
-                                <input type="text" class="input-large" id="city">
+                                <%= f.text_field :city, :html => {:class => "input-large"} %>
                               </div>
-                            </div>                                                                                                                                         
+                            </div>
+                            <!-- Zip -->
+                            <div class="control-group">
+                              <label class="control-label" for="user[zip]">Zip</label>
+                              <div class="controls">
+                                <%= f.text_field :zip, :html => {:class => "input-large"} %>
+                              </div>
+                            </div>                                                                                                                                        
                             <!-- Username -->
                             <div class="control-group">
-                              <label class="control-label" for="username2">Username</label>
+                              <label class="control-label" for="user[username]">Username</label>
                               <div class="controls">
-                                <input type="text" class="input-large" id="username2">
+                                <%= f.text_field :username, :html => {:class => "input-large"} %>
                               </div>
                             </div>
                             <!-- Password -->
                             <div class="control-group">
-                              <label class="control-label" for="password2">Password</label>
+                              <label class="control-label" for="user[password]">Password</label>
                               <div class="controls">
-                                <input type="password" class="input-large" id="password2">
+                                <%= f.password_field :password, :html => {:class => "input-large"} %>
+                              </div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label" for="user[password]">Retype Password</label>
+                              <div class="controls">
+                                <%= f.password_field :password_confirmation, :html => {:class => "input-large"} %>
                               </div>
                             </div>
                             <!-- Checkbox -->
                             <div class="control-group">
                                <div class="controls">
                                   <label class="checkbox inline">
-                                     <input type="checkbox" id="inlineCheckbox3" value="agree"> Agree with Terms and Conditions
+                                     <%= f.check_box :agrees_to_tos %> Agree with Terms and Conditions
                                   </label>
                                </div>
                             </div> 
@@ -132,8 +159,7 @@
                             <!-- Buttons -->
                             <div class="form-actions">
                                <!-- Buttons -->
-                               <%= f.submit %>
-                              <button type="submit" class="btn btn-success">Update</button>
+                               <%= f.submit, :as => :button, :html => {:class => "btn btn-success"} %>
                               <button type="reset" class="btn">Reset</button>
                             </div>
                           
