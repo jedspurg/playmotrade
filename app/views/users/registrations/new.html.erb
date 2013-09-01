@@ -1,18 +1,97 @@
-<h2>Sign up</h2>
+<% provide(:title, "Register") %>
+<div class="content">
+  <!-- Sidebar -->
+  <%= render "shared/sidebar" %>
+  <!-- Sidebar ends -->
+  	<!-- Main bar -->
+  	<div class="mainbar">
+      
+	    <!-- Page heading -->
+	    <div class="page-head">
+        <!-- Page heading -->
+	      <h2 class="pull-left">Register
+          <!-- page meta -->
+          <span class="page-meta">Creating an account on Playmotrade is free and easy. Simply fill out the information below. You will recieve a confirmation by email.</span>
+        </h2>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+        <!-- Breadcrumb -->
+        <div class="bread-crumb pull-right">
+          <a href="/"><i class="icon-home"></i> Home</a> 
+          <!-- Divider -->
+          <span class="divider">/</span> 
+          <a href="/users/new" class="bread-current">Register</a>
+        </div>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+        <div class="clearfix"></div>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+	    </div>
+	    <!-- Page heading ends -->
 
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
 
-<%= render "users/shared/links" %>
+
+	    <!-- Matter -->
+
+	    <div class="matter">
+
+        <%= render "shared/flash" %>
+        <%= devise_error_messages! %>
+        <div class="container-fluid">
+
+          <div class="row-fluid">
+
+            <div class="span12">
+
+              <div class="widget wred">
+                <div class="widget-head">
+                  <div class="pull-left">Create a Member Profile</div>
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="widget-content">
+                  <div class="padd">
+                    
+                    <!-- Profile form -->
+                   
+                      <div class="form profile">
+                        <!-- Edit profile form (not working)-->
+                        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)), :html => {:class => "form-horizontal"} do |f| %>
+                            <%= render partial: "form", locals: {f: f} %>
+                            <!-- Checkbox -->
+                            <div class="control-group">
+                               <div class="controls">
+                                  <label class="checkbox inline">
+                                     <%= f.check_box :agrees_to_tos %> Agree with Terms and Conditions
+                                  </label>
+                               </div>
+                            </div> 
+                            <!-- Buttons -->
+                            <div class="form-actions">
+                               <!-- Buttons -->
+                               <%= f.submit "Register", class: "btn btn-success" %>
+                              <button type="reset" class="btn">Reset</button>
+                            </div>
+                          
+                          <% end %>
+                      </div>
+
+                  </div>
+                </div>
+              </div>  
+              
+            </div>
+
+          </div>
+
+        </div>
+		  </div>
+
+		<!-- Matter ends -->
+
+    </div>
+
+   <!-- Mainbar ends -->	    	
+   <div class="clearfix"></div>
+
+</div>
+<!-- Content ends -->
