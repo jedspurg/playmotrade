@@ -11,16 +11,16 @@
         <!-- Page heading -->
 	      <h2 class="pull-left">Register
           <!-- page meta -->
-          <span class="page-meta">Something Goes Here</span>
+          <span class="page-meta">Creating an account on Playmotrade is free and easy. Simply fill out the information below. You will recieve a confirmation by email.</span>
         </h2>
 
 
         <!-- Breadcrumb -->
         <div class="bread-crumb pull-right">
-          <a href="index.html"><i class="icon-home"></i> Home</a> 
+          <a href="/"><i class="icon-home"></i> Home</a> 
           <!-- Divider -->
           <span class="divider">/</span> 
-          <a href="#" class="bread-current">Register</a>
+          <a href="/users/new" class="bread-current">Register</a>
         </div>
 
         <div class="clearfix"></div>
@@ -41,11 +41,7 @@
 
               <div class="widget wred">
                 <div class="widget-head">
-                  <div class="pull-left">Profile</div>
-                  <div class="widget-icons pull-right">
-                    <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
-                    <a href="#" class="wclose"><i class="icon-remove"></i></a>
-                  </div>
+                  <div class="pull-left">Create a Member Profile</div>
                   <div class="clearfix"></div>
                 </div>
 
@@ -126,7 +122,15 @@
                               <div class="controls">
                                 <%= f.text_field :zip, :html => {:class => "input-large"} %>
                               </div>
-                            </div>                                                                                                                                        
+                            </div>   
+
+                            <!-- About -->
+                            <div class="control-group">
+                              <label class="control-label" for="user[about]">Zip</label>
+                              <div class="controls">
+                                <%= f.text_area :about, :html => {:class => "input-large"} %>
+                              </div>
+                            </div>                                                                                                                                      
                             <!-- Username -->
                             <div class="control-group">
                               <label class="control-label" for="user[username]">Username</label>
