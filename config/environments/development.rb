@@ -28,4 +28,6 @@ Playmotrade::Application.configure do
   config.assets.debug = true
 
   Paperclip.options[:command_path] = "/usr/bin/convert"
+
+  config.action_mailer.default_url_options = { :host => 'playmotrade.com' }
 end

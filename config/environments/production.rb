@@ -79,4 +79,6 @@ Playmotrade::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   Paperclip.options[:command_path] = "/usr/bin/convert"
+
+  config.action_mailer.default_url_options = { :host => 'playmotrade.com' }
 end
