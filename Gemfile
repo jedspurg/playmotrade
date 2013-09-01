@@ -28,10 +28,10 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 # Authentication
-gem 'devise'
+#gem 'devise'
 
 # File attachments
-gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+#gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
