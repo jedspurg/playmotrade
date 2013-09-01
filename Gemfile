@@ -28,7 +28,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 # Authentication
-#gem 'devise'
+gem 'devise'
 
 # File attachments
 #gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
