@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
     if @user.save
       flash[:notice] = "Account created"
       redirect_to users_path
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(params[:user])
+    if @user.update_attributes(user_params)
       flash[:notice] = "Account updated"
     end
     render :action => :edit
@@ -40,6 +40,15 @@ class UsersController < ApplicationController
       flash[:notice] = "Account deleted"
     end
     redirect_to users_path
+  end
+
+  private #####################################################################
+
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :telephone,
+                                 :address1, :address2, :country, :state, :city,
+                                 :zip, :about, :username, :password, :password_confirmation,
+                                 :agrees_to_tos)
   end
 
 end
