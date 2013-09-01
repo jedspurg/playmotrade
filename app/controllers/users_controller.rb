@@ -13,7 +13,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by(:id => params[:id])
+    if @user.blank?
+      flash[:notice] = "No user with that ID could be found."
+    end
   end
 
   def create
