@@ -33,14 +33,17 @@
 	    <!-- Matter -->
 
 	    <div class="matter">
-
-        <%= render "shared/flash" %>
-        <%= devise_error_messages! %>
         <div class="container-fluid">
 
           <div class="row-fluid">
 
             <div class="span12">
+              <% if devise_error_messages! %>
+                <div class="alert-message error">
+                  <a class="close" href="#">×</a>
+                  <%= content_tag :p, devise_error_messages! %>
+                </div>
+              <% end %>
 
               <div class="widget wred">
                 <div class="widget-head">
