@@ -28,8 +28,14 @@
             <!-- Dropdown menu -->
             <ul class="dropdown-menu">
               
-              <li><%= link_to(edit_user_registration_path) do %><i class="icon-user"></i> Edit Settings<% end %></li>
-              <li><%=link_to(destroy_user_session_path) do %><i class="icon-off"></i> Logout</a><% end %></li>
+              <li><%= link_to(edit_user_registration_path) do %>
+                <i class="icon-user"></i> Edit Settings
+                <% end %>
+              </li>
+              <li><%=link_to(destroy_user_session_path) do %>
+                <i class="icon-off"></i> Logout
+                <% end %>
+              </li>
             </ul>
           </li>
         </ul>
