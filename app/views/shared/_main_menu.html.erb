@@ -35,7 +35,10 @@
         </ul>
         <% else %>
         <ul class="nav pull-right">
-          <li><%= link_to(new_user_session_path) do %><i class="icon-user"></i> Login<% end %></li>
+          <li><%= link_to(new_user_session_path) do %>
+            <i class="icon-user"></i> Login
+            <% end %>
+          </li>
         </ul>
         <% end %>
 
