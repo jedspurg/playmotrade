@@ -38,7 +38,6 @@
   line-height: 28px;
 }
 
-
 .field_with_errors .checkbox,.field_with_errors .radio,.field_with_errors input,.field_with_errors select,.field_with_errors textarea{color:#b94a48 !important;}
 .field_with_errors input,.field_with_errors select,.field_with_errors textarea{border-color:#b94a48 !important;-webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075) !important;-moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075) !important;box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075)!important;}
 .field_with_errors input:focus,.field_with_errors select:focus,.field_with_errors textarea:focus{border-color:#953b39 !important;-webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075),0 0 6px #d59392 !important;-moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075),0 0 6px #d59392 !important;box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075),0 0 6px #d59392 !important;}
@@ -58,7 +57,7 @@ select{
 	font-size: 13px !important;
 }
 
-input[type="radio"], input[type="checkbox"] {
+input[type="radio"], input[type="checkbox"], input[type="file"] {
     margin: 0px 0 0 !important;
     margin-right: 5px !important;
     line-height: 23px !important;
