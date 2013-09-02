@@ -33,6 +33,11 @@
 	background-color:#006596 !important;
 }
 
+#error_explanation h2{
+  font-size: 18px;
+  line-height: 28px;
+}
+
 form *{
 	font-family: "Open Sans", Arial, Helvetica, sans-serif;
 }
@@ -1437,6 +1442,10 @@ border:1px solid #eee;
 	.fc-button-month, .fc-button-agendaWeek, .fc-button-agendaDay {
 		display: none;
 	}
+
+	.navbar .brand img{
+  	width: 75% !important;
+  }
 }
 
 @media (max-width: 767px){
