@@ -18,6 +18,7 @@
 
 
         <!-- Links -->
+        <% if user_signed_in? %>
         <ul class="nav pull-right">
           <li class="dropdown pull-right">            
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -26,13 +27,17 @@
             
             <!-- Dropdown menu -->
             <ul class="dropdown-menu">
-              <li><a href="#"><i class="icon-user"></i> Profile</a></li>
-              <li><a href="#"><i class="icon-cogs"></i> Settings</a></li>
-              <li><%=link_to destroy_user_session_path, :method => :delete do %><i class="icon-off"></i> Logout</a><% end %></li>
+              
+              <li><%= link_to(edit_user_registration_path) do %><i class="icon-user"></i> Edit Settings<% end %></li>
+              <li><%=link_to(destroy_user_session_path) do %><i class="icon-off"></i> Logout</a><% end %></li>
             </ul>
           </li>
-          
         </ul>
+        <% else %>
+        <ul class="nav pull-right">
+          <li><%= link_to(new_user_session_path) do %><a href="#"><i class="icon-user"></i> Login<% end %></li>
+        </ul>
+        <% end %>
 
         <!-- Notifications -->
         <ul class="nav pull-right">
