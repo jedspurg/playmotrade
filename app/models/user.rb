@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :registerable, :confirmable
   validates :username, :presence => true, :uniqueness => true
   validates :agrees_to_tos, :acceptance => {:accept => true}
 
