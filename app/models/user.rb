@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
   validates :agrees_to_tos, :acceptance => {:accept => true}
 
   has_attached_file :avatar, :styles => {:medium => "250x250>",
-  				                               :thumb => "100x100>",
-                                         :small => "20x20>" }, 
+  				                               :thumb => "100x100!",
+                                         :small => "20x20!" }, 
                               :default_url => "/images/:style/missing.png"
 
   scope :active, -> { where(:active => true) }
