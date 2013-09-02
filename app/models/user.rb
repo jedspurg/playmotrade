@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   validates :username, :presence => true, :uniqueness => true
   validates :agrees_to_tos, acceptance: true
 
-  attr_accessible :avatar
   has_attached_file :avatar, :styles => {:medium => "250x250>",
   				                               :thumb => "100x100>",
                                          :small => "20x20>" }, 
