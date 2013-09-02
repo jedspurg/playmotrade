@@ -19,8 +19,8 @@
         <div class="bread-crumb pull-right">
           <a href="/"><i class="icon-home"></i> Home</a> 
           <!-- Divider -->
-          <span class="divider">/</span> 
-          <a href="/users/new" class="bread-current">Register</a>
+          <span class="divider">/</span>
+          <%= link_to("Edit Profile", edit_user_registration_path, :class => "bread-current") %>
         </div>
 
         <div class="clearfix"></div>
@@ -76,7 +76,7 @@
                             <div class="control-group">
                               <label class="control-label" for="user[password]">Current Password</label>
                               <div class="controls">
-                                <%= f.label :current_password, :class => "input-large" %>
+                                <%= f.password_field :current_password, :class => "input-large" %>
                                 <span class="help-inline">We need your current password to confirm your changes</span>
                               </div>
                             </div>
@@ -85,7 +85,7 @@
                             <!-- Buttons -->
                             <div class="form-actions">
                                <!-- Buttons -->
-                               <%= f.submit "Register", class: "btn btn-success" %>
+                               <%= f.submit "Update Profile", class: "btn btn-success" %>
                               <button type="reset" class="btn">Reset</button>
                             </div>
                           
@@ -98,7 +98,7 @@
                 </div>
                 <div class="widget-foot">
                   <h5>Cancel my account</h5>
-                  <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "btn btn-danger" %></p>
+                  <p><%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "btn btn-danger" %></p>
                 </div>
               </div>  
               

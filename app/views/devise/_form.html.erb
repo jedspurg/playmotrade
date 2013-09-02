@@ -21,6 +21,14 @@
     <% end %>
   </div>
 </div>
+<% unless resource.new_record? %>
+<div class="control-group">
+  <label class="control-label" for="user[avatar]">Current Avatar</label>
+  <div class="controls">
+    <%= image_tag resource.avatar.url(:thumb) %>
+  </div>
+</div>
+<% end %>
 <!-- Avatar -->
 <div class="control-group">
   <label class="control-label" for="user[avatar]">Avatar</label>
