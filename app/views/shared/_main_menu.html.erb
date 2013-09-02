@@ -22,7 +22,7 @@
         <ul class="nav pull-right">
           <li class="dropdown pull-right">            
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-              <img src="img/user.jpg" alt="" class="nav-user-pic" /> Admin <b class="caret"></b>              
+              <img src="img/user.jpg" alt="" class="nav-user-pic" /> <%= current_user.username %> <b class="caret"></b>              
             </a>
             
             <!-- Dropdown menu -->
@@ -42,7 +42,7 @@
         <% else %>
         <ul class="nav pull-right">
           <li><%= link_to(new_user_session_path) do %>
-            <i class="icon-user"></i> Login
+            <i class="icon-lock"></i> Login
             <% end %>
           </li>
         </ul>
