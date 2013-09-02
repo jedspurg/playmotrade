@@ -35,6 +35,11 @@
 
 	    <div class="matter">
         <div class="container-fluid">
+          <% if flash[:notice].present? %>
+            <div class="alert alert-info">
+                <%= flash[:notice] %>
+            </div>
+          <% end %>
 
           <div class="row-fluid">
 
