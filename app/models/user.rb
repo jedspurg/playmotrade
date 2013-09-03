@@ -10,5 +10,5 @@ class User < ActiveRecord::Base
                                          :small => "20x20!" }, 
                               :default_url => "/images/:style/missing.png"
 
-  scope :active, -> { where(:active => true) }
+  scope :active, -> { where(['confirmed_at IS NOT NULL']) }
 end
