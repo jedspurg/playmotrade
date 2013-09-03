@@ -65,11 +65,11 @@
                         <% @users.each do |user| %>
 
                         <tr>
-                          <td><% user.id %></td>
-                          <td><% user.username %></td>
-                          <td><% user.first_name %> <% user.last_name %></td>
-                          <td><% user.city %></td>
-                          <td><% user.created_at %></td>
+                          <td><%= user.id %></td>
+                          <td><%= user.username %></td>
+                          <td><%= user.first_name %> <%= user.last_name %></td>
+                          <td><%= user.city %></td>
+                          <td><%= user.created_at %></td>
                         </tr>
                       <% end %>
 
