@@ -33,16 +33,23 @@ gem 'devise'
 # File attachments
 gem "paperclip"
 
-group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
-end
+#Searching
+gem 'sunspot_rails'
 
 # Auth Rules
 gem 'cancan'
 
 # Page pagination
 gem 'will_paginate'
+
+group :doc do
+  # bundle exec rake doc:rails generates the API under doc/api.
+  gem 'sdoc', require: false
+end
+
+group :development do
+  gem 'sunspot_solr'
+end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
