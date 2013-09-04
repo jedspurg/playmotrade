@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   				                               :thumb => "100x100!",
                                          :small => "20x20!" }, 
                               :default_url => "/images/:style/missing.png"
+  belongs_to :country
 
   scope :active, -> { where(['confirmed_at IS NOT NULL']) }
 end

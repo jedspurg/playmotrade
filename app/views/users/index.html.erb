@@ -1,4 +1,4 @@
-<% provide(:title, "Users") %>
+<% provide(:title, "Members") %>
 <div class="content">
   <!-- Sidebar -->
   <%= render "shared/sidebar" %>
@@ -8,26 +8,21 @@
 	    <!-- Page heading -->
 	    <div class="page-head">
         <!-- Page heading -->
-	      <h2 class="pull-left">Tables 
-          <!-- page meta -->
-          <span class="page-meta">Something Goes Here</span>
-        </h2>
+	      <h2 class="pull-left">Members</h2>
 
 
         <!-- Breadcrumb -->
         <div class="bread-crumb pull-right">
-          <a href="index.html"><i class="icon-home"></i> Home</a> 
+          <a href="/"><i class="icon-home"></i> Home</a> 
           <!-- Divider -->
-          <span class="divider">/</span> 
-          <a href="#" class="bread-current">Tables</a>
+          <span class="divider">/</span>
+          <%= link_to "Members", users_path %>
         </div>
 
         <div class="clearfix"></div>
 
 	    </div>
 	    <!-- Page heading ends -->
-
-
 
 	    <!-- Matter -->
 
@@ -41,11 +36,7 @@
                 <div class="widget worange">
 
                 <div class="widget-head">
-                  <div class="pull-left">Tables</div>
-                  <div class="widget-icons pull-right">
-                    <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
-                    <a href="#" class="wclose"><i class="icon-remove"></i></a>
-                  </div>
+
                   <div class="clearfix"></div>
                 </div>
 
@@ -55,24 +46,28 @@
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th>Username</th>
                           <th>Name</th>
-                          <th>City</th>
-                          <th>Created</th>
+                          <th>Store</th>
+                          <th>Country</th>
+                          <th>Member Since</th>
                         </tr>
                       </thead>
                       <tbody>
                         <% @users.each do |user| %>
-
                         <tr>
                           <td><%= user.id %></td>
-                          <td><%= user.username %></td>
-                          <td><%= user.first_name %> <%= user.last_name %></td>
-                          <td><%= user.city %></td>
-                          <td><%= user.created_at %></td>
+                          <td>
+                            <%= image_tag user.avatar.url(:small) %>&nbsp;&nbsp;
+                            <%= link_to "#{user.first_name} #{user.last_name} [ #{user.username} ]", user_path(user) %>
+                          </td>
+                          <td></td>
+                          <td>
+                            <%= image_tag "/images/country_icons/#{user.country.id}.png" %>
+                            <%= user.country.name %>
+                          </td>
+                          <td><%= user.created_at.strftime("%B %d, %Y") %></td>
                         </tr>
-                      <% end %>
-
+                        <% end %>
                       </tbody>
                     </table>
 
@@ -80,6 +75,7 @@
                   </div>
 
                     <div class="widget-foot">
+                    <%= will_paginate @users %>
 
                       <div class="pagination pull-right">
                         <ul>

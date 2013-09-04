@@ -11,7 +11,13 @@ class ApplicationController < ActionController::Base
                                                             :agrees_to_tos, :first_name,
                                                             :last_name, :telephone,
                                                             :address1, :address2, :about,
-                                                            :country, :state, :city, :zip
+                                                            :country_id, :state, :city, :zip
+                                                            )}
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :avatar, :password,
+                                                            :password_confirmation, :current_password,
+                                                            :first_name, :last_name, :telephone,
+                                                            :address1, :address2, :about,
+                                                            :country_id, :state, :city, :zip
                                                             )}
   end
 

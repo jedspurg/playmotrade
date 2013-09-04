@@ -38,6 +38,12 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+# Auth Rules
+gem 'cancan'
+
+# Page pagination
+gem 'will_paginate'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
