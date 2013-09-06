@@ -33,7 +33,7 @@ gem 'devise'
 # File attachments
 gem "paperclip"
 
-#Searching
+# Searching
 gem 'sunspot_rails'
 
 # Auth Rules
@@ -49,6 +49,7 @@ end
 
 group :development do
   gem 'sunspot_solr'
+  gem 'capistrano'
 end
 
 # Use ActiveModel has_secure_password
