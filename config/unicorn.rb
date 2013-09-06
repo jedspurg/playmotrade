@@ -25,7 +25,7 @@ if env == "production"
   working_directory "/home/playmotrade/current"
 
   # feel free to point this anywhere accessible on the filesystem
-  user 'root'
+  user 'playmotrade', 'staff'
   shared_path = "/home/playmotrade/shared"
 
   stderr_path "#{shared_path}/log/unicorn.stderr.log"

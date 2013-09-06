@@ -1,3 +1,5 @@
+require "bundler/capistrano"
+
 set :application, "playmotrade"
 set :scm, :git
 set :repository,  "git@github.com:jedspurg/playmotrade.git"
@@ -9,6 +11,7 @@ set :deploy_to,       "/home/playmotrade"
 set :normalize_asset_timestamps, false
 
 set :user,            "root"
+set :group,           "staff"
 set :use_sudo,        false
 
 role :web, "playmotrade.com"                          # Your HTTP server, Apache/etc
@@ -26,10 +29,10 @@ set(:previous_revision) { capture("cd #{current_path}; git rev-parse --short HEA
 default_environment["RAILS_ENV"] = 'production'
 
 # Use our ruby-1.9.2-p290@my_site gemset
-default_environment["PATH"]         = "--"
-default_environment["GEM_HOME"]     = "--"
-default_environment["GEM_PATH"]     = "--"
-default_environment["RUBY_VERSION"] = "ruby-1.9.2-p290"
+# default_environment["PATH"]         = "--"
+# default_environment["GEM_HOME"]     = "--"
+# default_environment["GEM_PATH"]     = "--"
+default_environment["RUBY_VERSION"] = "ruby-1.9.3-p429"
 
 default_run_options[:shell] = 'bash'
 
