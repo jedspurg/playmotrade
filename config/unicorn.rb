@@ -1,6 +1,6 @@
 # config/unicorn.rb
 # Set environment to development unless something else is specified
-env = Rails.env || "development"
+env = "production"
 
 # See http://unicorn.bogomips.org/Unicorn/Configurator.html for complete
 # documentation.
