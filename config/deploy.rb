@@ -11,8 +11,8 @@ set :deploy_to,       "/home/playmotrade"
 set :normalize_asset_timestamps, false
 
 set :user,            "root"
-set :group,           "staff"
-set :use_sudo,        false
+#set :group,           "staff"
+#set :use_sudo,        false
 
 role :web, "playmotrade.com"
 role :app, "playmotrade.com"
