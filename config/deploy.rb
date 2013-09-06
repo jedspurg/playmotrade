@@ -34,7 +34,7 @@ default_environment["RAILS_ENV"] = 'production'
 # default_environment["GEM_PATH"]     = "--"
 default_environment["RUBY_VERSION"] = "ruby-1.9.3-p429"
 
-default_run_options[:shell] = 'bash'
+default_run_options[:shell] = 'bash -l'
 
 namespace :deploy do
   desc "Deploy your application"
