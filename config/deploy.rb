@@ -8,6 +8,7 @@ set :rails_env,       "production"
 set :deploy_to,       "/home/playmotrade"
 set :normalize_asset_timestamps, false
 
+set :user,            "root"
 
 role :web, "playmotrade.com"                          # Your HTTP server, Apache/etc
 role :app, "playmotrade.com"                          # This may be the same as your `Web` server
