@@ -14,9 +14,9 @@ set :user,            "root"
 set :group,           "staff"
 set :use_sudo,        false
 
-role :web, "playmotrade.com"                          # Your HTTP server, Apache/etc
-role :app, "playmotrade.com"                          # This may be the same as your `Web` server
-role :db,  "playmotrade.com", :primary => true # This is where Rails migrations will run
+role :web, "playmotrade.com"
+role :app, "playmotrade.com"
+role :db,  "playmotrade.com", :primary => true
 
 set(:latest_release)  { fetch(:current_path) }
 set(:release_path)    { fetch(:current_path) }
