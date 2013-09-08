@@ -102,13 +102,11 @@ namespace :deploy do
   desc "Zero-downtime restart of Unicorn"
   task :restart, :except => { :no_release => true } do
     run "kill -s USR2 `cat /tmp/unicorn.playmotrade.pid`"
-    run "/etc/init.d/nginx restart"
   end
 
   desc "Start unicorn"
   task :start, :except => { :no_release => true } do
     run "cd #{current_path} ; bundle exec unicorn_rails -c config/unicorn.rb -D"
-    run "/etc/init.d/nginx restart"
   end
 
   desc "Stop unicorn"
