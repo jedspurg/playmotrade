@@ -40,7 +40,9 @@ namespace :deploy do
   desc "Deploy your application"
   task :default do
     update
-    restart
+    #restart
+    stop
+    start
   end
 
   desc "Setup your git-based deployment app"
