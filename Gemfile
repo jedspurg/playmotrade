@@ -36,7 +36,7 @@ gem 'devise'
 gem "paperclip"
 
 # Searching
-#gem 'sunspot_rails'
+gem 'sunspot_rails'
 
 # Auth Rules
 gem 'cancan'
@@ -45,12 +45,18 @@ gem 'cancan'
 gem 'will_paginate'
 
 group :development do
-  #gem 'sunspot_solr'
+  gem 'sunspot_solr'
   gem 'capistrano'
 end
 
 # Use Unicorn
 gem 'unicorn'
+
+# HTML parser
+gem 'nokogiri'
+
+# Multi Table Inheritance
+gem 'acts_as_relation', '~> 1.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
