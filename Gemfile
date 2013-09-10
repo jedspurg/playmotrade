@@ -47,13 +47,13 @@ gem 'will_paginate'
 group :development do
   gem 'sunspot_solr'
   gem 'capistrano'
+  # HTML parser
+  gem 'nokogiri'
 end
 
 # Use Unicorn
 gem 'unicorn'
 
-# HTML parser
-gem 'nokogiri'
 
 # Multi Table Inheritance
 gem 'acts_as_relation', '~> 1.0'
