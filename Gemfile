@@ -48,8 +48,6 @@ group :development do
   gem 'sunspot_solr'
   gem 'capistrano'
   gem 'better_errors'
-  # HTML parser
-  #gem 'nokogiri'
 end
 
 # Use Unicorn
@@ -59,8 +57,6 @@ gem 'unicorn'
 # Multi Table Inheritance
 gem 'acts_as_relation', '~> 1.0'
 
-# For Command Line interface
-gem 'cocaine'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -40,7 +40,7 @@ namespace :deploy do
   desc "Deploy your application"
   task :default do
     update
-    #restart
+    deploy.migrations
     stop
     start
   end
@@ -55,7 +55,7 @@ namespace :deploy do
 
   task :cold do
     update
-    migrate
+    #migrate
   end
 
   task :update do

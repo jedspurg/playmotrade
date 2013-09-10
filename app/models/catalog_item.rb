@@ -5,9 +5,9 @@ class CatalogItem < ActiveRecord::Base
   validates :number, :presence => true, :uniqueness => true
 
   has_attached_file :image, :styles => { 
-                                         :large  => "500x500>",
-                                         :medium => "250x250>",
-                                         :thumb  => "100x100>",
-                                         :small  => "30x30>" 
+                                          :large  => "500x500>",
+                                          :medium => "250x250>",
+                                          :thumb  => "100x100>",
+                                          :small  => "30x30>" 
                                         }, :default_url => "/images/items/:style/missing.png"
 end
