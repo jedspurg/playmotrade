@@ -49,7 +49,7 @@ group :development do
   gem 'capistrano'
   gem 'better_errors'
   # HTML parser
-  gem 'nokogiri'
+  #gem 'nokogiri'
 end
 
 # Use Unicorn

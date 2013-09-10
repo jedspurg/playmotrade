@@ -1,4 +1,5 @@
 class CatalogScraper
+  require 'nokogiri'
 
   attr_accessor :catalog_set_item
 
