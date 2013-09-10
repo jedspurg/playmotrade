@@ -5,7 +5,8 @@ class CatalogSet < ActiveRecord::Base
                                               :large  => "500x500>",
                                               :medium => "250x250>",
                                               :thumb  => "100x100>",
-                                              :small  => "30x30>" 
+                                              :small  => "70x70>",
+                                              :tiny  => "30x30>" 
                                             }, :default_url => "/images/items/:style/missing.png"
 
 end

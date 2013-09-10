@@ -41,8 +41,8 @@ class CatalogScraper
           end
         end
 
-        img     = URI.parse(catalog_set_item[:main_image]) if catalog_set_item[:main_image].present?
-        backimg = URI.parse(catalog_set_item[:back_image]) if catalog_set_item[:back_image].present?
+        img     = open(URI.parse(catalog_set_item[:main_image])) rescue nil
+        backimg = open(URI.parse(catalog_set_item[:back_image])) rescue nil
 
         existing_catalog_item = CatalogItem.find_by(:number => catalog_set_item[:item])
         if existing_catalog_item.present?
