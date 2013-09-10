@@ -76,7 +76,7 @@ namespace :deploy do
       update_code
     end
     migrate
-    restart
+    #restart
   end
 
   task :finalize_update, :except => { :no_release => true } do
