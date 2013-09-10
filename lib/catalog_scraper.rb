@@ -33,6 +33,21 @@ class CatalogScraper
           item[key] = data[index]
         end
       end
+
+      img     = URI.parse(@catalog_set_item[:main_image]) if @catalog_set_item[:main_image].present?
+      backimg = URI.parse(@catalog_set_item[:back_image]) if @catalog_set_item[:back_image].present?
+
+      CatalogSet.create!({
+        :image        => img,
+        #:back_image   => backimg,
+        :number       => @catalog_set_item[:item],
+        :figure_count => @catalog_set_item[:figures].to_i,
+        :name         => @catalog_set_item[:international_name],
+        :theme        => @catalog_set_item[:theme],
+        :dimensions   => @catalog_set_item[:dimensions],
+        :weight       => @catalog_set_item[:weight],
+        :release_date => @catalog_set_item[:released].match('\d{4}').to_s.to_i
+      })
     rescue OpenURI::HTTPError
     end
 

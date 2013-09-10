@@ -160,6 +160,7 @@ DEPENDENCIES
   acts_as_relation (~> 1.0)
   cancan
   capistrano
+  cocaine
   coffee-rails (~> 4.0.0)
   devise
   jbuilder (~> 1.2)

@@ -58,6 +58,9 @@ gem 'nokogiri'
 # Multi Table Inheritance
 gem 'acts_as_relation', '~> 1.0'
 
+# For Command Line interface
+gem 'cocaine'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
