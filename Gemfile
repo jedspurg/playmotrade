@@ -47,6 +47,7 @@ gem 'will_paginate'
 group :development do
   gem 'sunspot_solr'
   gem 'capistrano'
+  gem 'better_errors'
   # HTML parser
   gem 'nokogiri'
 end
@@ -63,12 +64,6 @@ gem 'cocaine'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]

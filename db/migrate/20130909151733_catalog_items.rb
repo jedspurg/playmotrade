@@ -1,7 +1,9 @@
 class CatalogItems < ActiveRecord::Migration
   def change
-    create_table :catalog_items, :as_relation_superclass => true  do |t|
+    create_table :catalog_items do |t|
 
+      t.integer :catalogable_id
+      t.string  :catalogable_type
       t.string :name, :null => false
       t.string :number, :null => false
       t.string :dimensions
