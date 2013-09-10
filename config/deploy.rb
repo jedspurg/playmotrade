@@ -40,7 +40,6 @@ namespace :deploy do
   desc "Deploy your application"
   task :default do
     update
-    deploy.migrations
     stop
     start
   end
@@ -61,6 +60,7 @@ namespace :deploy do
   task :update do
     transaction do
       update_code
+      migrations
     end
   end
 
