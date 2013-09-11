@@ -29,7 +29,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: catalog_items; Type: TABLE; Schema: public; Owner: jeramy; Tablespace: 
+-- Name: catalog_items; Type: TABLE; Schema: public; Owner: playmotrade; Tablespace: 
 --
 
 CREATE TABLE catalog_items (
@@ -49,10 +49,10 @@ CREATE TABLE catalog_items (
 );
 
 
-ALTER TABLE public.catalog_items OWNER TO jeramy;
+ALTER TABLE public.catalog_items OWNER TO playmotrade;
 
 --
--- Name: catalog_items_id_seq; Type: SEQUENCE; Schema: public; Owner: jeramy
+-- Name: catalog_items_id_seq; Type: SEQUENCE; Schema: public; Owner: playmotrade
 --
 
 CREATE SEQUENCE catalog_items_id_seq
@@ -63,17 +63,17 @@ CREATE SEQUENCE catalog_items_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.catalog_items_id_seq OWNER TO jeramy;
+ALTER TABLE public.catalog_items_id_seq OWNER TO playmotrade;
 
 --
--- Name: catalog_items_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: jeramy
+-- Name: catalog_items_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: playmotrade
 --
 
 ALTER SEQUENCE catalog_items_id_seq OWNED BY catalog_items.id;
 
 
 --
--- Name: catalog_sets; Type: TABLE; Schema: public; Owner: jeramy; Tablespace: 
+-- Name: catalog_sets; Type: TABLE; Schema: public; Owner: playmotrade; Tablespace: 
 --
 
 CREATE TABLE catalog_sets (
@@ -92,10 +92,10 @@ CREATE TABLE catalog_sets (
 );
 
 
-ALTER TABLE public.catalog_sets OWNER TO jeramy;
+ALTER TABLE public.catalog_sets OWNER TO playmotrade;
 
 --
--- Name: catalog_sets_id_seq; Type: SEQUENCE; Schema: public; Owner: jeramy
+-- Name: catalog_sets_id_seq; Type: SEQUENCE; Schema: public; Owner: playmotrade
 --
 
 CREATE SEQUENCE catalog_sets_id_seq
@@ -106,17 +106,17 @@ CREATE SEQUENCE catalog_sets_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.catalog_sets_id_seq OWNER TO jeramy;
+ALTER TABLE public.catalog_sets_id_seq OWNER TO playmotrade;
 
 --
--- Name: catalog_sets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: jeramy
+-- Name: catalog_sets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: playmotrade
 --
 
 ALTER SEQUENCE catalog_sets_id_seq OWNED BY catalog_sets.id;
 
 
 --
--- Name: countries; Type: TABLE; Schema: public; Owner: jeramy; Tablespace: 
+-- Name: countries; Type: TABLE; Schema: public; Owner: playmotrade; Tablespace: 
 --
 
 CREATE TABLE countries (
@@ -125,10 +125,10 @@ CREATE TABLE countries (
 );
 
 
-ALTER TABLE public.countries OWNER TO jeramy;
+ALTER TABLE public.countries OWNER TO playmotrade;
 
 --
--- Name: countries_id_seq; Type: SEQUENCE; Schema: public; Owner: jeramy
+-- Name: countries_id_seq; Type: SEQUENCE; Schema: public; Owner: playmotrade
 --
 
 CREATE SEQUENCE countries_id_seq
@@ -139,17 +139,17 @@ CREATE SEQUENCE countries_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.countries_id_seq OWNER TO jeramy;
+ALTER TABLE public.countries_id_seq OWNER TO playmotrade;
 
 --
--- Name: countries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: jeramy
+-- Name: countries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: playmotrade
 --
 
 ALTER SEQUENCE countries_id_seq OWNED BY countries.id;
 
 
 --
--- Name: schema_migrations; Type: TABLE; Schema: public; Owner: jeramy; Tablespace: 
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: playmotrade; Tablespace: 
 --
 
 CREATE TABLE schema_migrations (
@@ -157,10 +157,10 @@ CREATE TABLE schema_migrations (
 );
 
 
-ALTER TABLE public.schema_migrations OWNER TO jeramy;
+ALTER TABLE public.schema_migrations OWNER TO playmotrade;
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: jeramy; Tablespace: 
+-- Name: users; Type: TABLE; Schema: public; Owner: playmotrade; Tablespace: 
 --
 
 CREATE TABLE users (
@@ -201,10 +201,10 @@ CREATE TABLE users (
 );
 
 
-ALTER TABLE public.users OWNER TO jeramy;
+ALTER TABLE public.users OWNER TO playmotrade;
 
 --
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: jeramy
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: playmotrade
 --
 
 CREATE SEQUENCE users_id_seq
@@ -215,45 +215,45 @@ CREATE SEQUENCE users_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.users_id_seq OWNER TO jeramy;
+ALTER TABLE public.users_id_seq OWNER TO playmotrade;
 
 --
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: jeramy
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: playmotrade
 --
 
 ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: jeramy
+-- Name: id; Type: DEFAULT; Schema: public; Owner: playmotrade
 --
 
 ALTER TABLE ONLY catalog_items ALTER COLUMN id SET DEFAULT nextval('catalog_items_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: jeramy
+-- Name: id; Type: DEFAULT; Schema: public; Owner: playmotrade
 --
 
 ALTER TABLE ONLY catalog_sets ALTER COLUMN id SET DEFAULT nextval('catalog_sets_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: jeramy
+-- Name: id; Type: DEFAULT; Schema: public; Owner: playmotrade
 --
 
 ALTER TABLE ONLY countries ALTER COLUMN id SET DEFAULT nextval('countries_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: jeramy
+-- Name: id; Type: DEFAULT; Schema: public; Owner: playmotrade
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
 --
--- Data for Name: catalog_items; Type: TABLE DATA; Schema: public; Owner: jeramy
+-- Data for Name: catalog_items; Type: TABLE DATA; Schema: public; Owner: playmotrade
 --
 
 COPY catalog_items (id, catalogable_id, catalogable_type, name, number, dimensions, weight, image_file_name, image_content_type, image_file_size, image_updated_at, created_at, updated_at) FROM stdin;
@@ -730,14 +730,14 @@ COPY catalog_items (id, catalogable_id, catalogable_type, name, number, dimensio
 
 
 --
--- Name: catalog_items_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jeramy
+-- Name: catalog_items_id_seq; Type: SEQUENCE SET; Schema: public; Owner: playmotrade
 --
 
 SELECT pg_catalog.setval('catalog_items_id_seq', 469, true);
 
 
 --
--- Data for Name: catalog_sets; Type: TABLE DATA; Schema: public; Owner: jeramy
+-- Data for Name: catalog_sets; Type: TABLE DATA; Schema: public; Owner: playmotrade
 --
 
 COPY catalog_sets (id, part_count, figure_count, back_image_file_name, back_image_content_type, back_image_file_size, back_image_updated_at, theme, release_date, retire_date, updated_at, created_at) FROM stdin;
@@ -1214,14 +1214,14 @@ COPY catalog_sets (id, part_count, figure_count, back_image_file_name, back_imag
 
 
 --
--- Name: catalog_sets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jeramy
+-- Name: catalog_sets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: playmotrade
 --
 
 SELECT pg_catalog.setval('catalog_sets_id_seq', 469, true);
 
 
 --
--- Data for Name: countries; Type: TABLE DATA; Schema: public; Owner: jeramy
+-- Data for Name: countries; Type: TABLE DATA; Schema: public; Owner: playmotrade
 --
 
 COPY countries (id, name) FROM stdin;
@@ -1468,14 +1468,14 @@ COPY countries (id, name) FROM stdin;
 
 
 --
--- Name: countries_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jeramy
+-- Name: countries_id_seq; Type: SEQUENCE SET; Schema: public; Owner: playmotrade
 --
 
 SELECT pg_catalog.setval('countries_id_seq', 239, true);
 
 
 --
--- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: jeramy
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: playmotrade
 --
 
 COPY schema_migrations (version) FROM stdin;
@@ -1497,7 +1497,7 @@ COPY schema_migrations (version) FROM stdin;
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: jeramy
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: playmotrade
 --
 
 COPY users (id, email, telephone, address1, address2, city, state, zip, username, agrees_to_tos, about, created_at, updated_at, first_name, last_name, country_id, avatar_file_name, avatar_content_type, avatar_file_size, avatar_updated_at, confirmation_token, confirmed_at, confirmation_sent_at, unconfirmed_email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, role) FROM stdin;
@@ -1505,14 +1505,14 @@ COPY users (id, email, telephone, address1, address2, city, state, zip, username
 
 
 --
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jeramy
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: playmotrade
 --
 
 SELECT pg_catalog.setval('users_id_seq', 1, true);
 
 
 --
--- Name: catalog_items_pkey; Type: CONSTRAINT; Schema: public; Owner: jeramy; Tablespace: 
+-- Name: catalog_items_pkey; Type: CONSTRAINT; Schema: public; Owner: playmotrade; Tablespace: 
 --
 
 ALTER TABLE ONLY catalog_items
@@ -1520,7 +1520,7 @@ ALTER TABLE ONLY catalog_items
 
 
 --
--- Name: catalog_sets_pkey; Type: CONSTRAINT; Schema: public; Owner: jeramy; Tablespace: 
+-- Name: catalog_sets_pkey; Type: CONSTRAINT; Schema: public; Owner: playmotrade; Tablespace: 
 --
 
 ALTER TABLE ONLY catalog_sets
@@ -1528,7 +1528,7 @@ ALTER TABLE ONLY catalog_sets
 
 
 --
--- Name: countries_pkey; Type: CONSTRAINT; Schema: public; Owner: jeramy; Tablespace: 
+-- Name: countries_pkey; Type: CONSTRAINT; Schema: public; Owner: playmotrade; Tablespace: 
 --
 
 ALTER TABLE ONLY countries
@@ -1536,7 +1536,7 @@ ALTER TABLE ONLY countries
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: jeramy; Tablespace: 
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: playmotrade; Tablespace: 
 --
 
 ALTER TABLE ONLY users
@@ -1544,40 +1544,40 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: index_users_on_confirmation_token; Type: INDEX; Schema: public; Owner: jeramy; Tablespace: 
+-- Name: index_users_on_confirmation_token; Type: INDEX; Schema: public; Owner: playmotrade; Tablespace: 
 --
 
 CREATE UNIQUE INDEX index_users_on_confirmation_token ON users USING btree (confirmation_token);
 
 
 --
--- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: jeramy; Tablespace: 
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: playmotrade; Tablespace: 
 --
 
 CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
 
 
 --
--- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: jeramy; Tablespace: 
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: playmotrade; Tablespace: 
 --
 
 CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
 
 
 --
--- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: jeramy; Tablespace: 
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: playmotrade; Tablespace: 
 --
 
 CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
 
 
 --
--- Name: public; Type: ACL; Schema: -; Owner: jeramy
+-- Name: public; Type: ACL; Schema: -; Owner: playmotrade
 --
 
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM jeramy;
-GRANT ALL ON SCHEMA public TO jeramy;
+REVOKE ALL ON SCHEMA public FROM playmotrade;
+GRANT ALL ON SCHEMA public TO playmotrade;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
