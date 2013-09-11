@@ -28,60 +28,33 @@
 
       <div class="matter">
         <div class="container-fluid">
-
-          <div class="row-fluid">
-
-            <div class="span12">
-
-                <div class="widget worange">
-
-                <div class="widget-head">
-
-                  <div class="clearfix"></div>
-                </div>
-
-                  <div class="widget-content">
-
-                    <table class="table  table-bordered ">
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>Number</th>
-                          <th>Name</th>
-                          <th>Image</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <% @catalog_items.each do |catalog_item| %>
-                        <tr>
-                          <td><%= catalog_item.id %></td>
-                          <td>
-                            <%= catalog_item.number %>
-                          </td>
-                          <td>
-                            <%= catalog_item.name %>
-                          </td>
-                          <td>
-                            <%= image_tag catalog_item.image.url(:small) %>
-                          </td>
-                        </tr>
-                        <% end %>
-                      </tbody>
-                    </table>
-
-
-                  </div>
-
-                    <div class="widget-foot">
-                      <%= will_paginate @catalog_items, :class => 'pagination pull-right' %>
-                      <div class="clearfix"></div> 
+          <% @catalog_items.in_groups_of(4, false) do |row| %>
+            <div class="row-fluid">
+              <% row.each do |catalog_item| %>
+                <div class="span3">
+                  <div class="widget wlightblue">
+                    <div class="widget-head">
+                      <h6><%= catalog_item.name %></h6>
+                      <div class="clearfix"></div>
                     </div>
-
+                    <div class="widget-content">
+                      <%= image_tag catalog_item.image.url(:medium), :class => 'catalog-img' %>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="widget-foot">
+                      <p class="pull-left"><%= catalog_item.number %></p>
+                      <a href="#" class="btn pull-right btn-danger">View</a>
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
                 </div>
-
-
-              </div>
-
+              <% end %>
+            </div>
+          <% end %>
+                        
+          <div class="widget-foot">
+            <%= will_paginate @catalog_items, :class => 'pagination pull-right' %>
+            <div class="clearfix"></div> 
           </div>
 
         </div>

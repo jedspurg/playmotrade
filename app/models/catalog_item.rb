@@ -11,4 +11,6 @@ class CatalogItem < ActiveRecord::Base
                                           :small  => "70x70>",
                                           :tiny  => "30x30>" 
                                         }, :default_url => "/images/items/:style/missing.png"
+
+  default_scope order('number ASC')
 end

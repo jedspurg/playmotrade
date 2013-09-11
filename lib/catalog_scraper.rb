@@ -3,11 +3,16 @@ class CatalogScraper
 
   attr_accessor :catalog_set_item
 
-  def initialize(range)
+  def initialize(range, mode)
     @range = range
+    @mode  = mode
   end
 
   def perform
+    send(@mode)
+  end
+
+  def collectobil
     @range.each do |number|
 
       page = "http://collectobil.com/catalogue/items/#{number}.htm"
@@ -70,6 +75,43 @@ class CatalogScraper
             :release_date => catalog_set_item[:released].to_s.match('\d{4}').to_s.to_i
           })
         end
+
+      rescue OpenURI::HTTPError
+      end
+      
+    end
+  end
+
+  def playmodb_set
+    @range.each do |number|
+
+      page = "http://playmodb.org/cgi-bin/listinv.pl?setnum=#{number}"
+      begin
+        doc = Nokogiri::HTML(open(page))
+
+        name = doc.at('h2')[1] if doc.at('h2')[1].present?
+  
+        if name.present? && CatalogItem.find_by(:number => number.to_s).blank?
+          CatalogSet.create!({
+            :number       => number.to_s,
+            :name         => name
+          })
+        end
+
+      rescue OpenURI::HTTPError
+      end
+      
+    end
+  end
+
+  def playmodb_parts_list
+    @range.each do |number|
+
+      page = "http://playmodb.org/cgi-bin/listinv.pl?setnum=#{number}"
+      begin
+        doc = Nokogiri::HTML(open(page))
+
+        parts_list = doc.at('pre')
 
       rescue OpenURI::HTTPError
       end

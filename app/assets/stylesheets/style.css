@@ -1060,6 +1060,13 @@ form label{
   color: #fff;
 }
 
+.widget.wlightblue .widget-head h6{
+	color: #fff;
+}
+.widget.wlightblue img.catalog-img{
+	width:100%;
+}
+
 .widget.wblue .widget-head{
   background-color: #1171a3;
   border: 1px solid #1171a3;
