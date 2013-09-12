@@ -35,6 +35,9 @@ gem 'devise'
 # File attachments
 gem "paperclip"
 
+# Scoping
+gem 'ransack'
+
 # Searching
 gem 'sunspot_rails'
 
@@ -46,14 +49,16 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 
 group :development do
-  gem 'sunspot_solr'
   gem 'capistrano'
   gem 'better_errors'
+  gem 'sunspot_solr'
 end
 
 # Use Unicorn
 gem 'unicorn'
 
+# XML/HTML Parser
+gem 'nokogiri'
 
 # Multi Table Inheritance
 gem 'acts_as_relation', '~> 1.0'

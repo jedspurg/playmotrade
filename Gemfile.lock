@@ -95,6 +95,8 @@ GEM
       cocaine (~> 0.5.0)
       mime-types
     pg (0.16.0)
+    polyamorous (0.6.4)
+      activerecord (>= 3.0)
     polyglot (0.3.3)
     pr_geohash (1.0.0)
     rack (1.5.2)
@@ -115,6 +117,10 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.10.0)
     rake (10.1.0)
+    ransack (1.0.0)
+      actionpack (>= 3.0)
+      activerecord (>= 3.0)
+      polyamorous (~> 0.6.0)
     rsolr (1.0.9)
       builder (>= 2.1.2)
     sass (3.2.10)
@@ -172,9 +178,11 @@ DEPENDENCIES
   devise
   jbuilder (~> 1.2)
   jquery-rails
+  nokogiri
   paperclip
   pg
   rails (= 4.0.0)
+  ransack
   sass-rails (~> 4.0.0)
   sunspot_rails
   sunspot_solr

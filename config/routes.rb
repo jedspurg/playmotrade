@@ -9,6 +9,7 @@ Playmotrade::Application.routes.draw do
   resources :home
   resources :users
   resources :catalog
+  resources :catalog_sets
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

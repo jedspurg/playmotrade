@@ -13,4 +13,6 @@ class CatalogItem < ActiveRecord::Base
                                         }, :default_url => "/images/items/:style/missing.png"
 
   default_scope order('number ASC')
+
+  scope :sets, -> { where(:catalogable_type => "CatalogSet") }
 end
