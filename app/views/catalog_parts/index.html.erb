@@ -1,0 +1,73 @@
+<% provide(:title, "Catalog") %>
+<div class="content">
+  <!-- Sidebar -->
+  <%= render "shared/sidebar" %>
+  <!-- Sidebar ends -->
+    <div class="mainbar">
+      
+      <!-- Page heading -->
+      <div class="page-head">
+        <!-- Page heading -->
+        <h2 class="pull-left">Catalog</h2>
+
+
+        <!-- Breadcrumb -->
+        <div class="bread-crumb pull-right">
+          <a href="/"><i class="icon-home"></i> Home</a> 
+          <!-- Divider -->
+          <span class="divider">/</span>
+          <%= link_to "Catalog", catalog_index_path %>
+          <span class="divider">/</span>
+          <%= link_to "Catalog Parts", catalog_parts_path %>
+        </div>
+
+        <div class="clearfix"></div>
+
+      </div>
+      <!-- Page heading ends -->
+
+      <!-- Matter -->
+
+      <div class="matter">
+        <div class="container-fluid">
+          <% @catalog_parts.in_groups_of(4, false) do |row| %>
+            <div class="row-fluid">
+              <% row.each do |catalog_part| %>
+                <div class="span3">
+                  <div class="widget wlightblue">
+                    <div class="widget-head">
+                      <h6><%= catalog_part.name %></h6>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="widget-content">
+                      <%= image_tag catalog_part.image.url(:medium), :class => 'catalog-img' %>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="widget-foot">
+                      <p class="pull-left"><%= catalog_part.number %></p>
+                      <%= link_to "View", catalog_part_path(catalog_part), :class => 'btn pull-right btn-danger' %>
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+                        
+          <div class="widget-foot">
+            <%= will_paginate @catalog_parts, :class => 'pagination pull-right' %>
+            <div class="clearfix"></div> 
+          </div>
+
+        </div>
+      </div>
+
+    <!-- Matter ends -->
+
+    </div>
+
+   <!-- Mainbar ends -->        
+   <div class="clearfix"></div>
+
+</div>
+<!-- Content ends -->

@@ -2,7 +2,7 @@ class CatalogItem < ActiveRecord::Base
   acts_as_superclass
 
   validates :name, :presence => true
-  validates :number, :presence => true, :uniqueness => true
+  validates :number, :presence => true#, :uniqueness => true
 
   has_attached_file :image, :styles => { 
                                           :large  => "500x500>",
@@ -15,4 +15,5 @@ class CatalogItem < ActiveRecord::Base
   default_scope order('number ASC')
 
   scope :sets, -> { where(:catalogable_type => "CatalogSet") }
+  scope :parts, -> { where(:catalogable_type => "CatalogPart") }
 end

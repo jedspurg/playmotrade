@@ -1,0 +1,86 @@
+<% provide(:title, "Catalog") %>
+<div class="content">
+  <!-- Sidebar -->
+  <%= render "shared/sidebar" %>
+  <!-- Sidebar ends -->
+    <div class="mainbar">
+      
+      <!-- Page heading -->
+      <div class="page-head">
+        <!-- Page heading -->
+        <h2 class="pull-left">Catalog</h2>
+
+
+        <!-- Breadcrumb -->
+        <div class="bread-crumb pull-right">
+          <a href="/"><i class="icon-home"></i> Home</a> 
+          <!-- Divider -->
+          <span class="divider">/</span>
+          <%= link_to "Catalog", catalog_index_path %>
+          <span class="divider">/</span>
+          <%= link_to "Catalog Parts", catalog_parts_path %>
+          <span class="divider">/</span>
+          <%= link_to @catalog_part.number, catalog_part_path(@catalog_part) %>
+        </div>
+
+        <div class="clearfix"></div>
+
+      </div>
+      <!-- Page heading ends -->
+
+      <!-- Matter -->
+
+      <div class="matter">
+        <div class="container-fluid">
+          
+            <div class="row-fluid">
+              
+                <div class="span12">
+
+                  <div class="widget wlightblue">
+                    <div class="widget-head">
+                      <div class="pull-left"><%= @catalog_part.name %></div>
+                      <div class="pull-right"><%= @catalog_part.number %></div> 
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="widget-content">
+                      <div class="row-fluid">
+                        <div class="span6">
+                          <%= image_tag @catalog_part.image.url(:large), :class => 'catalog-img' %>
+                        </div>
+                        <div class="span6">
+                          <ul class="activity">
+                            <li>
+                              <strong>Category:</strong> <%= @catalog_part.try(:catalog_parts_category).try(:name) %>
+                            </li>
+                            <li>
+                              <strong>Subcategory:</strong> <%= @catalog_part.try(:catalog_parts_subcategory).try(:name)%>
+                            </li>
+                            <li>
+                              <strong>Color:</strong> <%= @catalog_part.try(:color) %>
+                            </li>
+
+
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+
+                </div>
+
+            </div>
+          
+        </div>
+      </div>
+
+    <!-- Matter ends -->
+
+    </div>
+
+   <!-- Mainbar ends -->        
+   <div class="clearfix"></div>
+
+</div>
+<!-- Content ends -->
