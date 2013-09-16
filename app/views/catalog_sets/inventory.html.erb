@@ -1,0 +1,90 @@
+<% provide(:title, "Catalog Set Inventory") %>
+<div class="content">
+  <!-- Sidebar -->
+  <%= render "shared/sidebar" %>
+  <!-- Sidebar ends -->
+    <div class="mainbar">
+      
+      <!-- Page heading -->
+      <div class="page-head">
+        <!-- Page heading -->
+        <h2 class="pull-left">Catalog Set Inventory</h2>
+
+
+        <!-- Breadcrumb -->
+        <div class="bread-crumb pull-right">
+          <a href="/"><i class="icon-home"></i> Home</a> 
+          <!-- Divider -->
+          <span class="divider">/</span>
+          <%= link_to "Catalog", catalog_index_path %>
+        </div>
+
+        <div class="clearfix"></div>
+
+      </div>
+      <!-- Page heading ends -->
+
+      <!-- Matter -->
+
+      <div class="matter">
+        <div class="container-fluid">
+
+          <div class="row-fluid">
+
+            <div class="span12">
+
+                <div class="widget wlightblue">
+
+                <div class="widget-head">
+
+                  <div class="clearfix"></div>
+                </div>
+
+                  <div class="widget-content">
+                  <pre>
+                    <%= @catalog_set.playmodb_inventory %>
+                  </pre>
+
+                    <table class="table  table-bordered ">
+                      <thead>
+                        <tr>
+                          <th>Quantity</th>
+                          <th>Color</th>
+                          <th>Number</th>
+                          <th>Name</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% @catalog_iventory_list.each do |part| %>
+                        <tr>
+                          <td><%= part.quantity %></td>
+                          <td><%= part.catalog_part.try(:color) %></td>
+                          <td><%= link_to part.catalog_part.try(:number), catalog_part_path(part.catalog_part) %></td>
+                          <td><%= part.catalog_part.try(:name) %></td>
+                        </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+
+
+                  </div>
+
+                </div>
+
+
+              </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    <!-- Matter ends -->
+
+    </div>
+
+   <!-- Mainbar ends -->        
+   <div class="clearfix"></div>
+
+</div>
+<!-- Content ends -->

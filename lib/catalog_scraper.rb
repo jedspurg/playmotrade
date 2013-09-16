@@ -211,7 +211,15 @@ class CatalogScraper
       begin
         doc = Nokogiri::HTML(open(page))
 
-        parts_list = doc.at('pre')
+        parts_list = doc.at('pre').text rescue nil
+
+        existing_catalog_item = CatalogItem.find_by(:number => number.to_s)
+        if existing_catalog_item.present? && parts_list.present?
+          catalog_set = CatalogSet.find_by(:id => existing_catalog_item.catalogable_id)
+          catalog_set.update_attributes!({
+            :playmodb_inventory => parts_list
+          })
+        end
 
       rescue OpenURI::HTTPError
       end
@@ -242,8 +250,6 @@ class CatalogScraper
             end
 
             category = PLAYMODB_PART_CATEGORIES[num]
-
-            category = part.playmodb_category
             main_category = category.split('-').first.gsub('%20', ' ')
             main_category = 'Uncategorized' if main_category == ('TO BE ASSIGNED' || '%3F')
             sub_category  = category.split('-').last.gsub('%20', ' ') if category.split('-').count > 1

@@ -12,8 +12,14 @@ class CatalogPart < ActiveRecord::Base
   belongs_to :catalog_parts_category
   belongs_to :catalog_parts_subcategory
 
+  default_scope{ order('number ASC') }
+
   scope :color, Proc.new { |color|
     where(:color => color)
   }
+
+  searchable do
+    text :name, :number, :color
+  end
 
 end

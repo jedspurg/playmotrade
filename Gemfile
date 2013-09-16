@@ -35,9 +35,6 @@ gem 'devise'
 # File attachments
 gem "paperclip"
 
-# Scoping
-gem 'ransack'
-
 # Searching
 gem 'sunspot_rails'
 

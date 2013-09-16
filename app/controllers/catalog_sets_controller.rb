@@ -1,12 +1,22 @@
 class CatalogSetsController < ApplicationController
 
+  before_filter :catalog_set, :only => [:show, :inventory]
+
   def index
-    @catalog_items = CatalogItem.sets.paginate(:page => params[:page], :per_page => 24)
+    @catalog_items = CatalogSet.paginate(:page => params[:page], :per_page => 24)
   end
 
   def show
-    catalog_item = CatalogItem.find(params[:id])
-    @catalog_set = CatalogSet.find_by(:id => catalog_item.catalogable_id)
+  end
+
+  def inventory
+    @catalog_iventory_list = @catalog_set.inventory.list
+  end
+
+  protected ###################################################################
+
+  def catalog_set
+    @catalog_set = CatalogSet.find(params[:id])
   end
 
 end

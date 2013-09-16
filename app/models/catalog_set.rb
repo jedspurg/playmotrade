@@ -9,4 +9,10 @@ class CatalogSet < ActiveRecord::Base
                                               :tiny  => "30x30>" 
                                             }, :default_url => "/images/items/:style/missing.png"
 
+  default_scope{ order('number ASC') }
+
+  def inventory
+    CatalogInventory.where(:catalog_set_id => id).first
+  end
+
 end

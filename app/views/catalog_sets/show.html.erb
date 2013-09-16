@@ -54,6 +54,9 @@
                             <li>
                               <strong>Theme:</strong> <%= @catalog_set.theme.to_s %>
                             </li>
+                            <li>
+                              <%= link_to "View Inventory", inventory_catalog_set_path(@catalog_set), :class => 'btn pull-right btn-danger' %>
+                            </li>
 
 
                           </ul>

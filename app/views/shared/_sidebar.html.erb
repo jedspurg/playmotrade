@@ -3,81 +3,95 @@
 
   <div class="sidebar-inner">
 
-
-
     <!-- Search form -->
     <div class="sidebar-widget">
       <form class="form-inline">
         <div class="input-append row-fluid">
-          <input type="text" class="span8" placeholder="Search">
-          <button type="submit" class="btn btn-info">Search</button>
+          <input type="text" class="span7" placeholder="Search">
+          <div class="btn-group">
+            <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Search <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a href="#">Catalog</a></li>
+              <li><a href="#">Stores</a></li>
+              <li><a href="#">Trades</a></li>
+              <li><a href="#">People</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Entire Site</a></li>
+            </ul>
+          </div>
         </div>
       </form>
     </div>
 
     <!--- Sidebar navigation -->
-    <!-- If the main navigation has sub navigation, then add the class "has_submenu" to "li" of main navigation. -->
     <ul class="navi">
 
-      <!-- Use the class nred, ngreen, nblue, nlightblue, nviolet or norange to add background color. You need to use this in <li> tag. -->
-
-      <li class="nred"><a href="index.html"><i class="icon-desktop"></i> Dashboard</a></li>
-
       <!-- Menu with sub menu -->
-      <li class="has_submenu nlightblue current open">
+      <li class="has_submenu nlightblue <%= active_class([catalog_sets_path,catalog_parts_path])%>">
         <a href="#">
-          <!-- Menu name with icon -->
-          <i class="icon-th"></i> Widgets 
-          <!-- Icon for dropdown -->
+          <i class="icon-th"></i> Catalog 
           <span class="pull-right"><i class="icon-angle-right"></i></span>
         </a>
 
         <ul>
-          <li class="active"><a href="widgets1.html">Widgets #1</a></li>
-          <li><a href="widgets2.html">Widgets #2</a></li>
+          <li class="<%= sub_active_class(catalog_sets_path) %>"><%= link_to "Sets", catalog_sets_path %></li>
+          <li class="<%= sub_active_class(catalog_parts_path) %>"><%= link_to "Parts", catalog_parts_path %></li>
+          <li><a href="widgets2.html">Figures (Klickies)</a></li>
         </ul>
       </li>
 
-      <li class="ngreen"><a href="charts.html"><i class="icon-bar-chart"></i> Charts</a></li>
-
-      <li class="norange"><a href="ui.html"><i class="icon-sitemap"></i> UI Elements</a></li>
-
-      <li class="has_submenu nviolet">
+      <li class="has_submenu nred">
         <a href="#">
-          <i class="icon-file-alt"></i> Pages #1
+          <i class="icon-money"></i> Buy
           <span class="pull-right"><i class="icon-angle-right"></i></span>
         </a>
 
         <ul>
-          <li><a href="calendar.html">Calendar</a></li>
-          <li><a href="post.html">Make Post</a></li>
-          <li><a href="login.html">Login</a></li>
-          <li><a href="register.html">Register</a></li>
-          <li><a href="statement.html">Statement</a></li>
-          <li><a href="error-log.html">Error Log</a></li>
-          <li><a href="support.html">Support</a></li>
+          <li><%= link_to "Browse Catalog", catalog_index_path %></li>
+          <li><a href="login.html">My Orders</a></li>
+          <li><a href="post.html">My Wishlist</a></li>
         </ul>
       </li> 
 
-      <li class="has_submenu nblue">
+      <li class="has_submenu nviolet">
         <a href="#">
-          <i class="icon-file-alt"></i> Pages #2
+          <i class="icon-briefcase"></i> Sell
           <span class="pull-right"><i class="icon-angle-right"></i></span>
         </a>
         
         <ul>
-          <li><a href="error.html">Error</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="grid.html">Grid</a></li>
-          <li><a href="invoice.html">Invoice</a></li>
-          <li><a href="media.html">Media</a></li>
-          <li><a href="profile.html">Profile</a></li>
+          <li><a href="grid.html">My Store</a></li>
+          <li><a href="gallery.html">Browse Stores</a></li>
+          <li><a href="error.html">Create a Store</a></li> 
         </ul>
+      </li>
+
+      <li class="has_submenu ngreen">
+        <a href="#">
+          <i class="icon-gift"></i> Trade
+          <span class="pull-right"><i class="icon-angle-right"></i></span>
+        </a>
+        
+        <ul>
+          <li><a href="error.html">Post an Item</a></li>
+          <li><a href="gallery.html">My Trade List</a></li>
+          <li><a href="grid.html">Available Items</a></li>
+        </ul>
+      </li>
+
+      <li class="norange">
+        <%= link_to users_path do %>
+          <i class="icon-group"></i> Members
+          <span class="pull-right"><i class="icon-angle-right"></i></span>
+        <% end %>
       </li> 
 
-      <li class="nred"><a href="forms.html"><i class="icon-list"></i> Forms</a></li>
-
-      <li class="nlightblue"><a href="tables.html"><i class="icon-table"></i> Tables</a></li>
+      <li class="nblue">
+        <a href="#">
+          <i class="icon-list-alt"></i> Forums
+          <span class="pull-right"><i class="icon-angle-right"></i></span>
+        </a>
+      </li> 
 
     </ul>
 
