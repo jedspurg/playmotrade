@@ -59,6 +59,15 @@
                             <li>
                               <strong>Color:</strong> <%= @catalog_part.try(:color) %>
                             </li>
+                            <li>
+                              <strong>Dimensions:</strong> <%= @catalog_part.dimensions.to_s %>
+                            </li>
+                            <li>
+                              <strong>Weight:</strong> <%= @catalog_part.weight.to_s %>
+                            </li>
+                            <li>
+                              <%= link_to "Edit Part", edit_catalog_part_path(@catalog_part), :class => 'btn pull-left btn-warning' %>
+                            </li>
 
 
                           </ul>

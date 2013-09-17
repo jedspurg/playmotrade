@@ -316,4 +316,20 @@ class CatalogScraper
     end
   end
 
+  def utoypia
+    @range.each do |number|
+      image = open(URI.parse("http://www.utoypia.com/images/bigplaymobil_#{number}.jpg")) rescue nil
+      if image.present?
+        existing_catalog_item = CatalogItem.find_by(:number => number.to_s)
+        catalog_set = CatalogSet.find_by(:id => existing_catalog_item.catalogable_id)
+        if catalog_set.image.blank?
+          catalog_set.update_attributes!({
+            :image => image
+          })
+        end
+      end
+    end
+  end
+    
+
 end

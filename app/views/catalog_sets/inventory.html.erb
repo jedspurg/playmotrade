@@ -48,6 +48,7 @@
                     <table class="table  table-bordered ">
                       <thead>
                         <tr>
+                          <th>ID</th>
                           <th>Quantity</th>
                           <th>Color</th>
                           <th>Number</th>
@@ -56,11 +57,13 @@
                       </thead>
                       <tbody>
                         <% @catalog_iventory_list.each do |part| %>
+                        <% name = part.catalog_part.name || "missing" %>
                         <tr>
+                          <td><%= link_to part.catalog_part.id, catalog_part_path(part.catalog_part) %></td>
                           <td><%= part.quantity %></td>
                           <td><%= part.catalog_part.try(:color) %></td>
                           <td><%= link_to part.catalog_part.try(:number), catalog_part_path(part.catalog_part) %></td>
-                          <td><%= part.catalog_part.try(:name) %></td>
+                          <td><%= link_to part.catalog_part.try(:name), catalog_part_path(part.catalog_part) %></td>
                         </tr>
                         <% end %>
                       </tbody>
