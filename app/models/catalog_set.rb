@@ -15,4 +15,8 @@ class CatalogSet < ActiveRecord::Base
     CatalogInventory.where(:catalog_set_id => id).first
   end
 
+  searchable do
+    text :name, :number
+  end
+
 end

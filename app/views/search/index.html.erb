@@ -1,4 +1,4 @@
-<% provide(:title, "Catalog Sets") %>
+<% provide(:title, "Search") %>
 <div class="content">
   <!-- Sidebar -->
   <%= render "shared/sidebar" %>
@@ -8,7 +8,7 @@
       <!-- Page heading -->
       <div class="page-head">
         <!-- Page heading -->
-        <h2 class="pull-left">Catalog Sets</h2>
+        <h2 class="pull-left">Search</h2>
 
 
         <!-- Breadcrumb -->
@@ -16,7 +16,7 @@
           <a href="/"><i class="icon-home"></i> Home</a> 
           <!-- Divider -->
           <span class="divider">/</span>
-          <%= link_to "Catalog", catalog_index_path %>
+          <%= link_to "Search", search_index_path %>
         </div>
 
         <div class="clearfix"></div>
@@ -28,22 +28,22 @@
 
       <div class="matter">
         <div class="container-fluid">
-          <% @catalog_sets.in_groups_of(4, false) do |row| %>
+          <% @catalog_items.in_groups_of(4, false) do |row| %>
             <div class="row-fluid">
-              <% row.each do |catalog_set| %>
+              <% row.each do |catalog_item| %>
                 <div class="span3">
                   <div class="widget wlightblue">
                     <div class="widget-head">
-                      <h6><%= catalog_set.name %></h6>
+                      <h6><%= catalog_item.name %></h6>
                       <div class="clearfix"></div>
                     </div>
                     <div class="widget-content">
-                      <%= image_tag catalog_set.image.url(:medium), :class => 'catalog-img' %>
+                      <%= image_tag catalog_item.image.url(:medium), :class => 'catalog-img' %>
                       <div class="clearfix"></div>
                     </div>
                     <div class="widget-foot">
-                      <p class="pull-left"><%= catalog_set.number %></p>
-                      <%= link_to "View", catalog_set_path(catalog_set), :class => 'btn pull-right btn-danger' %>
+                      <p class="pull-left"><%= catalog_item.number %></p>
+                      <%= link_to "View", catalog_item_path(catalog_item), :class => 'btn pull-right btn-danger' %>
                       <div class="clearfix"></div>
                     </div>
                   </div>
@@ -53,7 +53,7 @@
           <% end %>
                         
           <div class="widget-foot">
-            <%= will_paginate @catalog_sets, :class => 'pagination pull-right' %>
+            <%= will_paginate @catalog_items, :class => 'pagination pull-right' %>
             <div class="clearfix"></div> 
           </div>
 

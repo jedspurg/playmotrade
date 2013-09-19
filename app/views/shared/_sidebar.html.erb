@@ -5,19 +5,11 @@
 
     <!-- Search form -->
     <div class="sidebar-widget">
-      <form class="form-inline">
+      <form class="form-inline" method="get" action="/search">
         <div class="input-append row-fluid">
-          <input type="text" class="span7" placeholder="Search">
+          <input name="q" type="text" class="span9" placeholder="Search Catalog">
           <div class="btn-group">
-            <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Search <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-              <li><a href="#">Catalog</a></li>
-              <li><a href="#">Stores</a></li>
-              <li><a href="#">Trades</a></li>
-              <li><a href="#">People</a></li>
-              <li class="divider"></li>
-              <li><a href="#">Entire Site</a></li>
-            </ul>
+            <button class="btn btn-info dropdown-toggle" ><i class="icon-angle-right"></i></button>
           </div>
         </div>
       </form>

@@ -49,6 +49,10 @@ group :development do
   gem 'capistrano'
   gem 'better_errors'
   gem 'sunspot_solr'
+  gem 'binding_of_caller'
+  gem 'debugger'
+  gem "hirb", ">=0.7.1"
+  gem "locale_base"
 end
 
 # Use Unicorn

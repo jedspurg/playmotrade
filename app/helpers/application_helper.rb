@@ -28,4 +28,8 @@ module ApplicationHelper
     "active" if current_page?(path)
   end
 
+  def catalog_item_path(catalog_item)
+    send("#{catalog_item.catalogable_type.underscore}_path", catalog_item.catalogable_id) 
+  end
+
 end

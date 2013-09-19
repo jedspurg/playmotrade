@@ -3,7 +3,7 @@ class CatalogSetsController < ApplicationController
   before_filter :catalog_set, :only => [:show, :edit, :update, :inventory]
 
   def index
-    @catalog_items = CatalogSet.paginate(:page => params[:page], :per_page => 24)
+    @catalog_sets = CatalogSet.paginate(:page => params[:page], :per_page => 24)
   end
 
   def show
