@@ -4,16 +4,14 @@
   <%= render "shared/sidebar" %>
   <!-- Sidebar ends -->
     <div class="mainbar">
-      
+
       <!-- Page heading -->
       <div class="page-head">
         <!-- Page heading -->
         <h2 class="pull-left">Catalog Set Inventory</h2>
-
-
         <!-- Breadcrumb -->
         <div class="bread-crumb pull-right">
-          <a href="/"><i class="icon-home"></i> Home</a> 
+          <a href="/"><i class="icon-home"></i> Home</a>
           <!-- Divider -->
           <span class="divider">/</span>
           <%= link_to "Catalog", catalog_index_path %>
@@ -32,23 +30,47 @@
           <div class="row-fluid">
 
             <div class="span12">
-
+              <div class="row-fluid">
+                <div class="span2">
+                  <%= link_to catalog_set_path(@catalog_set) do %>
+                    <%= image_tag @catalog_set.image.url(:medium), :class => 'catalog-img' %>
+                  <% end %>
+                </div>
+                <div class="span5">
+                  <%= link_to catalog_set_path(@catalog_set) do %>
+                    <%= @catalog_set.number %><br/>
+                    <%= @catalog_set.name %>
+                  <% end %>
+                </div>
+                <div class="span5">
+                <div class="pull-right">
+                  <% if @catalog_inventory.present? && @catalog_inventory.complete? %>
+                  <span class="label label-success"><i class="icon-ok"></i> Complete</span>
+                  <% else %>
+                  <span class="label label-important"><i class="icon-remove"></i> Incomplete</span>
+                  <% end %>
+                  <% if @catalog_inventory.present? && @catalog_inventory.verified? %>
+                  <span class="label label-success"><i class="icon-ok"></i> Verified</span>
+                  <% else %>
+                  <span class="label label-important"><i class="icon-remove"></i> Not Verified</span>
+                  <% end %>
+                </div>
+                </div>
+              </div>
+              <% if @catalog_iventory_list.blank? %>
+                <br/>
+                <div class="alert alert-error">
+                  There is currently no inventory data available for this set.
+                </div>
+              <% else %>
                 <div class="widget wlightblue">
 
-                <div class="widget-head">
-
-                  <div class="clearfix"></div>
-                </div>
-
                   <div class="widget-content">
-                  <pre>
-                    <%= @catalog_set.playmodb_inventory %>
-                  </pre>
 
-                    <table class="table  table-bordered ">
-                      <thead>
+                    <table class="table table-bordered wlightblue" id="set-inventory">
+                      <thead class="widget-head">
                         <tr>
-                          <th>ID</th>
+                          <th>Image</th>
                           <th>Quantity</th>
                           <th>Color</th>
                           <th>Number</th>
@@ -57,9 +79,11 @@
                       </thead>
                       <tbody>
                         <% @catalog_iventory_list.each do |part| %>
-                        <% name = part.catalog_part.name || "missing" %>
                         <tr>
-                          <td><%= link_to part.catalog_part.id, catalog_part_path(part.catalog_part) %></td>
+                          <td>
+                          <%= link_to catalog_part_path(part.catalog_part), :rel => 'popover', :class => 'part-preview', :"data-content" => "#{image_tag part.catalog_part.image.url(:medium).html_safe}" do %>
+                            <%= image_tag part.catalog_part.image.url(:thumb) %>
+                          <% end  %></td>
                           <td><%= part.quantity %></td>
                           <td><%= part.catalog_part.try(:color) %></td>
                           <td><%= link_to part.catalog_part.try(:number), catalog_part_path(part.catalog_part) %></td>
@@ -69,11 +93,13 @@
                       </tbody>
                     </table>
 
+                    <pre>
+                      <%= @catalog_set.playmodb_inventory %>
+                    </pre>
 
                   </div>
-
                 </div>
-
+              <% end %>
 
               </div>
 
@@ -86,7 +112,7 @@
 
     </div>
 
-   <!-- Mainbar ends -->        
+   <!-- Mainbar ends -->
    <div class="clearfix"></div>
 
 </div>

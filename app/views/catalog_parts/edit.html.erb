@@ -5,7 +5,7 @@
   <!-- Sidebar ends -->
     <!-- Main bar -->
     <div class="mainbar">
-      
+
       <!-- Page heading -->
       <div class="page-head">
         <!-- Page heading -->
@@ -15,7 +15,7 @@
 
         <!-- Breadcrumb -->
        <div class="bread-crumb pull-right">
-          <a href="/"><i class="icon-home"></i> Home</a> 
+          <a href="/"><i class="icon-home"></i> Home</a>
           <!-- Divider -->
           <span class="divider">/</span>
           <%= link_to "Catalog", catalog_index_path %>
@@ -37,6 +37,15 @@
 
       <div class="matter">
         <div class="container-fluid">
+          <% if flash[:error].present? %>
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="alert alert-error">
+                <%= flash[:error] %>
+              </div>
+            </div>
+          </div>
+          <% end %>
 
           <div class="row-fluid">
 
@@ -65,7 +74,7 @@
                           <div class="controls">
                             <%= f.text_field :name, :class => "input-large" %>
                           </div>
-                        </div> 
+                        </div>
 
                         <div class="control-group">
                           <label class="control-label" for="number">Number</label>
@@ -83,14 +92,14 @@
 
                         <div class="control-group">
                           <label class="control-label">Category</label>
-                          <div class="controls">                               
+                          <div class="controls">
                             <%= f.select :catalog_parts_category_id, options_for_select(CatalogPartsCategory.all.pluck(:name, :id).sort, @catalog_part.catalog_parts_category.try(:id)) %>
                           </div>
                         </div>
 
                         <div class="control-group">
                           <label class="control-label">Subcategory</label>
-                          <div class="controls">                               
+                          <div class="controls">
                             <%= f.select :catalog_parts_subcategory_id, options_for_select(CatalogPartsSubcategory.all.pluck(:name, :id).sort, @catalog_part.catalog_parts_subcategory.try(:id)) %>
                           </div>
                         </div>
@@ -101,15 +110,22 @@
                           <div class="controls">
                             <%= f.text_field :dimensions, :class => "input-large" %>
                           </div>
-                        </div> 
+                        </div>
 
                         <div class="control-group">
                           <label class="control-label" for="weight">Weight</label>
                           <div class="controls">
                             <%= f.text_field :weight, :class => "input-large" %>
                           </div>
-                        </div> 
-                              
+                        </div>
+
+                        <div class="control-group">
+                          <label class="control-label" for="tags">Tags</label>
+                          <div class="controls">
+                            <%= f.text_field :tags, :value => @catalog_part.tags.map(&:name).join(', '), :class => "input-large" %>
+                          </div>
+                        </div>
+
                         <div class="form-actions">
                           <%= f.submit "Update", class: "btn btn-success" %>
                         </div>
@@ -119,7 +135,7 @@
                   </div>
                 </div>
 
-              </div>  
+              </div>
             </div>
 
               <div class="span6">
@@ -154,11 +170,17 @@
                       <li>
                         <strong>Weight:</strong> <%= @catalog_part.weight.to_s %>
                       </li>
+                      <li>
+                        <strong>Tags:</strong>
+                        <% @catalog_part.tags.each do |tag| %>
+                        <span class="label label-info"><%= tag.name %></span>
+                        <% end %>
+                      </li>
                     </ul>
-            
+
                   </div>
 
-                </div> 
+                </div>
               </div>
 
 
@@ -171,7 +193,7 @@
 
     </div>
 
-   <!-- Mainbar ends -->        
+   <!-- Mainbar ends -->
    <div class="clearfix"></div>
 
 </div>

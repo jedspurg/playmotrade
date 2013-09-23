@@ -1,5 +1,5 @@
 class BuildInventories < ActiveRecord::Migration
-  
+
   def self.perform
     CatalogSet.all.each do |set|
       if set.playmodb_inventory.present?
@@ -10,9 +10,9 @@ class BuildInventories < ActiveRecord::Migration
           r       = row.split(/\t/)
           row_num = "row#{index}".to_sym
           part_info = {}.tap do |pi|
-            pi[:part_number]   = r[0]
-            pi[:part_quantity] = r[1]
-            pi[:part_name]     = r[2]
+            pi[:part_number]   = r[0].to_s.strip
+            pi[:part_quantity] = r[1].to_s.strip
+            pi[:part_name]     = r[2].to_s.strip
           end
           inventory_hash[row_num] = part_info
         end
@@ -26,11 +26,11 @@ class BuildInventories < ActiveRecord::Migration
             catalog_part = CatalogPart.find_by(:id => catalog_item.try(:catalogable_id))
 
             if catalog_part.blank?
-              number = part_row[1][:part_number] rescue nil
-              name   = part_row[1][:part_name] rescue nil
+              number = part_row[1][:part_number]
+              name   = part_row[1][:part_name]
 
               if name.present? && number.present?
-                catalog_part = CatalogPart.create!({
+                catalog_part = CatalogPart.create({
                   :number => number,
                   :name => name
                 })
@@ -38,7 +38,7 @@ class BuildInventories < ActiveRecord::Migration
             end
             quantity = part_row[1][:part_quantity].strip.gsub('x', '').to_i rescue 0
             if catalog_part.present?
-              CatalogInventoryPart.create!({
+              CatalogInventoryPart.create({
                 :catalog_inventory_id => catalog_inventory.id,
                 :catalog_part_id      => catalog_part.id,
                 :quantity             => quantity

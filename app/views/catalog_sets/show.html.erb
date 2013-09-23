@@ -4,7 +4,7 @@
   <%= render "shared/sidebar" %>
   <!-- Sidebar ends -->
     <div class="mainbar">
-      
+
       <!-- Page heading -->
       <div class="page-head">
         <!-- Page heading -->
@@ -13,7 +13,7 @@
 
         <!-- Breadcrumb -->
         <div class="bread-crumb pull-right">
-          <a href="/"><i class="icon-home"></i> Home</a> 
+          <a href="/"><i class="icon-home"></i> Home</a>
           <!-- Divider -->
           <span class="divider">/</span>
           <%= link_to "Catalog", catalog_index_path %>
@@ -32,15 +32,22 @@
 
       <div class="matter">
         <div class="container-fluid">
-          
+          <% if flash[:notice].present? %>
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="alert alert-info">
+                <%= flash[:notice] %>
+              </div>
+            </div>
+          </div>
+          <% end %>
             <div class="row-fluid">
-              
                 <div class="span12">
 
                   <div class="widget wlightblue">
                     <div class="widget-head">
                       <div class="pull-left"><%= @catalog_set.name %></div>
-                      <div class="pull-right"><%= @catalog_set.number %></div> 
+                      <div class="pull-right"><%= @catalog_set.number %></div>
                       <div class="clearfix"></div>
                     </div>
                     <div class="widget-content">
@@ -73,6 +80,12 @@
                               <strong>Weight:</strong> <%= @catalog_set.weight.to_s %>
                             </li>
                             <li>
+                              <strong>Tags:</strong>
+                              <% @catalog_set.tags.each do |tag| %>
+                              <span class="label label-info"><%= tag.name %></span>
+                              <% end %>
+                            </li>
+                            <li>
                               <%= link_to "Edit Set", edit_catalog_set_path(@catalog_set), :class => 'btn pull-left btn-warning' %>
                               <%= link_to "View Inventory", inventory_catalog_set_path(@catalog_set), :class => 'btn pull-right btn-danger' %>
                               <div class="clearfix"></div>
@@ -80,7 +93,7 @@
                           </ul>
                         </div>
                       </div>
-                      
+
                       <div class="clearfix"></div>
                     </div>
                   </div>
@@ -88,7 +101,7 @@
                 </div>
 
             </div>
-          
+
         </div>
       </div>
 
@@ -96,7 +109,7 @@
 
     </div>
 
-   <!-- Mainbar ends -->        
+   <!-- Mainbar ends -->
    <div class="clearfix"></div>
 
 </div>

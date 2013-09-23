@@ -7,4 +7,13 @@ class CatalogInventory < ActiveRecord::Base
   def list
     CatalogInventoryPart.where(:catalog_inventory_id => id).all
   end
+
+  def complete?
+    complete
+  end
+
+  def verified?
+    verified
+  end
+
 end

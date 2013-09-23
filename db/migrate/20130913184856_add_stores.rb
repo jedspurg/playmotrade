@@ -1,6 +1,6 @@
 class AddStores < ActiveRecord::Migration
   def change
-    
+
     create_table :stores do |t|
 
       t.integer :user_id, :null => false

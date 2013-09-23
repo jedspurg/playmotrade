@@ -4,16 +4,15 @@
   <%= render "shared/sidebar" %>
   <!-- Sidebar ends -->
     <div class="mainbar">
-      
+
       <!-- Page heading -->
       <div class="page-head">
         <!-- Page heading -->
         <h2 class="pull-left">Catalog</h2>
 
-
         <!-- Breadcrumb -->
         <div class="bread-crumb pull-right">
-          <a href="/"><i class="icon-home"></i> Home</a> 
+          <a href="/"><i class="icon-home"></i> Home</a>
           <!-- Divider -->
           <span class="divider">/</span>
           <%= link_to "Catalog", catalog_index_path %>
@@ -29,26 +28,30 @@
       <!-- Page heading ends -->
 
       <!-- Matter -->
-
       <div class="matter">
         <div class="container-fluid">
-          
-            <div class="row-fluid">
-              
-                <div class="span12">
+          <% if flash[:notice].present? %>
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="alert alert-info">
+                <%= flash[:notice] %>
+              </div>
+            </div>
+          </div>
+          <% end %>
 
+            <div class="row-fluid">
+                <div class="span12">
                   <div class="widget wlightblue">
                     <div class="widget-head">
                       <div class="pull-left"><%= @catalog_part.name %></div>
-                      <div class="pull-right"><%= @catalog_part.number %></div> 
+                      <div class="pull-right"><%= @catalog_part.number %></div>
                       <div class="clearfix"></div>
                     </div>
                     <div class="widget-content">
                       <div class="row-fluid">
-                        <div class="span6">
+                        <div class="span4">
                           <%= image_tag @catalog_part.image.url(:large), :class => 'catalog-img' %>
-                        </div>
-                        <div class="span6">
                           <ul class="activity">
                             <li>
                               <strong>Category:</strong> <%= @catalog_part.try(:catalog_parts_category).try(:name) %>
@@ -66,10 +69,41 @@
                               <strong>Weight:</strong> <%= @catalog_part.weight.to_s %>
                             </li>
                             <li>
+                              <strong>Tags:</strong>
+                              <% @catalog_part.tags.each do |tag| %>
+                              <span class="label label-info"><%= tag.name %></span>
+                              <% end %>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="span8">
+                          <ul class="activity">
+                            <li>
+                              <strong>This part appears in the following sets:</strong>
+                            </li>
+                            <% @catalog_part.in_sets.each do |set| %>
+                              <li>
+                                <div class="row-fluid">
+                                  <div class="span3">
+                                    <%= link_to catalog_set_path(set) do %>
+                                      <%= image_tag set.image.url(:thumb), :class => 'catalog-img' %>
+                                    <% end %>
+                                  </div>
+                                  <div class="span5">
+                                    <%= link_to catalog_set_path(set) do %>
+                                      <%= set.number %><br/>
+                                      <%= set.name %>
+                                    <% end %>
+                                  </div>
+                                  <div class="span4">
+                                    <%= link_to "View Inventory", inventory_catalog_set_path(set), :class => 'btn btn-danger pull-right' %>
+                                  </div>
+                                </div>
+                              </li>
+                            <% end %>
+                            <li>
                               <%= link_to "Edit Part", edit_catalog_part_path(@catalog_part), :class => 'btn pull-left btn-warning' %>
                             </li>
-
-
                           </ul>
                         </div>
                       </div>
@@ -80,7 +114,6 @@
                 </div>
 
             </div>
-          
         </div>
       </div>
 
@@ -88,7 +121,7 @@
 
     </div>
 
-   <!-- Mainbar ends -->        
+   <!-- Mainbar ends -->
    <div class="clearfix"></div>
 
 </div>

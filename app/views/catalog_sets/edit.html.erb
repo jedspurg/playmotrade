@@ -5,7 +5,7 @@
   <!-- Sidebar ends -->
     <!-- Main bar -->
     <div class="mainbar">
-      
+
       <!-- Page heading -->
       <div class="page-head">
         <!-- Page heading -->
@@ -15,7 +15,7 @@
 
         <!-- Breadcrumb -->
        <div class="bread-crumb pull-right">
-          <a href="/"><i class="icon-home"></i> Home</a> 
+          <a href="/"><i class="icon-home"></i> Home</a>
           <!-- Divider -->
           <span class="divider">/</span>
           <%= link_to "Catalog", catalog_index_path %>
@@ -25,18 +25,24 @@
           <%= link_to @catalog_set.number, catalog_set_path(@catalog_set) %>
         </div>
 
-
         <div class="clearfix"></div>
 
       </div>
       <!-- Page heading ends -->
 
-
-
       <!-- Matter -->
 
       <div class="matter">
         <div class="container-fluid">
+          <% if flash[:error].present? %>
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="alert alert-error">
+                <%= flash[:error] %>
+              </div>
+            </div>
+          </div>
+          <% end %>
 
           <div class="row-fluid">
 
@@ -72,7 +78,7 @@
                           <div class="controls">
                             <%= f.text_field :name, :class => "input-large" %>
                           </div>
-                        </div> 
+                        </div>
 
                         <div class="control-group">
                           <label class="control-label" for="number">Number</label>
@@ -93,7 +99,7 @@
                           <div class="controls">
                             <%= f.text_field :part_count, :class => "input-large" %>
                           </div>
-                        </div> 
+                        </div>
 
                         <div class="control-group">
                           <label class="control-label" for="figure_count">Figure Count</label>
@@ -107,7 +113,7 @@
                           <div class="controls">
                             <%= f.text_field :release_date, :class => "input-large" %>
                           </div>
-                        </div> 
+                        </div>
 
                         <div class="control-group">
                           <label class="control-label" for="retire_date">Retire Date</label>
@@ -121,19 +127,21 @@
                           <div class="controls">
                             <%= f.text_field :dimensions, :class => "input-large" %>
                           </div>
-                        </div> 
+                        </div>
 
                         <div class="control-group">
                           <label class="control-label" for="weight">Weight</label>
                           <div class="controls">
                             <%= f.text_field :weight, :class => "input-large" %>
                           </div>
-                        </div> 
-                              
+                        </div>
 
-
-
-                          
+                        <div class="control-group">
+                          <label class="control-label" for="tags">Tags</label>
+                          <div class="controls">
+                            <%= f.text_field :tags, :value => @catalog_set.tags.map(&:name).join(', '), :class => "input-large" %>
+                          </div>
+                        </div>
 
                         <div class="form-actions">
                           <%= f.submit "Update", class: "btn btn-success" %>
@@ -144,7 +152,7 @@
                   </div>
                 </div>
 
-              </div>  
+              </div>
             </div>
 
               <div class="span6">
@@ -185,11 +193,17 @@
                       <li>
                         <strong>Weight:</strong> <%= @catalog_set.weight.to_s %>
                       </li>
+                      <li>
+                        <strong>Tags:</strong>
+                        <% @catalog_set.tags.each do |tag| %>
+                        <span class="label label-info"><%= tag.name %></span>
+                        <% end %>
+                      </li>
                     </ul>
-            
+
                   </div>
 
-                </div> 
+                </div>
               </div>
 
 
@@ -202,7 +216,7 @@
 
     </div>
 
-   <!-- Mainbar ends -->        
+   <!-- Mainbar ends -->
    <div class="clearfix"></div>
 
 </div>

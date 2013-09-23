@@ -4,7 +4,7 @@
   <%= render "shared/sidebar" %>
   <!-- Sidebar ends -->
     <div class="mainbar">
-      
+
       <!-- Page heading -->
       <div class="page-head">
         <!-- Page heading -->
@@ -13,7 +13,7 @@
 
         <!-- Breadcrumb -->
         <div class="bread-crumb pull-right">
-          <a href="/"><i class="icon-home"></i> Home</a> 
+          <a href="/"><i class="icon-home"></i> Home</a>
           <!-- Divider -->
           <span class="divider">/</span>
           <%= link_to "Catalog", catalog_index_path %>
@@ -30,6 +30,10 @@
 
       <div class="matter">
         <div class="container-fluid">
+          <div class="widget-foot">
+            <%= will_paginate @catalog_parts, :class => 'pagination pull-right' %>
+            <div class="clearfix"></div>
+          </div>
           <% @catalog_parts.in_groups_of(4, false) do |row| %>
             <div class="row-fluid">
               <% row.each do |catalog_part| %>
@@ -53,10 +57,10 @@
               <% end %>
             </div>
           <% end %>
-                        
+
           <div class="widget-foot">
             <%= will_paginate @catalog_parts, :class => 'pagination pull-right' %>
-            <div class="clearfix"></div> 
+            <div class="clearfix"></div>
           </div>
 
         </div>
@@ -66,7 +70,7 @@
 
     </div>
 
-   <!-- Mainbar ends -->        
+   <!-- Mainbar ends -->
    <div class="clearfix"></div>
 
 </div>

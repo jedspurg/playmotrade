@@ -3,33 +3,37 @@ class CatalogScraper
 
   attr_accessor :catalog_set_item
 
-  PLAYMODB_PART_CATEGORIES = ["123-Animal", "123-Building", "123-Klicky", "123-Object", "123-Plant", "123-Vehicle", "Animal-%3F", 
-    "Animal-Bird", "Animal-Coldblooded", "Animal-Invertebrate", "Animal-Mammal,Domestic", "Animal-Mammal,Wild", "Building-", 
-    "Building-Bridge", "Building-Castle", "Building-Circus%20ring", "Building-Cloth", "Building-Decoration", "Building-Egyptian", 
-    "Building-Fairytale%20Castle", "Building-Indian", "Building-Machinery", "Building-Medieval%20house", "Building-Minifort", 
-    "Building-Roman", "Building-Space", "Building-Space%20System%20X", "Building-System%20X", "Building-System%20X%20Castle", 
-    "Building-System%20X%20Horizontal", "Building-System%20X%20Vertical", "Building-Victorian", "Building-Western", "Building-Woodframe", 
-    "Cloth-", "Cloth-Decoration", "Cloth-Floor", "Cloth-Household", "Cloth-Sail", "Cloth-String", "Decoration-", "Decoration-Feather", 
-    "Decoration-Flag", "Decoration-Sign", "Furniture-", "Furniture-Commercial", "Furniture-Container", "Furniture-Container,Portable", 
-    "Furniture-Decoration", "Furniture-Dishes", "Furniture-Electric", "Furniture-Food", "Furniture-Household", "Furniture-Light", 
-    "Furniture-Literary", "Furniture-Machinery", "Furniture-Medical", "Furniture-Modern", "Furniture-Musical", "Furniture-Natural", 
-    "Furniture-Office", "Furniture-Outdoor", "Furniture-Space", "Furniture-Storage", "Furniture-Toy", "Furniture-Treasure", 
-    "Furniture-Urban", "Furniture-War%20machine", "Humanoid-", "Klicky-Adult%20female", "Klicky-Adult%20male", "Klicky-Baby", 
-    "Klicky-Body%20Part", "Klicky-Female%20child", "Klicky-Male%20child", "Klicky-Rabbit%20adult", "Klicky-Rabbit%20child", "Micro-Animals", 
-    "Micro-Box", "Micro-Buildings", "Micro-Figures", "Micro-Objects", "Micro-Scenery", "Micro-Vehicles", "Paper-", "Paper-Background", 
-    "Paper-Catalogue", "Paper-Container", "Paper-Instructions", "Paper-Poster", "Paper-Stickers", "Paper-Stickers,%20Bonus", 
-    "Paper-Storybook", "Plant-", "Plant-Flower", "Plant-Fungus", "Plant-Tree", "Scenery-", "Scenery-Ground", "Scenery-Railroad", 
-    "Scenery-Rock", "Scenery-Urban", "Scenery-Water", "Support-", "Support-Electric", "Support-Electrical", "Support-Electronic", 
-    "Support-Extra", "Support-Extras", "Support-Packaging", "Support-System%20X", "Support-Theatre", "TO%20BE%20ASSIGNED-", "Tool-", 
-    "Tool-Container,Portable", "Tool-Electronic", "Tool-Food", "Tool-Light", "Tool-Literary", "Tool-Machinery", "Tool-Medical", 
-    "Tool-Musical", "Tool-Shield", "Tool-Toy", "Tool-Weapon", "Vehicle-", "Vehicle-Aircraft", "Vehicle-Cargo", "Vehicle-Click%20and%20Go", 
-    "Vehicle-Commercial", "Vehicle-Container", "Vehicle-Electrical", "Vehicle-Electronic", "Vehicle-Fantasy", "Vehicle-Heavy%20Equipment", 
-    "Vehicle-Historical", "Vehicle-Large%20passenger", "Vehicle-Light", "Vehicle-Light%20Truck", "Vehicle-Machinery", "Vehicle-Modern", 
-    "Vehicle-Passenger", "Vehicle-Personal", "Vehicle-Racing", "Vehicle-Riding", "Vehicle-Small%20Passenger", "Vehicle-Snow", 
-    "Vehicle-Space", "Vehicle-Toy", "Vehicle-Trailer", "Vehicle-Train", "Vehicle-Victorian", "Vehicle-Watercraft", "Wearable-", 
-    "Wearable-Accessories", "Wearable-Animal", "Wearable-Armwear", "Wearable-Beard", "Wearable-Bodywear", "Wearable-Cloaks", 
-    "Wearable-Container", "Wearable-Decoration", "Wearable-Footwear", "Wearable-Hair", "Wearable-Headwear,Hard", 
+  PLAYMODB_PART_CATEGORIES = ["123-Animal", "123-Building", "123-Klicky", "123-Object", "123-Plant", "123-Vehicle", "Animal-%3F",
+    "Animal-Bird", "Animal-Coldblooded", "Animal-Invertebrate", "Animal-Mammal,Domestic", "Animal-Mammal,Wild", "Building-",
+    "Building-Bridge", "Building-Castle", "Building-Circus%20ring", "Building-Cloth", "Building-Decoration", "Building-Egyptian",
+    "Building-Fairytale%20Castle", "Building-Indian", "Building-Machinery", "Building-Medieval%20house", "Building-Minifort",
+    "Building-Roman", "Building-Space", "Building-Space%20System%20X", "Building-System%20X", "Building-System%20X%20Castle",
+    "Building-System%20X%20Horizontal", "Building-System%20X%20Vertical", "Building-Victorian", "Building-Western", "Building-Woodframe",
+    "Cloth-", "Cloth-Decoration", "Cloth-Floor", "Cloth-Household", "Cloth-Sail", "Cloth-String", "Decoration-", "Decoration-Feather",
+    "Decoration-Flag", "Decoration-Sign", "Furniture-", "Furniture-Commercial", "Furniture-Container", "Furniture-Container,Portable",
+    "Furniture-Decoration", "Furniture-Dishes", "Furniture-Electric", "Furniture-Food", "Furniture-Household", "Furniture-Light",
+    "Furniture-Literary", "Furniture-Machinery", "Furniture-Medical", "Furniture-Modern", "Furniture-Musical", "Furniture-Natural",
+    "Furniture-Office", "Furniture-Outdoor", "Furniture-Space", "Furniture-Storage", "Furniture-Toy", "Furniture-Treasure",
+    "Furniture-Urban", "Furniture-War%20machine", "Humanoid-", "Klicky-Adult%20female", "Klicky-Adult%20male", "Klicky-Baby",
+    "Klicky-Body%20Part", "Klicky-Female%20child", "Klicky-Male%20child", "Klicky-Rabbit%20adult", "Klicky-Rabbit%20child", "Micro-Animals",
+    "Micro-Box", "Micro-Buildings", "Micro-Figures", "Micro-Objects", "Micro-Scenery", "Micro-Vehicles", "Paper-", "Paper-Background",
+    "Paper-Catalogue", "Paper-Container", "Paper-Instructions", "Paper-Poster", "Paper-Stickers", "Paper-Stickers,%20Bonus",
+    "Paper-Storybook", "Plant-", "Plant-Flower", "Plant-Fungus", "Plant-Tree", "Scenery-", "Scenery-Ground", "Scenery-Railroad",
+    "Scenery-Rock", "Scenery-Urban", "Scenery-Water", "Support-", "Support-Electric", "Support-Electrical", "Support-Electronic",
+    "Support-Extra", "Support-Extras", "Support-Packaging", "Support-System%20X", "Support-Theatre", "TO%20BE%20ASSIGNED-", "Tool-",
+    "Tool-Container,Portable", "Tool-Electronic", "Tool-Food", "Tool-Light", "Tool-Literary", "Tool-Machinery", "Tool-Medical",
+    "Tool-Musical", "Tool-Shield", "Tool-Toy", "Tool-Weapon", "Vehicle-", "Vehicle-Aircraft", "Vehicle-Cargo", "Vehicle-Click%20and%20Go",
+    "Vehicle-Commercial", "Vehicle-Container", "Vehicle-Electrical", "Vehicle-Electronic", "Vehicle-Fantasy", "Vehicle-Heavy%20Equipment",
+    "Vehicle-Historical", "Vehicle-Large%20passenger", "Vehicle-Light", "Vehicle-Light%20Truck", "Vehicle-Machinery", "Vehicle-Modern",
+    "Vehicle-Passenger", "Vehicle-Personal", "Vehicle-Racing", "Vehicle-Riding", "Vehicle-Small%20Passenger", "Vehicle-Snow",
+    "Vehicle-Space", "Vehicle-Toy", "Vehicle-Trailer", "Vehicle-Train", "Vehicle-Victorian", "Vehicle-Watercraft", "Wearable-",
+    "Wearable-Accessories", "Wearable-Animal", "Wearable-Armwear", "Wearable-Beard", "Wearable-Bodywear", "Wearable-Cloaks",
+    "Wearable-Container", "Wearable-Decoration", "Wearable-Footwear", "Wearable-Hair", "Wearable-Headwear,Hard",
     "Wearable-Headwear,Soft", "Wearable-Legwear", "Wearable-Machinery", "Wearable-Neckwear"]
+
+  PLAYMODB_GENERAL_CATEGORIES = ["Building-none", "Cloth-none", "Decoration-none", "Furniture-none",
+    "Paper-none", "Plant-none", "Scenery-none", "Support-none", "TO%20BE%20ASSIGNED-none", "Tool-none", "Vehicle-none",
+    "Wearable-none"]
 
   def initialize(range, mode)
     @range = range
@@ -106,7 +110,7 @@ class CatalogScraper
 
       rescue OpenURI::HTTPError
       end
-      
+
     end
   end
 
@@ -190,7 +194,7 @@ class CatalogScraper
         doc = Nokogiri::HTML(open(page))
 
         name = doc.search('h2')[1].text.strip rescue nil
-  
+
         if name.present? && CatalogItem.find_by(:number => number.to_s).blank?
           CatalogSet.create!({
             :number       => number.to_s,
@@ -200,7 +204,7 @@ class CatalogScraper
 
       rescue OpenURI::HTTPError
       end
-      
+
     end
   end
 
@@ -223,7 +227,7 @@ class CatalogScraper
 
       rescue OpenURI::HTTPError
       end
-      
+
     end
   end
 
@@ -246,7 +250,7 @@ class CatalogScraper
             color  = part.search('small').text rescue nil
 
             if number == '(unknown part #)' || number.blank?
-              number = rand.to_s.gsub('0.','p') 
+              number = rand.to_s.gsub('0.','p')
             end
 
             category = PLAYMODB_PART_CATEGORIES[num]
@@ -271,11 +275,70 @@ class CatalogScraper
         rescue OpenURI::HTTPError
         end
       end
-      
+
     end
   end
 
+  def playmodb_parts_none
+    @range.each do |num|
 
+      first_page = "http://playmodb.org/cgi-bin/category.pl?sortby=description&page=1&category=#{PLAYMODB_GENERAL_CATEGORIES[num]}&pics=on"
+      init_doc = Nokogiri::HTML(open(first_page))
+
+      init_doc.search('p.pagination a').each_with_index do |obj, index|
+        page_num = index + 1
+        page     = "http://playmodb.org/cgi-bin/category.pl?sortby=description&page=#{page_num}&category=#{PLAYMODB_GENERAL_CATEGORIES[num]}&pics=on"
+        begin
+          doc = Nokogiri::HTML(open(page))
+
+          doc.search('div.lineup').each do |part|
+            number = part.search('div.listpartnumber').text rescue nil
+            name   = part.search('div.listpartname').text rescue nil
+            color  = part.search('small').text rescue nil
+
+            if number == '(unknown part #)' || number.blank?
+              number = rand.to_s.gsub('0.','p')
+            end
+
+            category = PLAYMODB_GENERAL_CATEGORIES[num]
+            main_category = category.split('-').first.gsub('%20', ' ')
+            sub_category  = category.split('-').last.gsub('%20', ' ') if category.split('-').count > 1
+
+            catalog_parts_category    = CatalogPartsCategory.find_by(:name => main_category)
+
+            CatalogPart.create({
+                :name                         => name,
+                :number                       => number,
+                :color                        => color,
+                :playmodb_category            => PLAYMODB_PART_CATEGORIES[num],
+                :catalog_parts_category_id    => catalog_parts_category.try(:id)
+              })
+          end
+
+        rescue OpenURI::HTTPError
+        end
+      end
+
+    end
+  end
+
+  def catalog_part_image_build
+    @range.each do |number|
+
+      catalog_part = CatalogPart.find_by(:id => number)
+      if catalog_part.present?
+        img = open("/Users/jeramy/parts_images/#{catalog_part.number}.gif") rescue nil
+        if img.blank? && catalog_part.number.last == "0"
+          img = open("/Users/jeramy/parts_images/#{catalog_part.number.chomp("0")}.gif") rescue nil
+        end
+
+        if img.present?
+          catalog_part.update_attributes!({:image => img})
+        end
+      end
+
+    end
+  end
 
   def playmobil
     @range.each do |number|
@@ -312,7 +375,22 @@ class CatalogScraper
 
       rescue OpenURI::HTTPError
       end
-      
+
+    end
+  end
+
+  def rakuten
+    @range.each do |number|
+      image = open(URI.parse("http://thumbnail.image.rakuten.co.jp/@0_mall/are-sore/cabinet/playmobil/pm#{number}.jpg")) rescue nil
+      if image.present?
+        existing_catalog_item = CatalogItem.find_by(:number => number.to_s)
+        catalog_set = CatalogSet.find_by(:id => existing_catalog_item.try(:catalogable_id))
+        if catalog_set.present? && catalog_set.image.blank?
+          catalog_set.update_attributes!({
+            :image => image
+          })
+        end
+      end
     end
   end
 
@@ -330,6 +408,6 @@ class CatalogScraper
       end
     end
   end
-    
+
 
 end
