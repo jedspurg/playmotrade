@@ -32,7 +32,7 @@ Playmotrade::Application.configure do
   # Generate digests for assets URLs.
   config.assets.digest = true
 
-  config.assets.enabled = false
+  config.assets.enabled = true
   config.assets.compress = true
   config.assets.debug = false
 

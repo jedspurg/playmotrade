@@ -25,10 +25,7 @@
 //= require jquery.flot.pie
 //= require jquery.flot.stack
 //= require jquery.gritter.min
-//= require sparklines
-//= require jquery.cleditor.min
 //= require bootstrap-datetimepicker.min
 //= require jquery.toggle.buttons
 //= require filter
 //= require custom
-//= require charts
