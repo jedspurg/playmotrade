@@ -37,6 +37,7 @@ gem "paperclip"
 
 # Searching
 gem 'sunspot_rails'
+gem 'sunspot_solr'
 
 # Auth Rules
 gem 'cancan'
@@ -48,7 +49,6 @@ gem 'bootstrap-will_paginate'
 group :development do
   gem 'capistrano'
   gem 'better_errors'
-  gem 'sunspot_solr'
   gem 'binding_of_caller'
   gem 'debugger'
   gem "hirb", ">=0.7.1"
