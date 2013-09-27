@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree ./templates
 //= require bootstrap
 //= require handlebars
 //= require jquery-ui-1.10.2.custom.min
