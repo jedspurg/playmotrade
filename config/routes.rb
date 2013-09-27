@@ -13,10 +13,6 @@ Playmotrade::Application.routes.draw do
     end
   end
   resources :catalog_parts
-  resources :search do
-    collection do
-      get :test
-    end
-  end
+  resources :search
 
 end

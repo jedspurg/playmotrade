@@ -77,10 +77,6 @@ GEM
     gon (4.1.0)
       actionpack (>= 2.3.0)
       json
-    handlebars_assets (0.14.1)
-      execjs (>= 1.2.9)
-      sprockets (>= 2.0.3)
-      tilt
     highline (1.6.19)
     hike (1.2.3)
     hirb (0.7.1)
@@ -196,7 +192,6 @@ DEPENDENCIES
   debugger
   devise
   gon
-  handlebars_assets
   hirb (>= 0.7.1)
   jbuilder (~> 1.2)
   jquery-rails

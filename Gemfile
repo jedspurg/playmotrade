@@ -46,9 +46,6 @@ gem 'cancan'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 
-# Javascript templates
-gem 'handlebars_assets'
-
 # Rails to Javascript vars
 gem 'gon'
 
@@ -70,9 +67,3 @@ gem 'nokogiri'
 # Multi Table Inheritance
 gem 'acts_as_relation', '~> 1.0'
 
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
