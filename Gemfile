@@ -46,6 +46,12 @@ gem 'cancan'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 
+# Javascript templates
+gem 'handlebars_assets'
+
+# Rails to Javascript vars
+gem 'gon'
+
 group :development do
   gem 'capistrano'
   gem 'better_errors'

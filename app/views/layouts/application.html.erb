@@ -15,10 +15,10 @@
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="/img/favicon/favicon.png">
+  <%= include_gon %>
 </head>
 
 <body>
-
 <%= render "shared/main_menu" %>
 
 
@@ -30,6 +30,6 @@
 <span class="totop"><a href="#"><i class="icon-chevron-up"></i></a></span>
 <!-- JS -->
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-
+<%= yield :script %>
 </body>
 </html>

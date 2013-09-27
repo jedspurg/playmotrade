@@ -1,7 +1,7 @@
 Playmotrade::Application.routes.draw do
 
   devise_for :users
-  
+
   root 'home#index'
 
   resources :home
@@ -13,6 +13,10 @@ Playmotrade::Application.routes.draw do
     end
   end
   resources :catalog_parts
-  resources :search
+  resources :search do
+    collection do
+      get :test
+    end
+  end
 
 end

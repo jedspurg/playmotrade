@@ -1,5 +1,5 @@
 module ApplicationHelper
-	
+
   # Returns the full title on a per-page basis.
   def full_title(page_title)
     base_title = "Playmotrade"
@@ -29,7 +29,7 @@ module ApplicationHelper
   end
 
   def catalog_item_path(catalog_item)
-    send("#{catalog_item.catalogable_type.underscore}_path", catalog_item.catalogable_id) 
+    send("#{catalog_item.catalogable_type.underscore}_path", catalog_item.catalogable_id)
   end
 
 end
