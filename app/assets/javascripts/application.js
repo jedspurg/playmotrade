@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap
+//= require handlebars
 //= require jquery-ui-1.10.2.custom.min
 //= require fullcalendar.min
 //= require jquery.rateit.min
