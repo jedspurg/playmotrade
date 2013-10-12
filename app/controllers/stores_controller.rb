@@ -14,7 +14,6 @@ class StoresController < ApplicationController
   end
 
   def show
-    redirect_to models_path
   end
 
   def create

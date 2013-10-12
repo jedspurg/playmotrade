@@ -1,6 +1,6 @@
 <% provide(:title, "Search") %>
 <div class="content">
-  <%= render "shared/sidebar" %>
+  <%= render "shared/store_sidebar", locals: {store: @store} %>
     <div class="mainbar">
       <div class="page-head">
         <h2 class="pull-left">Search
@@ -13,7 +13,7 @@
         <div class="bread-crumb pull-right">
           <a href="/"><i class="icon-home"></i> Home</a>
           <span class="divider">/</span>
-          <%= link_to "Search", search_index_path %>
+          <%= link_to "Search", store_search_index_path %>
         </div>
         <form id="search-type-form" method="get" action="/search">
           <input type="hidden" name="q" value="<%= params[:q] %>">
@@ -24,25 +24,25 @@
       <div class="matter">
         <div class="container-fluid">
           <div class="widget-foot">
-            <%= will_paginate @catalog_items, :class => 'pagination pull-right' %>
+            <%= will_paginate @inventory_items, :class => 'pagination pull-right' %>
             <div class="clearfix"></div>
           </div>
-          <% @catalog_items.in_groups_of(4, false) do |row| %>
+          <% @inventory_items.in_groups_of(4, false) do |row| %>
             <div class="row-fluid">
-              <% row.each do |catalog_item| %>
+              <% row.each do |inventory_item| %>
                 <div class="span3">
                   <div class="widget wlightblue">
                     <div class="widget-head">
-                      <h6><%= catalog_item.name %></h6>
+                      <h6><%= inventory_item.name %></h6>
                       <div class="clearfix"></div>
                     </div>
                     <div class="widget-content">
-                      <%= image_tag catalog_item.image.url(:medium), :class => 'catalog-img' %>
+                      <%= image_tag inventory_item.image.url(:medium), :class => 'catalog-img' %>
                       <div class="clearfix"></div>
                     </div>
                     <div class="widget-foot">
-                      <p class="pull-left"><%= catalog_item.number %></p>
-                      <%= link_to "View", catalog_item_path(catalog_item), :class => 'btn pull-right btn-danger' %>
+                      <p class="pull-left"><%= inventory_item.number %></p>
+                      <%= link_to "View", inventory_item_path(inventory_item), :class => 'btn pull-right btn-danger' %>
                       <div class="clearfix"></div>
                     </div>
                   </div>
@@ -51,7 +51,7 @@
             </div>
           <% end %>
           <div class="widget-foot">
-            <%= will_paginate @catalog_items, :class => 'pagination pull-right' %>
+            <%= will_paginate @inventory_items, :class => 'pagination pull-right' %>
             <div class="clearfix"></div>
           </div>
         </div>

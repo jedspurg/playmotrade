@@ -4,6 +4,7 @@ Playmotrade::Application.routes.draw do
 
   constraints(:subdomain => /.+/) do
     root :to => 'stores#show'
+    resources :store_search
   end
 
   get '/', to: 'home#index'

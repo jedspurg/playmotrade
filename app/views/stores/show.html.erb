@@ -1,0 +1,14 @@
+<% provide(:title, @store.name) %>
+<div class="content">
+  <%= render "shared/store_sidebar", :locals => { :store => @store } %>
+  <div class="mainbar">
+      <div class="page-head">
+        <h2 class="pull-left"><%= @store.name %></h2>
+        <div class="clearfix"></div>
+      </div>
+  <div class="matter">
+
+    <div class="clearfix"></div>
+  </div>
+  <div class="clearfix"></div>
+</div>
