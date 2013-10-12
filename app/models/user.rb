@@ -7,8 +7,9 @@ class User < ActiveRecord::Base
 
   has_attached_file :avatar, :styles => {:medium => "250x250>",
   				                               :thumb => "100x100!",
-                                         :small => "20x20!" }, 
+                                         :small => "20x20!" },
                               :default_url => "/images/:style/missing.png"
+  has_one :store
   belongs_to :country
 
   scope :active, -> { where(['confirmed_at IS NOT NULL']) }

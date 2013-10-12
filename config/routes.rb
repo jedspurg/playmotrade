@@ -2,8 +2,13 @@ Playmotrade::Application.routes.draw do
 
   devise_for :users
 
-  root 'home#index'
+  constraints(:subdomain => /.+/) do
+    root :to => 'stores#show'
+  end
 
+  get '/', to: 'home#index'
+
+  match '/' => 'home#index', :via => :get, :constraints => { :subdomain => /^(|www)$/ }
   resources :home
   resources :users
   resources :catalog
@@ -14,5 +19,6 @@ Playmotrade::Application.routes.draw do
   end
   resources :catalog_parts
   resources :search
+  resources :stores
 
 end
