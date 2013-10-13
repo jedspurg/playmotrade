@@ -49,6 +49,9 @@ gem 'bootstrap-will_paginate'
 # Rails to Javascript vars
 gem 'gon'
 
+# WYSIWYG
+gem 'tinymce-rails'
+
 group :development do
   gem 'capistrano'
   gem 'better_errors'

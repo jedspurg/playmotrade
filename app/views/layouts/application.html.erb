@@ -30,6 +30,7 @@
 <span class="totop"><a href="#"><i class="icon-chevron-up"></i></a></span>
 <!-- JS -->
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+<%= yield :script_files %>
 <%= yield :script %>
 </body>
 </html>
