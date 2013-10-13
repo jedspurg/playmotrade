@@ -3,9 +3,11 @@ class Store < ActiveRecord::Base
   after_save :find_or_build_store_inventory
 
   belongs_to :user
-  has_one :store_inventory
+  has_one :store_inventory, :dependent => :destroy
   validates :name, :presence => true, :uniqueness => true
   validates :user_id, :presence => true, :uniqueness => true
+  validates :alias, :presence => true, :uniqueness => true
+  validates_exclusion_of :alias, in: ['www', 'mail', 'ftp'], message: "is not available"
 
   has_attached_file :logo, :styles => {:large => "250x250>",
                                        :medium => "100x100>",
@@ -15,8 +17,6 @@ class Store < ActiveRecord::Base
 
   default_scope { order('name ASC') }
   scope :active, -> { where(:active => true) }
-
-  attr_accessor :inventory
 
   def inventory
     StoreInventory.find_by(:store_id => id)

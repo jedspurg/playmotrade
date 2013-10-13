@@ -1,29 +1,18 @@
-<% provide(:title, "Create a Store") %>
+<% provide(:title, "Edit Store Settings") %>
 <div class="content">
   <%= render "shared/store_admin_sidebar" %>
     <div class="mainbar">
       <div class="page-head">
-        <h2 class="pull-left">Create a Store
-          <span class="page-meta">Creating a store is free an easy. Simply fill out the form below and begin stocking your inventory.</span>
-        </h2>
+        <h2 class="pull-left">Edit Store Settings</h2>
         <div class="bread-crumb pull-right">
           <a href="/"><i class="icon-home"></i> Home</a>
           <span class="divider">/</span>
-          Create a Store
+          Edit Store Settings
         </div>
         <div class="clearfix"></div>
       </div>
       <div class="matter">
         <div class="container-fluid">
-          <% if current_user.blank? %>
-          <div class="row-fluid">
-            <div class="span12">
-              <div class="alert alert-error">
-                You must be logged in to create a store.
-              </div>
-            </div>
-          </div>
-          <% else %>
           <div class="row-fluid">
             <div class="span12">
               <div class="widget wred">
@@ -83,7 +72,7 @@
                           </div>
                         </div>
                         <div class="form-actions">
-                          <%= f.submit "Create Store", class: "btn btn-success" %>
+                          <%= f.submit "Update Store", class: "btn btn-success" %>
                           <button type="reset" class="btn">Reset</button>
                         </div>
                       <% end %>
@@ -95,7 +84,6 @@
           </div>
         </div>
       </div>
-    <% end %>
     </div>
    <div class="clearfix"></div>
 </div>
