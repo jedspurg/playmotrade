@@ -14,16 +14,11 @@
 
     <ul class="navi">
 
-      <li class="has_submenu nred">
-        <a href="#">
-          <i class="icon-home"></i> My Store
+      <li class="nred">
+        <%= link_to root_url(:subdomain => @store.alias) do %>
+          <i class="icon-home"></i> Store Home
           <span class="pull-right"><i class="icon-angle-right"></i></span>
-        </a>
-
-        <ul>
-          <li><%= link_to "My Store Home", root_url(:subdomain => @store.alias) %></li>
-          <li><%= link_to "My Store Settings", edit_store_path(@store) %></li>
-        </ul>
+        <% end %>
       </li>
 
       <li class="has_submenu nred">

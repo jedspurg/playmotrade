@@ -14,6 +14,7 @@ class StoresController < ApplicationController
   end
 
   def show
+    @user_owned = (current_user == @store.user)
   end
 
   def create
