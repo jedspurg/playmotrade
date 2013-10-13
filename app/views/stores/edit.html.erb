@@ -40,10 +40,16 @@
                           </div>
                         </div>
                         <div class="control-group">
-                          <label class="control-label" for="user[alias]">Alias</label>
+                          <label class="control-label" for="store[alias]">Alias</label>
                           <div class="controls">
                             <%= f.text_field :alias, :class => "input-large" %><br/>
                             <span class="help-inline">Keep this short and without spaces, dashes, underscores, or special characters.<br/>This will serve as your Playmotrade subdomain (yourstore.playmotrade.com)</span>
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label" for="store[current_logo]">Current Logo</label>
+                          <div class="controls">
+                            <%= image_tag @store.logo.url(:medium) %>
                           </div>
                         </div>
                         <div class="control-group">
@@ -69,6 +75,19 @@
                             <label class="checkbox inline">
                                <%= f.check_box :active %> Open?
                             </label>
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label" for="store[closed_message]">Closed Message</label>
+                          <div class="controls">
+                            <%= f.text_area :closed_message, :class => "input-large" %>
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label" for="store[bypass_password]">Break-in Password</label>
+                          <div class="controls">
+                            <%= f.text_field :bypass_password, :class => "input-large" %><br/>
+                            <span class="help-inline">You can allow potential customers access to your closed store by giving them this password.</span>
                           </div>
                         </div>
                         <div class="form-actions">

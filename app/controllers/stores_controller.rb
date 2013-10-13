@@ -1,6 +1,7 @@
 class StoresController < ApplicationController
 
-  before_filter :find_store_by_name_or_id, :only => [:edit, :show, :update, :destroy]
+  before_filter :find_store_by_name_or_id, :only => [:edit, :show, :update, :destroy, :store_closed, :break_in]
+  before_filter :check_if_store_closed, :only => [:show]
 
   def index
     @stores = Store.paginate(:page => params[:page], :per_page => 30)
@@ -44,6 +45,19 @@ class StoresController < ApplicationController
     redirect_to stores_path
   end
 
+  def store_closed
+  end
+
+  def break_in
+    if params[:break_in_password] == @store.bypass_password
+      session["#{@store.alias}_break_in"] = true
+      redirect_to root_url(:subdomain => @store.alias)
+    else
+      flash[:error] = "Break in password is incorrect"
+      render :action => :store_closed
+    end
+  end
+
   protected ###################################################################
 
   def find_store_by_name_or_id
@@ -54,8 +68,14 @@ class StoresController < ApplicationController
     end
   end
 
+  def check_if_store_closed
+    if @store.active != true && current_user != @store.user && session["#{@store.alias}_break_in"] != true
+      render :action => :store_closed
+    end
+  end
+
   def store_params
-    params.require(:store).permit(:name, :alias, :logo, :about, :landing_page, :active)
+    params.require(:store).permit(:name, :alias, :logo, :about, :landing_page, :active, :bypass_password, :closed_message)
   end
 
 end

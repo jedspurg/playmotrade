@@ -1,45 +1,27 @@
 <% provide(:title, "Edit Profile") %>
 <div class="content">
-  <!-- Sidebar -->
   <%= render "shared/sidebar" %>
-  <!-- Sidebar ends -->
-    <!-- Main bar -->
     <div class="mainbar">
-      
-      <!-- Page heading -->
       <div class="page-head">
-        <!-- Page heading -->
         <h2 class="pull-left">Profile
-          <!-- page meta -->
           <span class="page-meta">Edit your personal settings. Store settings are edited through your store front.</span>
         </h2>
-
-
-        <!-- Breadcrumb -->
         <div class="bread-crumb pull-right">
-          <a href="/"><i class="icon-home"></i> Home</a> 
-          <!-- Divider -->
+          <a href="/"><i class="icon-home"></i> Home</a>
           <span class="divider">/</span>
           <%= link_to("Edit Profile", edit_user_registration_path, :class => "bread-current") %>
         </div>
-
         <div class="clearfix"></div>
-
       </div>
-      <!-- Page heading ends -->
-      <!-- Matter -->
       <div class="matter">
         <div class="container-fluid">
-
           <div class="row-fluid">
-
             <div class="span12">
               <div class="widget wred">
                 <div class="widget-head">
                   <div class="pull-left">Edit Your Profile</div>
                   <div class="clearfix"></div>
                 </div>
-
                 <div class="widget-content">
                   <div class="padd">
                     <% if devise_error_messages!.present? %>
@@ -47,19 +29,15 @@
                         <%= devise_error_messages! %>
                       </div>
                     <% end %>
-                    <!-- Profile form -->
                       <div class="form profile">
-                        <!-- Edit profile form (not working)-->
                         <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
                             <%= render partial: "form", locals: {f: f} %>
-                           <!-- Username -->
                             <div class="control-group">
                               <label class="control-label" for="user[username]">Username</label>
                               <div class="controls">
                                 <%= f.text_field :username, :class => "input-large" %>
                               </div>
                             </div>
-                            <!-- Password -->
                             <div class="control-group">
                               <label class="control-label" for="user[password]">New Password</label>
                               <div class="controls">
@@ -80,41 +58,23 @@
                                 <span class="help-inline">We need your current password to confirm your changes</span>
                               </div>
                             </div>
-
-                            
-                            <!-- Buttons -->
                             <div class="form-actions">
-                               <!-- Buttons -->
                                <%= f.submit "Update Profile", class: "btn btn-success" %>
                               <button type="reset" class="btn">Reset</button>
                             </div>
-                          
                           <% end %>
-
-
                       </div>
-
                   </div>
                 </div>
                 <div class="widget-foot">
                   <h5>Cancel my account</h5>
                   <p><%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "btn btn-danger" %></p>
                 </div>
-              </div>  
-              
+              </div>
             </div>
-
           </div>
-
         </div>
       </div>
-
-    <!-- Matter ends -->
-
     </div>
-
-   <!-- Mainbar ends -->        
    <div class="clearfix"></div>
-
 </div>
-<!-- Content ends -->

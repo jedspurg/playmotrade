@@ -20,6 +20,11 @@ Playmotrade::Application.routes.draw do
   end
   resources :catalog_parts
   resources :search
-  resources :stores
+  resources :stores do
+    member do
+      get :break_in
+      get :store_closed
+    end
+  end
 
 end
