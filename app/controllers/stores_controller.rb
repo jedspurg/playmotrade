@@ -1,6 +1,6 @@
 class StoresController < ApplicationController
 
-  before_filter :find_store_by_name_or_id, :only => [:edit, :show, :update, :destroy, :store_closed, :break_in]
+  before_filter :find_store_by_name_or_id, :only => [:edit, :show, :update, :destroy, :store_closed, :break_in, :inventory]
   before_filter :check_if_store_closed, :only => [:show]
 
   def index
@@ -55,6 +55,16 @@ class StoresController < ApplicationController
     else
       flash[:error] = "Break in password is incorrect"
       render :action => :store_closed
+    end
+  end
+
+  def inventory
+    @type = params[:type].to_sym
+    case @type
+    when :parts
+      @store_inventory = @store.store_inventory.store_inventory_parts.paginate(:page => params[:page], :per_page => 30)
+    when :sets
+      @store_inventory = @store.store_inventory.store_inventory_sets.paginate(:page => params[:page], :per_page => 30)
     end
   end
 

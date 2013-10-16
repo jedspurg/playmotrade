@@ -1,47 +1,25 @@
 <% provide(:title, "Members") %>
 <div class="content">
-  <!-- Sidebar -->
   <%= render "shared/sidebar" %>
-  <!-- Sidebar ends -->
   	<div class="mainbar">
-      
-	    <!-- Page heading -->
 	    <div class="page-head">
-        <!-- Page heading -->
 	      <h2 class="pull-left">Members</h2>
-
-
-        <!-- Breadcrumb -->
         <div class="bread-crumb pull-right">
-          <a href="/"><i class="icon-home"></i> Home</a> 
-          <!-- Divider -->
+          <a href="/"><i class="icon-home"></i> Home</a>
           <span class="divider">/</span>
           <%= link_to "Members", users_path %>
         </div>
-
         <div class="clearfix"></div>
-
 	    </div>
-	    <!-- Page heading ends -->
-
-	    <!-- Matter -->
-
 	    <div class="matter">
         <div class="container-fluid">
-
           <div class="row-fluid">
-
             <div class="span12">
-
                 <div class="widget worange">
-
                 <div class="widget-head">
-
                   <div class="clearfix"></div>
                 </div>
-
                   <div class="widget-content">
-
                     <table class="table  table-bordered ">
                       <thead>
                         <tr>
@@ -70,31 +48,16 @@
                         <% end %>
                       </tbody>
                     </table>
-
-
                   </div>
-
                     <div class="widget-foot">
                       <%= will_paginate @users, :class => 'pagination pull-right' %>
-                      <div class="clearfix"></div> 
+                      <div class="clearfix"></div>
                     </div>
-
                 </div>
-
-
               </div>
-
           </div>
-
         </div>
 		  </div>
-
-		<!-- Matter ends -->
-
     </div>
-
-   <!-- Mainbar ends -->	    	
    <div class="clearfix"></div>
-
 </div>
-<!-- Content ends -->

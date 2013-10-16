@@ -1,0 +1,20 @@
+<tr>
+  <td><%= image_tag item.catalog_part.image.url(:small) %></td>
+  <td>
+    <strong><%= item.catalog_part.name %></strong><br/>
+    <%= item.catalog_part.number %>
+  </td>
+  <td><strong>Color:</strong> <%= item.catalog_part.try(:color) %></td>
+  <td class="text-right">
+    <form>
+      <div class="text-right store-prices">
+        <strong>Price:</strong> $<%= number_with_precision item.price, :precision => 2 %> each<br/>
+        <strong>Quantity Available:</strong> <%= item.quantity %>
+      </div>
+      <div class="input-append">
+        <input type="text" id="item_add_<%= item.id %>" class="span4">
+        <button class="btn">Add to Cart</button>
+      </div>
+    </form>
+  </td>
+</tr>

@@ -1,0 +1,44 @@
+<% provide(:title, "Store Inventory") %>
+<div class="content">
+  <%= render "shared/store_sidebar" %>
+    <div class="mainbar">
+      <div class="page-head">
+        <h2 class="pull-left">Store Inventory</h2>
+        <div class="bread-crumb pull-right">
+          <a href="<%= root_url(:subdomain => "") %>"><i class="icon-home"></i> Playmotrade Home</a>
+          <span class="divider">/</span>
+          <%= link_to "Stores", stores_url(:subdomain => "") %>
+          <span class="divider">/</span>
+          <%= link_to @store.name, root_url(:subdomain => @store.alias) %>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="matter">
+        <div class="container-fluid">
+          <div class="row-fluid">
+            <div class="span12">
+                <div class="widget wred">
+                <div class="widget-head">
+                  <div class="clearfix"></div>
+                </div>
+                  <div class="widget-content">
+                    <table class="table">
+                      <tbody>
+                        <% @store_inventory.each do |item| %>
+                          <%= render "stores/inventory/#{@type.to_s}", :item => item %>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                    <div class="widget-foot">
+                      <%= will_paginate @store_inventory, :class => 'pagination pull-right' %>
+                      <div class="clearfix"></div>
+                    </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   <div class="clearfix"></div>
+</div>

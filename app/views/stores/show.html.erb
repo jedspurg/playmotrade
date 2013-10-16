@@ -1,9 +1,9 @@
 <% provide(:title, @store.name) %>
 <div class="content">
   <% if @user_owned %>
-  <%= render "shared/store_admin_sidebar", :locals => { :store => @store } %>
+  <%= render "shared/store_admin_sidebar", :store => @store %>
   <% else %>
-    <%= render "shared/store_sidebar", :locals => { :store => @store } %>
+    <%= render "shared/store_sidebar", :store => @store %>
   <% end %>
   <div class="mainbar">
       <div class="page-head">
