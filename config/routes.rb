@@ -24,6 +24,7 @@ Playmotrade::Application.routes.draw do
     member do
       get :break_in
       get :store_closed
+      post :add_part_to_inventory
     end
   end
 

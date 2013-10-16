@@ -58,6 +58,21 @@ class StoresController < ApplicationController
     end
   end
 
+  def add_part_to_inventory
+    @store = current_user.store
+    @store_inventory_part = StoreInventoryPart.new(store_inventory_part_params.merge!({
+      :store_inventory => @store.store_inventory,
+      :catalog_part    => CatalogPart.find(params[:id])
+    }))
+    if @store_inventory_part.save
+      flash[:notice] = "Part added to inventory"
+      redirect_to root_url(:subdomain => @store.alias)
+    else
+      flash[:error] = @store_inventory_part.errors.full_messages
+      redirect_to root_url(:subdomain => @store.alias)
+    end
+  end
+
   protected ###################################################################
 
   def find_store_by_name_or_id
@@ -76,6 +91,10 @@ class StoresController < ApplicationController
 
   def store_params
     params.require(:store).permit(:name, :alias, :logo, :about, :landing_page, :active, :bypass_password, :closed_message)
+  end
+
+  def store_inventory_part_params
+    params.require(:store_inventory_part).permit(:quantity, :price, :condition, :comment)
   end
 
 end

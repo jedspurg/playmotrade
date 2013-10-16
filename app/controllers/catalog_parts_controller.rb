@@ -1,6 +1,7 @@
 class CatalogPartsController < ApplicationController
 
   before_filter :catalog_part, :only => [:show, :edit, :update, :inventory]
+  before_filter :store_inventory_part, :only => [:show]
 
   def index
     @catalog_parts = CatalogPart.all.paginate(:page => params[:page], :per_page => 24)
@@ -28,6 +29,9 @@ class CatalogPartsController < ApplicationController
     @catalog_part = CatalogPart.find(params[:id])
   end
 
+  def store_inventory_part
+    @store_inventory_part = StoreInventoryPart.new
+  end
 
   def catalog_part_params
     params.require(:catalog_part).permit(:name, :number, :image, :color, :catalog_parts_category_id,

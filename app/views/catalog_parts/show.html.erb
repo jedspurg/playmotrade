@@ -1,19 +1,11 @@
 <% provide(:title, "Catalog") %>
 <div class="content">
-  <!-- Sidebar -->
   <%= render "shared/sidebar" %>
-  <!-- Sidebar ends -->
     <div class="mainbar">
-
-      <!-- Page heading -->
       <div class="page-head">
-        <!-- Page heading -->
         <h2 class="pull-left">Catalog</h2>
-
-        <!-- Breadcrumb -->
         <div class="bread-crumb pull-right">
           <a href="/"><i class="icon-home"></i> Home</a>
-          <!-- Divider -->
           <span class="divider">/</span>
           <%= link_to "Catalog", catalog_index_path %>
           <span class="divider">/</span>
@@ -21,13 +13,8 @@
           <span class="divider">/</span>
           <%= link_to @catalog_part.number, catalog_part_path(@catalog_part) %>
         </div>
-
         <div class="clearfix"></div>
-
       </div>
-      <!-- Page heading ends -->
-
-      <!-- Matter -->
       <div class="matter">
         <div class="container-fluid">
           <% if flash[:notice].present? %>
@@ -39,13 +26,12 @@
             </div>
           </div>
           <% end %>
-
             <div class="row-fluid">
                 <div class="span12">
                   <div class="widget wlightblue">
                     <div class="widget-head">
-                      <div class="pull-left"><%= @catalog_part.name %></div>
-                      <div class="pull-right"><%= @catalog_part.number %></div>
+                      <div class="pull-left"><%= @catalog_part.number %> | <%= @catalog_part.name %></div>
+                      <div class="pull-right"><%= link_to "<i class='icon icon-pencil'></i>&nbsp;&nbsp;Edit Part".html_safe, edit_catalog_part_path(@catalog_part), :class => 'btn btn-warning' %></div>
                       <div class="clearfix"></div>
                     </div>
                     <div class="widget-content">
@@ -74,6 +60,15 @@
                               <span class="label label-info"><%= tag.name %></span>
                               <% end %>
                             </li>
+                            <% if current_user.try(:store).present? %>
+                            <li>
+                              <div class="btn-group pull-left ">
+                                <a href="#addToInventory" data-toggle="modal" role="button" class="btn btn-success"><i class='icon icon-plus-sign'></i>&nbsp;&nbsp;Add To Store Inventory</a>
+                              </div>
+                              <br/>
+                              <br/>
+                            </li>
+                            <% end %>
                           </ul>
                         </div>
                         <div class="span8">
@@ -96,33 +91,61 @@
                                     <% end %>
                                   </div>
                                   <div class="span4">
-                                    <%= link_to "View Inventory", inventory_catalog_set_path(set), :class => 'btn btn-danger pull-right' %>
+                                    <%= link_to "View Inventory".html_safe, inventory_catalog_set_path(set), :class => 'btn btn-danger pull-right' %>
                                   </div>
                                 </div>
                               </li>
                             <% end %>
-                            <li>
-                              <%= link_to "Edit Part", edit_catalog_part_path(@catalog_part), :class => 'btn pull-left btn-warning' %>
-                            </li>
                           </ul>
                         </div>
                       </div>
                       <div class="clearfix"></div>
                     </div>
                   </div>
-
                 </div>
-
             </div>
         </div>
       </div>
-
-    <!-- Matter ends -->
-
     </div>
-
-   <!-- Mainbar ends -->
    <div class="clearfix"></div>
-
 </div>
-<!-- Content ends -->
+
+<div id="addToInventory" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="inventory-header" aria-hidden="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="inventory-header">Add Part To Store Inventory</h3>
+  </div>
+  <%= form_for(@store_inventory_part, :url => add_part_to_inventory_store_path) do |f| %>
+  <div class="modal-body">
+    <div class="control-group">
+      <label class="control-label" for="quantity">Quantity</label>
+      <div class="controls">
+        <%= f.text_field :quantity, :class => "input-large" %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="price">Price</label>
+      <div class="controls">
+        <%= f.text_field :price, :class => "input-large", :placeholder => "USD" %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="condition">Condition</label>
+      <div class="controls">
+        <%= f.select(:condition, options_for_select(StoreInventoryPart::CONDITIONS, "New")) %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="comment">Comment</label>
+      <div class="controls">
+        <%= f.text_area :comment, :class => "input-large" %>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn btn-success pull-left">Advanced Form</a>
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary" type="submit">Add to Inventory</button>
+  </div>
+  <% end %>
+</div>
