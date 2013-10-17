@@ -1,6 +1,6 @@
 class StoresController < ApplicationController
 
-  before_filter :find_store_by_name_or_id, :only => [:edit, :show, :update, :destroy, :store_closed, :break_in, :inventory]
+  before_filter :find_store_by_name_or_id, :only => [:edit, :show, :update, :destroy, :store_closed, :break_in, :inventory, :search]
   before_filter :check_if_store_closed, :only => [:show]
 
   def index
@@ -80,6 +80,39 @@ class StoresController < ApplicationController
     else
       flash[:error] = @store_inventory_part.errors.full_messages
       redirect_to root_url(:subdomain => @store.alias)
+    end
+  end
+
+  def search
+    @type        = params[:type].to_sym
+    inventory_id = @store.store_inventory.id
+
+    case @type
+    when :parts
+      @store_inventory = StoreInventoryPart.search do
+        fulltext "#{params[:q]}*" do
+          boost_fields :name => 2.0
+        end
+        with(:store_inventory_id).equal_to(inventory_id)
+        paginate :page => params[:page], :per_page => 24
+      end.results
+    when :sets
+      @store_inventory = StoreInventorySet.search do
+        fulltext "#{params[:q]}*" do
+          boost_fields :name => 2.0
+        end
+        with(:store_inventory_id).equal_to(inventory_id)
+        paginate :page => params[:page], :per_page => 24
+      end.results
+    else
+      @type = "all"
+      @store_inventory = Sunspot.search(StoreInventoryPart,StoreInventorySet) do
+        fulltext "#{params[:q]}*" do
+          boost_fields :name => 2.0
+        end
+        with(:store_inventory_id).equal_to(inventory_id)
+        paginate :page => params[:page], :per_page => 24
+      end.results
     end
   end
 

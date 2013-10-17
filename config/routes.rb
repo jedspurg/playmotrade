@@ -4,7 +4,6 @@ Playmotrade::Application.routes.draw do
 
   constraints(:subdomain => /.+/) do
     root :to => 'stores#show'
-    resources :store_search
   end
 
   get '/', to: 'home#index'
@@ -25,6 +24,7 @@ Playmotrade::Application.routes.draw do
       get :break_in
       get :store_closed
       post :add_part_to_inventory
+      get :search
     end
   end
   match '/stores/:id/inventory/:type', :as => :store_inventory, :via => :get, :to => 'stores#inventory'

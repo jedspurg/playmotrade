@@ -1,0 +1,56 @@
+<% provide(:title, "Search") %>
+<div class="content">
+  <% if @user_owned %>
+  <%= render "shared/store_admin_sidebar", :store => @store %>
+  <% else %>
+    <%= render "shared/store_sidebar", :store => @store %>
+  <% end %>
+    <div class="mainbar">
+      <div class="page-head">
+        <h2 class="pull-left">Search
+        <div class="btn-group">
+          <a data-type="" class="search-type btn <% if params[:type].blank? %>active<% end %>">All</a>
+          <a data-type="sets" class="search-type btn <% if params[:type] == "set" %>active<% end %>">Sets Only</a>
+          <a data-type="parts" class="search-type btn <% if params[:type] == "part" %>active<% end %>">Parts Only</a>
+        </div>
+        </h2>
+        <div class="bread-crumb pull-right">
+          <a href="/"><i class="icon-home"></i> Home</a>
+          <span class="divider">/</span>
+          <%= link_to "Search", search_index_path %>
+        </div>
+        <form id="search-type-form" method="get" action="<%= search_store_url(@store) %>">
+          <input type="hidden" name="q" value="<%= params[:q] %>">
+          <input id="search-type" type="hidden" name="type" value="">
+        </form>
+        <div class="clearfix"></div>
+      </div>
+      <div class="matter">
+        <div class="container-fluid">
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="widget wred">
+                <div class="widget-head">
+                  <div class="clearfix"></div>
+                </div>
+                  <div class="widget-content">
+                    <table class="table">
+                      <tbody>
+                        <% @store_inventory.each do |item| %>
+                          <%= render "stores/inventory/#{@type.to_s}", :item => item %>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="widget-foot">
+                    <%= will_paginate @store_inventory, :class => 'pagination pull-right' %>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   <div class="clearfix"></div>
+</div>

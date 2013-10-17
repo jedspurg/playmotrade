@@ -2,7 +2,7 @@
   <div class="sidebar-dropdown"><a href="#">Navigation</a></div>
   <div class="sidebar-inner">
     <div class="sidebar-widget">
-      <form class="form-inline" method="get" action="/store_search">
+      <form class="form-inline" method="get" action="<%= search_store_url(@store) %>">
         <div class="input-append row-fluid">
           <input name="q" type="text" class="span10" placeholder="Search Store">
           <div class="btn-group">

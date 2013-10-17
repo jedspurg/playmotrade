@@ -1,10 +1,10 @@
+<% association = item.class.name.gsub("StoreInventory", "Catalog").underscore.downcase %>
 <tr>
-  <td><%= image_tag item.catalog_part.image.url(:small) %></td>
+  <td><%= image_tag item.send(association).image.url(:small) %></td>
   <td>
-    <strong><%= item.catalog_part.name %></strong><br/>
-    <%= item.catalog_part.number %>
+    <strong><%= item.send(association).name %></strong><br/>
+    <%= item.send(association).number %>
   </td>
-  <td><strong>Color:</strong> <%= item.catalog_part.try(:color) %></td>
   <td class="text-right">
     <form>
       <div class="text-right store-prices">
