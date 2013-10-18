@@ -5,11 +5,22 @@ class StoreInventory < ActiveRecord::Base
   has_many :store_inventory_sets
 
   def total_sets
-    StoreInventorySet.where( :id => store_inventory_sets.ids ).sum :quantity
+    store_inventory_sets.sum :quantity
   end
 
   def total_parts
-    StoreInventoryPart.where( :id => store_inventory_parts.ids ).sum :quantity
+    store_inventory_parts.sum :quantity
+  end
+
+  def part_categories
+    categories = store_inventory_parts.map do |part|
+      part.catalog_part.catalog_parts_category.name rescue "Uncategorized"
+    end
+    categories.uniq.compact.sort
+  end
+
+  def all_items
+    store_inventory_sets + store_inventory_parts
   end
 
 end

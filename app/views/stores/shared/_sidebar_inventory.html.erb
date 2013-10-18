@@ -1,0 +1,11 @@
+<li class="norange open">
+  <a href="#">
+    <i class="icon-th"></i> Parts by Category
+    <span class="pull-right"><i class="icon-angle-right"></i></span>
+  </a>
+  <ul>
+    <% @store.store_inventory.part_categories.each do |category| %>
+      <li><a href="#"><%= category %></a></li>
+    <% end %>
+  </ul>
+</li>

@@ -6,10 +6,10 @@
     <%= render "shared/store_sidebar", :store => @store %>
   <% end %>
   <div class="mainbar">
-      <div class="page-head">
-        <h2 class="pull-left"><%= @store.name %></h2>
-        <div class="clearfix"></div>
-      </div>
+    <div class="page-head">
+      <h2 class="pull-left"><%= image_tag @store.logo.url(:medium) %>&nbsp;&nbsp;<%= @store.name %></h2>
+      <div class="clearfix"></div>
+    </div>
   <div class="matter">
     <div class="container-fluid">
       <%= render "shared/flash" %>

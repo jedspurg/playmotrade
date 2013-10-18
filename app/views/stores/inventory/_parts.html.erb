@@ -17,7 +17,7 @@
         <%= f.hidden_field :store_inventory_item_id, :value => item.id %>
         <%= f.hidden_field :store_inventory_item_type, :value => item.class.name.underscore.downcase %>
         <%= f.text_field :quantity, :class => "span4" %>
-        <button class="btn">Add to Cart</button>
+        <button class="btn btn-success">Add to Cart</button>
       <% end %>
     </div>
   </td>

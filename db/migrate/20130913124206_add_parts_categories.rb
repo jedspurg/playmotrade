@@ -10,7 +10,7 @@ class AddPartsCategories < ActiveRecord::Migration
     rename_column :catalog_parts, :category, :playmodb_category
     add_column :catalog_parts, :category_id, :integer
 
-    ["123", "Animal", "Building", "Cloth", "Decoration", "Furniture", "Humanoid", "Klicky", "Micro", 
+    ["123", "Animal", "Building", "Cloth", "Decoration", "Furniture", "Humanoid", "Klicky", "Micro",
      "Paper", "Plant", "Scenery", "Support", "Uncategorized", "Tool", "Vehicle", "Wearable"].each do |category|
       CatalogPartsCategory.create!({
         :name => category

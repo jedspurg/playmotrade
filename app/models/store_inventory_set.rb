@@ -7,10 +7,10 @@ class StoreInventorySet < ActiveRecord::Base
     integer :store_inventory_id
     text :comment
     text :catalog_set_name do
-      catalog_part.name
+      catalog_set.name
     end
     text :catalog_set_number do
-      catalog_part.number
+      catalog_set.number
     end
   end
 

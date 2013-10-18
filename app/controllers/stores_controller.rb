@@ -60,13 +60,15 @@ class StoresController < ApplicationController
   end
 
   def inventory
-    @cart_item = CartItem.new
-    @type = params[:type].to_sym
+    @cart_item   = CartItem.new
+    @type        = (params[:type].present? ? params[:type].to_sym : :all)
     case @type
     when :parts
       @store_inventory = @store.store_inventory.store_inventory_parts.paginate(:page => params[:page], :per_page => 30)
     when :sets
       @store_inventory = @store.store_inventory.store_inventory_sets.paginate(:page => params[:page], :per_page => 30)
+    else
+      @store_inventory = @store.store_inventory.all_items.paginate(:page => params[:page], :per_page => 30)
     end
   end
 
@@ -85,8 +87,24 @@ class StoresController < ApplicationController
     end
   end
 
+  def add_set_to_inventory
+    @store = current_user.store
+    @store_inventory_set = StoreInventorySet.new(store_inventory_set_params.merge!({
+      :store_inventory => @store.store_inventory,
+      :catalog_set    => CatalogSet.find(params[:id])
+    }))
+    if @store_inventory_set.save
+      flash[:notice] = "Set added to inventory"
+      redirect_to root_url(:subdomain => @store.alias)
+    else
+      flash[:error] = @store_inventory_set.errors.full_messages.to_sentence
+      redirect_to root_url(:subdomain => @store.alias)
+    end
+  end
+
   def search
-    @type        = params[:type].to_sym
+    @cart_item   = CartItem.new
+    @type        = (params[:type].present? ? params[:type].to_sym : :all)
     inventory_id = @store.store_inventory.id
 
     case @type
@@ -107,7 +125,6 @@ class StoresController < ApplicationController
         paginate :page => params[:page], :per_page => 24
       end.results
     else
-      @type = :all
       @store_inventory = Sunspot.search(StoreInventoryPart,StoreInventorySet) do
         fulltext "#{params[:q]}*" do
           boost_fields :name => 2.0
@@ -129,7 +146,7 @@ class StoresController < ApplicationController
       else
         flash[:error] = @cart_item.errors.full_messages.to_sentence
       end
-      redirect_to store_inventory_path(@store, :parts)
+      redirect_to store_inventory_path(@store, :all)
     else
       flash[:error] = "You must be logged in to add items to a cart."
       redirect_to root_url(:subdomain => @store.alias)
@@ -166,6 +183,10 @@ class StoresController < ApplicationController
 
   def store_inventory_part_params
     params.require(:store_inventory_part).permit(:quantity, :price, :condition, :comment)
+  end
+
+  def store_inventory_set_params
+    params.require(:store_inventory_set).permit(:quantity, :price, :condition, :comment)
   end
 
   def cart_item_params

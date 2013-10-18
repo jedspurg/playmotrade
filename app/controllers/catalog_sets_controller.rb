@@ -1,6 +1,7 @@
 class CatalogSetsController < ApplicationController
 
   before_filter :catalog_set, :only => [:show, :edit, :update, :inventory]
+  before_filter :store_inventory_set, :only => [:show]
 
   def index
     @catalog_sets = CatalogSet.paginate(:page => params[:page], :per_page => 24)
@@ -33,6 +34,9 @@ class CatalogSetsController < ApplicationController
     @catalog_set = CatalogSet.find(params[:id])
   end
 
+  def store_inventory_set
+    @store_inventory_set = StoreInventorySet.new
+  end
 
   def catalog_set_params
     params.require(:catalog_set).permit(:name, :number, :image, :back_image, :theme, :part_count, :tags,
