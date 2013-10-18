@@ -10,7 +10,9 @@ class User < ActiveRecord::Base
                                          :small => "20x20!" },
                               :default_url => "/images/:style/missing.png"
   has_one :store
+  has_many :carts
   belongs_to :country
 
   scope :active, -> { where(['confirmed_at IS NOT NULL']) }
+
 end

@@ -25,6 +25,7 @@ Playmotrade::Application.routes.draw do
       get :store_closed
       post :add_part_to_inventory
       get :search
+      post :add_items_to_cart
     end
   end
   match '/stores/:id/inventory/:type', :as => :store_inventory, :via => :get, :to => 'stores#inventory'

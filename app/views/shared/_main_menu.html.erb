@@ -12,6 +12,21 @@
       <div class="nav-collapse collapse">
         <% if user_signed_in? %>
         <ul class="nav pull-right">
+          <% if @cart.present? %>
+          <li class="dropdown">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+              <i class="icon-shopping-cart"></i> Cart <span class="badge badge-info"><%= @cart.total_unique_items %> | $<%= number_with_precision @cart.total_cost, :precision => 2 %></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#"><i class="icon-shopping-cart"></i> View Cart</a>
+              </li>
+              <li>
+                <a href="#"><i class="icon-truck"></i> Checkout</a>
+              </li>
+            </ul>
+          </li>
+          <% end %>
           <li class="dropdown pull-right">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
               <%= image_tag current_user.avatar.url(:small) %> <%= current_user.username %> <b class="caret"></b>

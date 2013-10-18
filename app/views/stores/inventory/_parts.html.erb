@@ -1,21 +1,24 @@
 <tr>
-  <td><%= image_tag item.catalog_part.image.url(:small) %></td>
+  <td><%= image_tag item.catalog_part.image.url(:thumb) %></td>
   <td>
     <strong><%= item.catalog_part.name %></strong><br/>
     <%= item.catalog_part.number %>
   </td>
   <td><strong>Color:</strong> <%= item.catalog_part.try(:color) %></td>
+  <td><% if item.comment.present? %><strong>Seller Comments:</strong> <%= item.comment %> <% end %></td>
   <td class="text-right">
-    <form>
-      <div class="text-right store-prices">
-        <strong>Condition:</strong> <%= item.condition %><br/>
-        <strong>Price:</strong> $<%= number_with_precision item.price, :precision => 2 %> each<br/>
-        <strong>Quantity Available:</strong> <%= item.quantity %>
-      </div>
-      <div class="input-append">
-        <input type="text" id="item_add_<%= item.id %>" class="span4">
+    <div class="text-right store-prices">
+      <strong>Condition:</strong> <%= item.condition %><br/>
+      <strong>Price:</strong> $<%= number_with_precision item.price, :precision => 2 %> each<br/>
+      <strong>Quantity Available:</strong> <%= item.quantity %>
+    </div>
+    <div class="input-append">
+      <%= form_for(@cart_item, :url => {:action => "add_items_to_cart"}) do |f| %>
+        <%= f.hidden_field :store_inventory_item_id, :value => item.id %>
+        <%= f.hidden_field :store_inventory_item_type, :value => item.class.name.underscore.downcase %>
+        <%= f.text_field :quantity, :class => "span4" %>
         <button class="btn">Add to Cart</button>
-      </div>
-    </form>
+      <% end %>
+    </div>
   </td>
 </tr>
