@@ -1,5 +1,7 @@
 class StoreInventorySet < ActiveRecord::Base
 
+  include InventoryHelper
+
   belongs_to :store_inventory
   belongs_to :catalog_set
 

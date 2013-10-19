@@ -1,34 +1,19 @@
 <% provide(:title, "Catalog Set Inventory") %>
 <div class="content">
-  <!-- Sidebar -->
   <%= render "shared/sidebar" %>
-  <!-- Sidebar ends -->
     <div class="mainbar">
-
-      <!-- Page heading -->
       <div class="page-head">
-        <!-- Page heading -->
         <h2 class="pull-left">Catalog Set Inventory</h2>
-        <!-- Breadcrumb -->
         <div class="bread-crumb pull-right">
           <a href="/"><i class="icon-home"></i> Home</a>
-          <!-- Divider -->
           <span class="divider">/</span>
           <%= link_to "Catalog", catalog_index_path %>
         </div>
-
         <div class="clearfix"></div>
-
       </div>
-      <!-- Page heading ends -->
-
-      <!-- Matter -->
-
       <div class="matter">
         <div class="container-fluid">
-
           <div class="row-fluid">
-
             <div class="span12">
               <div class="row-fluid">
                 <div class="span2">
@@ -64,9 +49,7 @@
                 </div>
               <% else %>
                 <div class="widget wlightblue">
-
                   <div class="widget-content">
-
                     <table class="table table-bordered wlightblue" id="set-inventory">
                       <thead class="widget-head">
                         <tr>
@@ -92,28 +75,13 @@
                         <% end %>
                       </tbody>
                     </table>
-
-                    <pre>
-                      <%= @catalog_set.playmodb_inventory %>
-                    </pre>
-
                   </div>
                 </div>
               <% end %>
-
               </div>
-
           </div>
-
         </div>
       </div>
-
-    <!-- Matter ends -->
-
     </div>
-
-   <!-- Mainbar ends -->
    <div class="clearfix"></div>
-
 </div>
-<!-- Content ends -->

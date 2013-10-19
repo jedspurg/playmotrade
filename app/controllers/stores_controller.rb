@@ -141,16 +141,18 @@ class StoresController < ApplicationController
 
   def add_items_to_cart
     if user_signed_in?
+      session[:return_to] ||= request.referer
       if @cart.save
         @cart_item = CartItem.find_or_initialize_by_store_inventory_item_id_and_store_inventory_item_type(cart_item_params)
         @cart_item.update_attributes(cart_item_params.merge!(:cart => @cart))
       end
       if @cart_item.save
         flash[:notice] = "Items added to cart."
+        redirect_to cart_store_path(@store)
       else
         flash[:error] = @cart_item.errors.full_messages.to_sentence
+        redirect_to session.delete(:return_to)
       end
-      redirect_to cart_store_path(@store)
     else
       flash[:error] = "You must be logged in to add items to a cart."
       redirect_to root_url(:subdomain => @store.alias)

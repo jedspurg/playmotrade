@@ -20,7 +20,7 @@
                     <table class="table table-hover">
                       <tbody>
                         <% @store_inventory.each do |item| %>
-                          <%= render "stores/inventory/#{@type.to_s}", :item => item %>
+                          <%= render "stores/inventory/inventory_row", :item => item %>
                         <% end %>
                       </tbody>
                     </table>

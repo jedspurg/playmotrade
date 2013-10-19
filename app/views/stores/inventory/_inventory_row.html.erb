@@ -1,10 +1,10 @@
 <tr>
-  <td><%= image_tag item.catalog_part.image.url(:thumb) %></td>
+  <td><%= image_tag item.image(:thumb) %></td>
   <td>
-    <strong><%= item.catalog_part.name %></strong><br/>
-    <%= item.catalog_part.number %>
+    <strong><%= item.name %></strong><br/>
+    <%= item.number %>
   </td>
-  <td><strong>Color:</strong> <%= item.catalog_part.try(:color) %></td>
+  <td><% if item.color.present? %><strong>Color:</strong> <%= item.color %><% end %></td>
   <td><% if item.comment.present? %><strong>Seller Comments:</strong> <%= item.comment %> <% end %></td>
   <td class="text-right">
     <div class="text-right store-prices">
@@ -15,7 +15,7 @@
     <div class="input-append">
       <%= form_for(@cart_item, :url => {:action => "add_items_to_cart"}) do |f| %>
         <%= f.hidden_field :store_inventory_item_id, :value => item.id %>
-        <%= f.hidden_field :store_inventory_item_type, :value => item.class.name.underscore.downcase %>
+        <%= f.hidden_field :store_inventory_item_type, :value => item.inventory_object_type %>
         <%= f.text_field :quantity, :class => "span4" %>
         <button class="btn btn-success">Add to Cart</button>
       <% end %>

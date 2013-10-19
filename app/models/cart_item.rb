@@ -10,8 +10,7 @@ class CartItem < ActiveRecord::Base
 
 
   def item_availability
-    item = store_inventory_item_type.camelize.constantize.find_by(:id => store_inventory_item_id)
-    if quantity.to_i > item.quantity
+    if quantity.to_i > associated_object.quantity
       errors.add(:quanity, "#{quantity} is not available for this item.")
     end
   end
@@ -28,8 +27,12 @@ class CartItem < ActiveRecord::Base
     associated_class.name.gsub("StoreInventory", "Catalog").underscore.downcase
   end
 
-  def image
-    associated_object.send(catalog_association).image.url(:thumb)
+  def catalog_object
+    associated_object.send(catalog_association)
+  end
+
+  def image(size=:thumb)
+    catalog_object.image.url(size)
   end
 
   def condition
@@ -37,11 +40,11 @@ class CartItem < ActiveRecord::Base
   end
 
   def name
-    associated_object.send(catalog_association).name
+    catalog_object.name
   end
 
   def number
-    associated_object.send(catalog_association).number
+    catalog_object.number
   end
 
   def price
