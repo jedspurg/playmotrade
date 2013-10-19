@@ -12,7 +12,7 @@ class CartItem < ActiveRecord::Base
   def item_availability
     item = store_inventory_item_type.camelize.constantize.find_by(:id => store_inventory_item_id)
     if quantity.to_i > item.quantity
-      errors.add(:quanity, "#{quantity} is not available")
+      errors.add(:quanity, "#{quantity} is not available for this item.")
     end
   end
 

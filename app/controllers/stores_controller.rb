@@ -1,9 +1,8 @@
 class StoresController < ApplicationController
 
-  before_filter :find_store_by_name_or_id, :only => [:edit, :show, :update, :destroy, :store_closed,
-                                                     :break_in, :inventory, :search, :add_items_to_cart, :cart]
+  before_filter :find_store_by_name_or_id, :except => [:index, :new, :create]
   before_filter :check_if_store_closed, :only => [:show]
-  before_filter :find_or_build_user_cart_for_store, :only => [:inventory, :add_items_to_cart, :cart]
+  before_filter :find_or_build_user_cart_for_store, :only => [:show, :inventory, :add_items_to_cart, :cart]
 
   def index
     @stores = Store.paginate(:page => params[:page], :per_page => 30)
@@ -151,11 +150,21 @@ class StoresController < ApplicationController
       else
         flash[:error] = @cart_item.errors.full_messages.to_sentence
       end
-      redirect_to store_inventory_path(@store, :all)
+      redirect_to cart_store_path(@store)
     else
       flash[:error] = "You must be logged in to add items to a cart."
       redirect_to root_url(:subdomain => @store.alias)
     end
+  end
+
+  def remove_items_from_cart
+    @cart_item = CartItem.find_by(:id => params[:item_id])
+    if @cart_item.destroy
+      flash[:notice] = "Items removed from cart."
+    else
+      flash[:error] = @cart_item.errors.full_messages.to_sentence
+    end
+    redirect_to cart_store_path(@store)
   end
 
   protected ###################################################################
@@ -170,7 +179,7 @@ class StoresController < ApplicationController
 
   def find_or_build_user_cart_for_store
     if user_signed_in?
-      @cart = Cart.find_or_create_by_store_id_and_user_id(:store_id => @store.id, :user_id => current_user.id)
+      @cart = Cart.find_or_create_by_store_id_and_user_id_and_checked_out(:store_id => @store.id, :user_id => current_user.id, :checked_out => false)
     else
       @cart = Cart.new
     end

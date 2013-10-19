@@ -26,7 +26,17 @@
                     </table>
                   </div>
                   <div class="widget-foot">
-                    <span class="pull-right"><h4>Total: $<%= number_with_precision @cart.total_cost, :precision => 2 %></h4></span>
+                    <h6 class="pull-left">Unique Items: <%= @cart.total_unique_items %> | Total Items: <%= @cart.total_items %></h6>
+                    <h4 class="pull-right">Total: $<%= number_with_precision @cart.total_cost, :precision => 2 %></h4>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="widget-foot">
+                    <%= link_to store_inventory_path(@store, :all) , :class => "btn pull-left" do %>
+                      <i class="icon-chevron-left"></i> Continue Shopping
+                    <% end %>
+                    <%= link_to store_inventory_path(@store, :all) , :class => "btn btn-success pull-right" do %>
+                    Checkout <i class="icon-chevron-right"></i>
+                    <% end %>
                     <div class="clearfix"></div>
                   </div>
                 </div>

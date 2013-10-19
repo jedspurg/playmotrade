@@ -31,5 +31,6 @@ Playmotrade::Application.routes.draw do
     end
   end
   match '/stores/:id/inventory/:type', :as => :store_inventory, :via => :get, :to => 'stores#inventory'
+  match '/stores/:id/remove/:item_id', :as => :remove_items_from_cart, :via => :delete, :to => 'stores#remove_items_from_cart'
 
 end
