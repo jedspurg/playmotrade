@@ -40,6 +40,11 @@ thead.widget-head{
 	margin-left:10px;
 }
 
+.label-part-total{
+	float:right;
+	margin-right:20px;
+}
+
 #error_explanation h2{
   font-size: 18px;
   line-height: 28px;

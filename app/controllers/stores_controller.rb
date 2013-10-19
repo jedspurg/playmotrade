@@ -1,8 +1,9 @@
 class StoresController < ApplicationController
 
-  before_filter :find_store_by_name_or_id, :only => [:edit, :show, :update, :destroy, :store_closed, :break_in, :inventory, :search, :add_items_to_cart]
+  before_filter :find_store_by_name_or_id, :only => [:edit, :show, :update, :destroy, :store_closed,
+                                                     :break_in, :inventory, :search, :add_items_to_cart, :cart]
   before_filter :check_if_store_closed, :only => [:show]
-  before_filter :find_or_build_user_cart_for_store, :only => [:inventory, :add_items_to_cart]
+  before_filter :find_or_build_user_cart_for_store, :only => [:inventory, :add_items_to_cart, :cart]
 
   def index
     @stores = Store.paginate(:page => params[:page], :per_page => 30)
@@ -44,6 +45,10 @@ class StoresController < ApplicationController
     @store.destroy
     flash[:notice] = "Store Deleted"
     redirect_to stores_path
+  end
+
+  def cart
+    @cart_items = @cart.cart_items
   end
 
   def store_closed

@@ -19,7 +19,9 @@
             </a>
             <ul class="dropdown-menu">
               <li>
-                <a href="#"><i class="icon-shopping-cart"></i> View Cart</a>
+                <%= link_to(cart_store_path(@store)) do %>
+                  <i class="icon-shopping-cart"></i> View Cart
+                <% end %>
               </li>
               <li>
                 <a href="#"><i class="icon-truck"></i> Checkout</a>
