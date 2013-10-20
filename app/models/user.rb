@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
 
   VAILD_ROLES = ['admin', 'catalog_admin']
 
+  def name
+    "#{first_name} #{last_name}"
+  end
+
   def admin?
     role == 'admin'
   end

@@ -1,0 +1,56 @@
+<% provide(:title, "Wishlists") %>
+<div class="content">
+  <%= render "shared/sidebar" %>
+    <div class="mainbar">
+      <div class="page-head">
+        <h2 class="pull-left">My Wishlists</h2>
+        <div class="bread-crumb pull-right">
+          <a href="/"><i class="icon-home"></i> Home</a>
+          <span class="divider">/</span>
+          <%= link_to "Wishlists", wishlists_path %>
+          <span class="divider">/</span>
+          <%= @wishlist.name %>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="matter">
+        <div class="container-fluid">
+          <%= render "shared/flash" %>
+          <div class="row-fluid">
+            <div class="span8">
+              <div class="widget wviolet">
+                <div class="widget-head">
+                  <%= @wishlist.name %>
+                  <div class="clearfix"></div>
+                </div>
+                  <div class="widget-content">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% @wishlist_items.each do |item| %>
+                        <tr>
+                          <td></td>
+                        </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                    <div class="widget-foot">
+                      <%= will_paginate @wishlist_items, :class => 'pagination pull-right' %>
+                      <div class="clearfix"></div>
+                    </div>
+                </div>
+              </div>
+              <div class="span4">
+                <%= render "wishlists/wishlist_toolbar" %>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   <div class="clearfix"></div>
+</div>

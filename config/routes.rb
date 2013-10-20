@@ -21,7 +21,7 @@ Playmotrade::Application.routes.draw do
   resources :checkout
   resources :search
   resources :wishlists do
-    member do
+    collection do
       post :add_item
     end
   end

@@ -68,7 +68,7 @@
                   </div>
                 </div>
                 <div class="span4">
-                  <%= render "shared/catalog_set_toolbar" %>
+                  <%= render "catalog_sets/catalog_set_toolbar" %>
                 </div>
                 <%= render "shared/items_available" %>
             </div>
@@ -118,4 +118,4 @@
   <% end %>
 </div>
 
-<%= render 'shared/wishlist_modal' %>
+<%= render 'shared/wishlist_modal', :item_id => @catalog_set.id, :item_type => @catalog_set.class.name.underscore %>

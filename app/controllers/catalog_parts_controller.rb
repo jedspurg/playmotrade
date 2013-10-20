@@ -21,6 +21,7 @@ class CatalogPartsController < ApplicationController
       flash[:notice] = "Catalog Part Updated"
       redirect_to catalog_part_path(@catalog_part)
     else
+      flash[:error] = @catalog_part.errors.full_messages.to_sentence
       render :action => :edit
     end
   end

@@ -21,6 +21,7 @@ class CatalogSetsController < ApplicationController
       flash[:notice] = "Catalog Set Updated"
       redirect_to catalog_set_path(@catalog_set)
     else
+      flash[:error] = @catalog_set.errors.full_messages.to_sentence
       render :action => :edit
     end
   end

@@ -3,12 +3,12 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="wishlist-header">Add Part To Wishlist</h3>
   </div>
-  <%= form_for(@wishlist_item, :url => add_item_wishlist_path) do |f| %>
+  <%= form_for(@wishlist_item, :url => add_item_wishlists_path) do |f| %>
   <div class="modal-body">
     <div class="control-group">
       <label class="control-label" for="condition">Add to Existing Wishlist</label>
       <div class="controls">
-        <%= f.select(:wishlist, options_from_collection_for_select(current_user.wishlists, 'id', 'name')) %>
+        <%= f.select(:wishlist_id, options_from_collection_for_select(current_user.wishlists, 'id', 'name')) %>
       </div>
     </div>
     <div class="control-group">
@@ -18,9 +18,17 @@
       </div>
     </div>
     <div class="control-group">
+      <label class="control-label" for="quantity">Make New Wishlist Public?</label>
+      <div class="controls">
+        <%= check_box_tag :new_wishlist_public, true, false %>
+      </div>
+    </div>
+    <div class="control-group">
       <label class="control-label" for="quantity">Minimum Quantity</label>
       <div class="controls">
         <%= f.text_field :min_quantity, :class => "input-large" %>
+        <%= f.hidden_field :catalog_item_id, :value => item_id %>
+        <%= f.hidden_field :catalog_item_type, :value => item_type %>
       </div>
     </div>
   </div>
