@@ -30,4 +30,8 @@ class CatalogPart < ActiveRecord::Base
     CatalogSet.where(:id => set_ids)
   end
 
+  def available_for_sale
+    StoreInventoryPart.where(:catalog_part_id => id)
+  end
+
 end

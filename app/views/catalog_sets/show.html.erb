@@ -30,17 +30,6 @@
                       <div class="row-fluid">
                         <div class="span6">
                           <%= image_tag @catalog_set.image.url(:large), :class => 'catalog-img' %>
-                          <ul class="activity">
-                          <% if current_user.try(:store).present? %>
-                            <li>
-                              <div class="btn-group pull-left ">
-                                <a href="#addToInventory" data-toggle="modal" role="button" class="btn btn-success"><i class='icon icon-plus-sign'></i>&nbsp;&nbsp;Add To Store Inventory</a>
-                              </div>
-                              <br/>
-                              <br/>
-                            </li>
-                            <% end %>
-                          </ul>
                         </div>
                         <div class="span6">
                           <ul class="activity">
@@ -112,7 +101,7 @@
     <div class="control-group">
       <label class="control-label" for="condition">Condition</label>
       <div class="controls">
-        <%= f.select(:condition, options_for_select(StoreInventoryPart::CONDITIONS, "New")) %>
+        <%= f.select(:condition, options_for_select(StoreInventorySet::CONDITIONS, "New (Sealed)")) %>
       </div>
     </div>
     <div class="control-group">

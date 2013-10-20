@@ -595,6 +595,12 @@ form label{
 	position: relative;
 }
 
+.sidebar-right{
+	width: 100% !important;
+	background:#FFF !important;
+	color: rgb(102, 102, 102) !important;
+}
+
 .sidebar hr{
 	border-bottom: 1px solid #333 !important;
 }
@@ -637,10 +643,21 @@ form label{
   background-color: #111;
 }
 
+.sidebar-right .navi > li > a{
+  color: rgb(102, 102, 102);
+  background-color: #FFF;
+  border-bottom: 1px solid #ccc;
+}
+
 .sidebar .navi > li > a:hover, .sidebar .navi > li.open > a {
   border-bottom: 1px solid #222;
   background-color: #222;
   color: #fff;
+}
+
+.sidebar-right .navi > li > a:hover, .sidebar-right .navi > li.open > a {
+  border-bottom: 1px solid #ddd;
+  color: #000;
 }
 
 .sidebar .navi li ul {
@@ -660,6 +677,10 @@ form label{
   text-decoration: none;
   color: #999;
   border-bottom: 1px solid #222;
+}
+
+.sidebar-right .navi li ul li a {
+  border-bottom: 1px solid #ccc;
 }
 
 .sidebar .navi li ul li.active a {
@@ -698,6 +719,16 @@ form label{
 .sidebar .navi > li.open.ngreen > a,
 .sidebar .navi > li.current.ngreen > a {
   background:#43c83c !important;
+  -webkit-transition:background 0.5s ease;
+  -moz-transition:background 0.5s ease;
+  -o-transition:background 0.5s ease;
+  transition:background 0.5s ease;
+}
+
+.sidebar .navi > li.ngrey > a:hover,
+.sidebar .navi > li.open.ngrey  > a,
+.sidebar .navi > li.current.ngrey  > a {
+  background:#ccc !important;
   -webkit-transition:background 0.5s ease;
   -moz-transition:background 0.5s ease;
   -o-transition:background 0.5s ease;

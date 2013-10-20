@@ -1,43 +1,28 @@
 <% provide(:title, "Catalog Parts") %>
 <div class="content">
-  <!-- Sidebar -->
   <%= render "shared/sidebar" %>
-  <!-- Sidebar ends -->
     <div class="mainbar">
-
-      <!-- Page heading -->
       <div class="page-head">
-        <!-- Page heading -->
         <h2 class="pull-left">Catalog Parts</h2>
-
-
-        <!-- Breadcrumb -->
         <div class="bread-crumb pull-right">
           <a href="/"><i class="icon-home"></i> Home</a>
-          <!-- Divider -->
           <span class="divider">/</span>
           <%= link_to "Catalog", catalog_index_path %>
           <span class="divider">/</span>
           <%= link_to "Catalog Parts", catalog_parts_path %>
         </div>
-
         <div class="clearfix"></div>
-
       </div>
-      <!-- Page heading ends -->
-
-      <!-- Matter -->
-
       <div class="matter">
         <div class="container-fluid">
           <div class="widget-foot">
             <%= will_paginate @catalog_parts, :class => 'pagination pull-right' %>
             <div class="clearfix"></div>
           </div>
-          <% @catalog_parts.in_groups_of(4, false) do |row| %>
+          <% @catalog_parts.in_groups_of(6, false) do |row| %>
             <div class="row-fluid">
               <% row.each do |catalog_part| %>
-                <div class="span3">
+                <div class="span2">
                   <div class="widget wlightblue">
                     <div class="widget-head">
                       <h6><%= catalog_part.name %></h6>
@@ -57,21 +42,12 @@
               <% end %>
             </div>
           <% end %>
-
           <div class="widget-foot">
             <%= will_paginate @catalog_parts, :class => 'pagination pull-right' %>
             <div class="clearfix"></div>
           </div>
-
         </div>
       </div>
-
-    <!-- Matter ends -->
-
     </div>
-
-   <!-- Mainbar ends -->
    <div class="clearfix"></div>
-
 </div>
-<!-- Content ends -->

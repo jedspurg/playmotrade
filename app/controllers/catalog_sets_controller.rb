@@ -8,6 +8,7 @@ class CatalogSetsController < ApplicationController
   end
 
   def show
+    @wishlist_item = WishlistItem.new
   end
 
   def edit

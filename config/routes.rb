@@ -18,7 +18,13 @@ Playmotrade::Application.routes.draw do
     end
   end
   resources :catalog_parts
+  resources :checkout
   resources :search
+  resources :wishlists do
+    member do
+      post :add_item
+    end
+  end
   resources :stores do
     member do
       get :break_in

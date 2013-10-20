@@ -8,6 +8,7 @@ class CatalogPartsController < ApplicationController
   end
 
   def show
+    @wishlist_item = WishlistItem.new
   end
 
   def edit
@@ -26,7 +27,8 @@ class CatalogPartsController < ApplicationController
   protected ###################################################################
 
   def catalog_part
-    @catalog_part = CatalogPart.find(params[:id])
+    @catalog_part       = CatalogPart.find(params[:id])
+    @available_for_sale = @catalog_part.available_for_sale.paginate(:page => params[:page], :per_page => 24)
   end
 
   def store_inventory_part

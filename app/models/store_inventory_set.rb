@@ -2,8 +2,11 @@ class StoreInventorySet < ActiveRecord::Base
 
   include InventoryHelper
 
+  CONDITIONS = ["New (Sealed)", "New (Complete)", "New (Incomplete)", "Used (Complete)", "Used (Incomplete)"]
+
   belongs_to :store_inventory
   belongs_to :catalog_set
+  has_one :store, :through => :store_inventory
 
   searchable do
     integer :store_inventory_id

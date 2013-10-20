@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
                               :default_url => "/images/:style/missing.png"
   has_one :store
   has_many :carts
+  has_many :wishlists
   belongs_to :country
 
   scope :active, -> { where(['confirmed_at IS NOT NULL']) }

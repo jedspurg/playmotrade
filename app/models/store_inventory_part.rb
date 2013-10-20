@@ -4,8 +4,9 @@ class StoreInventoryPart < ActiveRecord::Base
 
   belongs_to :store_inventory
   belongs_to :catalog_part
+  has_one :store, :through => :store_inventory
 
-  CONDITIONS = ["New", "Used"]
+  CONDITIONS = ["New", "Used (Like New)", "Used (Good)", "Used (Acceptable)"]
 
   searchable do
     integer :store_inventory_id
