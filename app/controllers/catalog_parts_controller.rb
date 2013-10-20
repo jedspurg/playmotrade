@@ -8,6 +8,7 @@ class CatalogPartsController < ApplicationController
   end
 
   def show
+    @wishlist      = Wishlist.find_or_create(:user => current_user, :name => "Main Wishlist")
     @wishlist_item = WishlistItem.new
   end
 

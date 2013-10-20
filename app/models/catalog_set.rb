@@ -19,4 +19,8 @@ class CatalogSet < ActiveRecord::Base
     text :name, :number
   end
 
+  def available_for_sale
+    StoreInventorySet.where(:catalog_set_id => id)
+  end
+
 end

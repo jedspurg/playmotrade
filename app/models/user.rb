@@ -16,4 +16,14 @@ class User < ActiveRecord::Base
 
   scope :active, -> { where(['confirmed_at IS NOT NULL']) }
 
+  VAILD_ROLES = ['admin', 'catalog_admin']
+
+  def admin?
+    role == 'admin'
+  end
+
+  def catalog_admin?
+    role == 'catalog_admin'
+  end
+
 end

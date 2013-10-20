@@ -29,13 +29,13 @@ Playmotrade::Application.routes.draw do
     member do
       get :break_in
       get :store_closed
-      post :add_part_to_inventory
-      post :add_set_to_inventory
       get :search
       post :add_items_to_cart
       get :cart
     end
   end
+  match '/stores/:id/add_part_to_inventory/:part_id', :as => :add_part_to_inventory, :via => :post, :to => 'stores#add_part_to_inventory'
+  match '/stores/:id/add_set_to_inventory/:set_id', :as => :add_set_to_inventory, :via => :post, :to => 'stores#add_set_to_inventory'
   match '/stores/:id/inventory/:type', :as => :store_inventory, :via => :get, :to => 'stores#inventory'
   match '/stores/:id/remove/:item_id', :as => :remove_items_from_cart, :via => :delete, :to => 'stores#remove_items_from_cart'
 

@@ -19,7 +19,7 @@
         <div class="container-fluid">
           <%= render "shared/flash" %>
             <div class="row-fluid">
-                <div class="span12">
+                <div class="span8">
                   <div class="widget wlightblue">
                     <div class="widget-head">
                       <div class="pull-left"><%= @catalog_set.name %></div>
@@ -60,11 +60,6 @@
                               <span class="label label-info"><%= tag.name %></span>
                               <% end %>
                             </li>
-                            <li>
-                              <%= link_to "Edit Set", edit_catalog_set_path(@catalog_set), :class => 'btn pull-left btn-warning' %>
-                              <%= link_to "View Inventory", inventory_catalog_set_path(@catalog_set), :class => 'btn pull-right btn-danger' %>
-                              <div class="clearfix"></div>
-                            </li>
                           </ul>
                         </div>
                       </div>
@@ -72,6 +67,10 @@
                     </div>
                   </div>
                 </div>
+                <div class="span4">
+                  <%= render "shared/catalog_set_toolbar" %>
+                </div>
+                <%= render "shared/items_available" %>
             </div>
         </div>
       </div>
@@ -84,7 +83,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="inventory-header">Add Part To Store Inventory</h3>
   </div>
-  <%= form_for(@store_inventory_set, :url => add_set_to_inventory_store_path) do |f| %>
+  <%= form_for(@store_inventory_set, :url => add_set_to_inventory_path(current_user.store, @catalog_set)) do |f| %>
   <div class="modal-body">
     <div class="control-group">
       <label class="control-label" for="quantity">Quantity</label>
@@ -118,3 +117,5 @@
   </div>
   <% end %>
 </div>
+
+<%= render 'shared/wishlist_modal' %>

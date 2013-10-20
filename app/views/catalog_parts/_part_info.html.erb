@@ -1,0 +1,35 @@
+<div class="widget wblue">
+  <div class="widget-head">
+    Part Info
+    <div class="clearfix"></div>
+  </div>
+  <div class="widget-content">
+    <ul class="activity">
+      <li>
+        <strong>Category:</strong> <%= @catalog_part.try(:catalog_parts_category).try(:name) %>
+      </li>
+      <li>
+        <strong>Subcategory:</strong> <%= @catalog_part.try(:catalog_parts_subcategory).try(:name)%>
+      </li>
+      <li>
+        <strong>Color:</strong> <%= @catalog_part.try(:color) %>
+      </li>
+      <li>
+        <strong>Dimensions:</strong> <%= @catalog_part.dimensions.to_s %>
+      </li>
+      <li>
+        <strong>Weight:</strong> <%= @catalog_part.weight.to_s %>
+      </li>
+      <li>
+        <strong>Tags:</strong>
+        <% @catalog_part.tags.each do |tag| %>
+        <span class="label label-info"><%= tag.name %></span>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+  <div class="widget-foot">
+    <div class="clearfix"></div>
+  </div>
+</div>
+

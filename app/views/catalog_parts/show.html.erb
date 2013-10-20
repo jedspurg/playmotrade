@@ -22,36 +22,14 @@
                 <div class="span8">
                   <div class="widget wlightblue">
                     <div class="widget-head">
-                      <div class="pull-left"><%= @catalog_part.number %> | <%= @catalog_part.name %></div>
+                      <div class="pull-left"><%= @catalog_part.name %></div>
+                      <div class="pull-right"><%= @catalog_part.number %></div>
                       <div class="clearfix"></div>
                     </div>
                     <div class="widget-content">
                       <div class="row-fluid">
                         <div class="span4">
                           <%= image_tag @catalog_part.image.url(:large), :class => 'catalog-img' %>
-                          <ul class="activity">
-                            <li>
-                              <strong>Category:</strong> <%= @catalog_part.try(:catalog_parts_category).try(:name) %>
-                            </li>
-                            <li>
-                              <strong>Subcategory:</strong> <%= @catalog_part.try(:catalog_parts_subcategory).try(:name)%>
-                            </li>
-                            <li>
-                              <strong>Color:</strong> <%= @catalog_part.try(:color) %>
-                            </li>
-                            <li>
-                              <strong>Dimensions:</strong> <%= @catalog_part.dimensions.to_s %>
-                            </li>
-                            <li>
-                              <strong>Weight:</strong> <%= @catalog_part.weight.to_s %>
-                            </li>
-                            <li>
-                              <strong>Tags:</strong>
-                              <% @catalog_part.tags.each do |tag| %>
-                              <span class="label label-info"><%= tag.name %></span>
-                              <% end %>
-                            </li>
-                          </ul>
                         </div>
                         <div class="span8">
                           <ul class="activity">
@@ -85,8 +63,12 @@
                     </div>
                   </div>
                 </div>
-                <%= render "shared/catalog_toolbar" %>
+                <div class="span4">
+                  <%= render "catalog_parts/part_info" %>
+                  <%= render "shared/catalog_part_toolbar" %>
+                </div>
             </div>
+            <%= render "shared/items_available" %>
         </div>
       </div>
     </div>
@@ -98,7 +80,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="inventory-header">Add Part To Store Inventory</h3>
   </div>
-  <%= form_for(@store_inventory_part, :url => add_part_to_inventory_store_path) do |f| %>
+  <%= form_for(@store_inventory_part, :url => add_part_to_inventory_path(current_user.store, @catalog_part)) do |f| %>
   <div class="modal-body">
     <div class="control-group">
       <label class="control-label" for="quantity">Quantity</label>
@@ -133,35 +115,4 @@
   <% end %>
 </div>
 
-<div id="addToWishlist" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="wishlist-header" aria-hidden="false">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="wishlist-header">Add Part To Wishlist</h3>
-  </div>
-  <%= form_for(@wishlist_item, :url => add_item_wishlist_path) do |f| %>
-  <div class="modal-body">
-    <div class="control-group">
-      <label class="control-label" for="condition">Add to Existing Wishlist</label>
-      <div class="controls">
-        <%= f.select(:wishlist, options_for_select(current_user.wishlists)) %>
-      </div>
-    </div>
-    <div class="control-group">
-      <label class="control-label" for="quantity">Add to New Wishlist</label>
-      <div class="controls">
-        <%= text_field_tag :new_wishlist_name, nil, :class => "input-large" %>
-      </div>
-    </div>
-    <div class="control-group">
-      <label class="control-label" for="quantity">Minimum Quantity</label>
-      <div class="controls">
-        <%= f.text_field :min_quantity, :class => "input-large" %>
-      </div>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary" type="submit">Add to Wishlist</button>
-  </div>
-  <% end %>
-</div>
+<%= render 'shared/wishlist_modal' %>

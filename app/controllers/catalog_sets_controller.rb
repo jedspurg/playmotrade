@@ -8,6 +8,7 @@ class CatalogSetsController < ApplicationController
   end
 
   def show
+    @wishlist      = Wishlist.find_or_create(:user => current_user, :name => "Main Wishlist")
     @wishlist_item = WishlistItem.new
   end
 
@@ -32,7 +33,8 @@ class CatalogSetsController < ApplicationController
   protected ###################################################################
 
   def catalog_set
-    @catalog_set = CatalogSet.find(params[:id])
+    @catalog_set        = CatalogSet.find(params[:id])
+    @available_for_sale = @catalog_set.available_for_sale.paginate(:page => params[:page], :per_page => 24)
   end
 
   def store_inventory_set

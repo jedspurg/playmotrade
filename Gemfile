@@ -43,7 +43,7 @@ gem 'sunspot_solr'
 gem 'cancan'
 
 # Page pagination
-gem 'will_paginate'
+gem 'will_paginate', '~> 3.0'
 gem 'bootstrap-will_paginate'
 
 # Rails to Javascript vars

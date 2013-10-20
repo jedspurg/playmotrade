@@ -77,10 +77,9 @@ class StoresController < ApplicationController
   end
 
   def add_part_to_inventory
-    @store = current_user.store
     @store_inventory_part = StoreInventoryPart.new(store_inventory_part_params.merge!({
       :store_inventory => @store.store_inventory,
-      :catalog_part    => CatalogPart.find(params[:id])
+      :catalog_part    => CatalogPart.find(params[:part_id])
     }))
     if @store_inventory_part.save
       flash[:notice] = "Part added to inventory"
@@ -92,10 +91,9 @@ class StoresController < ApplicationController
   end
 
   def add_set_to_inventory
-    @store = current_user.store
     @store_inventory_set = StoreInventorySet.new(store_inventory_set_params.merge!({
       :store_inventory => @store.store_inventory,
-      :catalog_set    => CatalogSet.find(params[:id])
+      :catalog_set    => CatalogSet.find(params[:set_id])
     }))
     if @store_inventory_set.save
       flash[:notice] = "Set added to inventory"
