@@ -1,22 +1,11 @@
 <% provide(:title, "Edit Catalog Set") %>
 <div class="content">
-  <!-- Sidebar -->
   <%= render "shared/sidebar" %>
-  <!-- Sidebar ends -->
-    <!-- Main bar -->
     <div class="mainbar">
-
-      <!-- Page heading -->
       <div class="page-head">
-        <!-- Page heading -->
-        <h2 class="pull-left">Edit Catalog Set
-        </h2>
-
-
-        <!-- Breadcrumb -->
+        <h2 class="pull-left">Edit Catalog Set</h2>
        <div class="bread-crumb pull-right">
           <a href="/"><i class="icon-home"></i> Home</a>
-          <!-- Divider -->
           <span class="divider">/</span>
           <%= link_to "Catalog", catalog_index_path %>
           <span class="divider">/</span>
@@ -24,14 +13,8 @@
           <span class="divider">/</span>
           <%= link_to @catalog_set.number, catalog_set_path(@catalog_set) %>
         </div>
-
         <div class="clearfix"></div>
-
       </div>
-      <!-- Page heading ends -->
-
-      <!-- Matter -->
-
       <div class="matter">
         <div class="container-fluid">
           <% if flash[:error].present? %>
@@ -43,106 +26,89 @@
             </div>
           </div>
           <% end %>
-
           <div class="row-fluid">
-
             <div class="span6">
               <div class="widget worange">
-
                 <div class="widget-head">
                   <div class="pull-left">Edit Catalog Set</div>
                   <div class="clearfix"></div>
                 </div>
-
                 <div class="widget-content">
                   <div class="padd">
                     <div class="form quick-post">
                       <%= form_for @catalog_set, :html => {:class => "form-horizontal", :multipart => true} do |f| %>
-
                         <div class="control-group">
                           <label class="control-label" for="image">Image</label>
                           <div class="controls">
                             <%= f.file_field :image %>
                           </div>
                         </div>
-
                         <div class="control-group">
                           <label class="control-label" for="back_image">Back Image</label>
                           <div class="controls">
                             <%= f.file_field :back_image %>
                           </div>
                         </div>
-
                         <div class="control-group">
                           <label class="control-label" for="name">Name</label>
                           <div class="controls">
                             <%= f.text_field :name, :class => "input-large" %>
                           </div>
                         </div>
-
                         <div class="control-group">
                           <label class="control-label" for="number">Number</label>
                           <div class="controls">
                             <%= f.text_field :number, :class => "input-large" %>
                           </div>
                         </div>
-
                         <div class="control-group">
                           <label class="control-label" for="theme">Theme</label>
                           <div class="controls">
                             <%= f.text_field :theme, :class => "input-large" %>
                           </div>
                         </div>
-
                         <div class="control-group">
                           <label class="control-label" for="part_count">Part Count</label>
                           <div class="controls">
                             <%= f.text_field :part_count, :class => "input-large" %>
                           </div>
                         </div>
-
                         <div class="control-group">
                           <label class="control-label" for="figure_count">Figure Count</label>
                           <div class="controls">
                             <%= f.text_field :figure_count, :class => "input-large" %>
                           </div>
                         </div>
-
                         <div class="control-group">
                           <label class="control-label" for="release_date">Release Date</label>
                           <div class="controls">
                             <%= f.text_field :release_date, :class => "input-large" %>
                           </div>
                         </div>
-
                         <div class="control-group">
                           <label class="control-label" for="retire_date">Retire Date</label>
                           <div class="controls">
                             <%= f.text_field :retire_date, :class => "input-large" %>
                           </div>
                         </div>
-
                         <div class="control-group">
                           <label class="control-label" for="dimensions">Dimensions</label>
                           <div class="controls">
                             <%= f.text_field :dimensions, :class => "input-large" %>
                           </div>
                         </div>
-
                         <div class="control-group">
                           <label class="control-label" for="weight">Weight</label>
                           <div class="controls">
                             <%= f.text_field :weight, :class => "input-large" %>
                           </div>
                         </div>
-
                         <div class="control-group">
                           <label class="control-label" for="tags">Tags</label>
                           <div class="controls">
                             <%= f.text_field :tags, :value => @catalog_set.tags.map(&:name).join(', '), :class => "input-large" %>
                           </div>
                         </div>
-
                         <div class="form-actions">
                           <%= f.submit "Update", class: "btn btn-success" %>
                         </div>
@@ -151,18 +117,14 @@
                     <div class="clearfix"></div>
                   </div>
                 </div>
-
               </div>
             </div>
-
               <div class="span6">
                 <div class="widget wlightblue">
-
                   <div class="widget-head">
                     <div class="pull-left">Current Catalog Set Values</div>
                     <div class="clearfix"></div>
                   </div>
-
                   <div class="widget-content">
                     <%= image_tag @catalog_set.image.url(:large), :class => 'catalog-img' %>
                     <ul class="activity">
@@ -200,24 +162,12 @@
                         <% end %>
                       </li>
                     </ul>
-
                   </div>
-
                 </div>
               </div>
-
-
           </div>
-
         </div>
       </div>
-
-    <!-- Matter ends -->
-
     </div>
-
-   <!-- Mainbar ends -->
    <div class="clearfix"></div>
-
 </div>
-<!-- Content ends -->

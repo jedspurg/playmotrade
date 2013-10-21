@@ -23,7 +23,7 @@
           <li><a href="widgets2.html">Figures (Klickies)</a></li>
         </ul>
       </li>
-      <li class="has_submenu nred">
+      <li class="has_submenu nred <%= active_class([catalog_index_path,stores_path,wishlists_path])%>">
         <a href="#">
           <i class="icon-money"></i> Buy
           <span class="pull-right"><i class="icon-angle-right"></i></span>
@@ -35,7 +35,7 @@
           <li><%= link_to "Wishlists", wishlists_path %></li>
         </ul>
       </li>
-      <li class="has_submenu nviolet">
+      <li class="has_submenu nviolet <%= active_class([new_store_path])%>">
         <a href="#">
           <i class="icon-briefcase"></i> Sell
           <span class="pull-right"><i class="icon-angle-right"></i></span>
@@ -46,8 +46,7 @@
         <% else %>
           <li><%= link_to "Create a Store", new_store_path %></li>
         <% end %>
-          <li><a href="gallery.html">Browse Stores</a></li>
-          <li><a href="error.html">Create a Store</a></li>
+          <li><%= link_to "Browse Stores", stores_path %></li>
         </ul>
       </li>
       <li class="has_submenu ngreen">

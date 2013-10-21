@@ -1,31 +1,16 @@
 <% provide(:title, "Catalog") %>
 <div class="content">
-  <!-- Sidebar -->
   <%= render "shared/sidebar" %>
-  <!-- Sidebar ends -->
     <div class="mainbar">
-      
-      <!-- Page heading -->
       <div class="page-head">
-        <!-- Page heading -->
         <h2 class="pull-left">Catalog</h2>
-
-
-        <!-- Breadcrumb -->
         <div class="bread-crumb pull-right">
-          <a href="/"><i class="icon-home"></i> Home</a> 
-          <!-- Divider -->
+          <a href="/"><i class="icon-home"></i> Home</a>
           <span class="divider">/</span>
           <%= link_to "Catalog", catalog_index_path %>
         </div>
-
         <div class="clearfix"></div>
-
       </div>
-      <!-- Page heading ends -->
-
-      <!-- Matter -->
-
       <div class="matter">
         <div class="container-fluid">
           <% @catalog_items.in_groups_of(4, false) do |row| %>
@@ -51,21 +36,12 @@
               <% end %>
             </div>
           <% end %>
-                        
           <div class="widget-foot">
             <%= will_paginate @catalog_items, :class => 'pagination pull-right' %>
-            <div class="clearfix"></div> 
+            <div class="clearfix"></div>
           </div>
-
         </div>
       </div>
-
-    <!-- Matter ends -->
-
     </div>
-
-   <!-- Mainbar ends -->        
    <div class="clearfix"></div>
-
 </div>
-<!-- Content ends -->

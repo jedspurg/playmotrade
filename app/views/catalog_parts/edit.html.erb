@@ -1,22 +1,11 @@
 <% provide(:title, "Edit Catalog Part") %>
 <div class="content">
-  <!-- Sidebar -->
   <%= render "shared/sidebar" %>
-  <!-- Sidebar ends -->
-    <!-- Main bar -->
     <div class="mainbar">
-
-      <!-- Page heading -->
       <div class="page-head">
-        <!-- Page heading -->
-        <h2 class="pull-left">Edit Catalog Set
-        </h2>
-
-
-        <!-- Breadcrumb -->
+        <h2 class="pull-left">Edit Catalog Set</h2>
        <div class="bread-crumb pull-right">
           <a href="/"><i class="icon-home"></i> Home</a>
-          <!-- Divider -->
           <span class="divider">/</span>
           <%= link_to "Catalog", catalog_index_path %>
           <span class="divider">/</span>
@@ -24,17 +13,8 @@
           <span class="divider">/</span>
           <%= link_to @catalog_part.number, catalog_part_path(@catalog_part) %>
         </div>
-
-
         <div class="clearfix"></div>
-
       </div>
-      <!-- Page heading ends -->
-
-
-
-      <!-- Matter -->
-
       <div class="matter">
         <div class="container-fluid">
           <% if flash[:error].present? %>
@@ -46,86 +26,71 @@
             </div>
           </div>
           <% end %>
-
           <div class="row-fluid">
-
             <div class="span6">
               <div class="widget worange">
-
                 <div class="widget-head">
                   <div class="pull-left">Edit Catalog Part</div>
                   <div class="clearfix"></div>
                 </div>
-
                 <div class="widget-content">
                   <div class="padd">
                     <div class="form quick-post">
                       <%= form_for @catalog_part, :html => {:class => "form-horizontal", :multipart => true} do |f| %>
-
                         <div class="control-group">
                           <label class="control-label" for="image">Image</label>
                           <div class="controls">
                             <%= f.file_field :image %>
                           </div>
                         </div>
-
                         <div class="control-group">
                           <label class="control-label" for="name">Name</label>
                           <div class="controls">
                             <%= f.text_field :name, :class => "input-large" %>
                           </div>
                         </div>
-
                         <div class="control-group">
                           <label class="control-label" for="number">Number</label>
                           <div class="controls">
                             <%= f.text_field :number, :class => "input-large" %>
                           </div>
                         </div>
-
                         <div class="control-group">
                           <label class="control-label" for="color">Color</label>
                           <div class="controls">
                             <%= f.text_field :color, :class => "input-large" %>
                           </div>
                         </div>
-
                         <div class="control-group">
                           <label class="control-label">Category</label>
                           <div class="controls">
                             <%= f.select :catalog_parts_category_id, options_for_select(CatalogPartsCategory.all.pluck(:name, :id).sort, @catalog_part.catalog_parts_category.try(:id)) %>
                           </div>
                         </div>
-
                         <div class="control-group">
                           <label class="control-label">Subcategory</label>
                           <div class="controls">
                             <%= f.select :catalog_parts_subcategory_id, options_for_select(CatalogPartsSubcategory.all.pluck(:name, :id).sort, @catalog_part.catalog_parts_subcategory.try(:id)) %>
                           </div>
                         </div>
-
-
                         <div class="control-group">
                           <label class="control-label" for="dimensions">Dimensions</label>
                           <div class="controls">
                             <%= f.text_field :dimensions, :class => "input-large" %>
                           </div>
                         </div>
-
                         <div class="control-group">
                           <label class="control-label" for="weight">Weight</label>
                           <div class="controls">
                             <%= f.text_field :weight, :class => "input-large" %>
                           </div>
                         </div>
-
                         <div class="control-group">
                           <label class="control-label" for="tags">Tags</label>
                           <div class="controls">
                             <%= f.text_field :tags, :value => @catalog_part.tags.map(&:name).join(', '), :class => "input-large" %>
                           </div>
                         </div>
-
                         <div class="form-actions">
                           <%= f.submit "Update", class: "btn btn-success" %>
                         </div>
@@ -134,18 +99,14 @@
                     <div class="clearfix"></div>
                   </div>
                 </div>
-
               </div>
             </div>
-
               <div class="span6">
                 <div class="widget wlightblue">
-
                   <div class="widget-head">
                     <div class="pull-left">Current Catalog Part Values</div>
                     <div class="clearfix"></div>
                   </div>
-
                   <div class="widget-content">
                     <%= image_tag @catalog_part.image.url(:large), :class => 'catalog-img' %>
                     <ul class="activity">
@@ -177,24 +138,12 @@
                         <% end %>
                       </li>
                     </ul>
-
                   </div>
-
                 </div>
               </div>
-
-
           </div>
-
         </div>
       </div>
-
-    <!-- Matter ends -->
-
     </div>
-
-   <!-- Mainbar ends -->
    <div class="clearfix"></div>
-
 </div>
-<!-- Content ends -->

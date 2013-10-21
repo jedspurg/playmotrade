@@ -19,9 +19,8 @@ module ApplicationHelper
   end
 
   def active_class(path_array)
-    path_array.each do |path|
-      return "current open" if current_page?(path)
-    end
+    detected = path_array.select{|path| current_page?(path)}
+    "current open" if detected.present?
   end
 
   def sub_active_class(path)

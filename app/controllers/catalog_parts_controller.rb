@@ -9,7 +9,7 @@ class CatalogPartsController < ApplicationController
 
   def show
     if user_signed_in?
-      @wishlist      = Wishlist.find_or_create(:user => current_user, :name => "Main Wishlist")
+      @wishlist      = Wishlist.find_or_create(:user_id => current_user.id, :name => "Main Wishlist")
       @wishlist_item = WishlistItem.new
     end
   end

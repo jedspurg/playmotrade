@@ -1,7 +1,10 @@
 class WishlistsController < ApplicationController
 
   def index
-    @wishlists = current_user.wishlists.paginate(:page => params[:my_page], :per_page => 10) if user_signed_in?
+    if user_signed_in? && current_user.wishlists.blank?
+      Wishlist.create(:user_id => current_user.id, :name => "Main Wishlist")
+    end
+    @wishlists = current_user.wishlists.paginate(:page => params[:my_page], :per_page => 10)
     @public_wishlists = Wishlist.public.paginate(:page => params[:public_page], :per_page => 10)
   end
 

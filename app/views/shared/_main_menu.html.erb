@@ -38,6 +38,10 @@
                 <i class="icon-user"></i> Edit Settings
                 <% end %>
               </li>
+              <li><%= link_to wishlists_path do %>
+                <i class="icon-list"></i> My Wishlists
+                <% end %>
+              </li>
               <li><%=link_to(destroy_user_session_path) do %>
                 <i class="icon-off"></i> Logout
                 <% end %>
