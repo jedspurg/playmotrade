@@ -27,6 +27,17 @@ class WishlistsController < ApplicationController
     redirect_to wishlists_path
   end
 
+  def remove_item
+    @wishlist      = Wishlist.find(params[:id])
+    @wishlist_item = WishlistItem.find(params[:item_id])
+    if @wishlist_item.destroy
+      flash[:notice] = "Item removed from wishlist: #{@wishlist_item.wishlist.name}"
+    else
+      flash[:error] = @wishlist_item.errors.full_messages.to_sentence
+    end
+    redirect_to wishlists_path
+  end
+
   protected ###################################################################
 
   def wishlist_item_params

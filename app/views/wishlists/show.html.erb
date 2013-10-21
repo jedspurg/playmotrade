@@ -25,15 +25,18 @@
                 </div>
                   <div class="widget-content">
                     <table class="table">
-                      <thead>
-                        <tr>
-                          <th></th>
-                        </tr>
-                      </thead>
                       <tbody>
                         <% @wishlist_items.each do |item| %>
                         <tr>
-                          <td></td>
+                          <td><%= image_tag item.image(:thumb) %></td>
+                          <td><strong><%= item.name %></strong></td>
+                          <td><%= item.number %></td>
+                          <td><%= item.color %></td>
+                          <td>Min. Quantity: <%= item.min_quantity %></td>
+                          <td><%= link_to remove_wishlist_item_path(@wishlist, item), :method => :delete, :data => {:confirm => "Are you sure?"}, :class => "btn"  do %>
+                              <i class='icon-trash'></i>
+                            <% end %>
+                          </td>
                         </tr>
                         <% end %>
                       </tbody>
