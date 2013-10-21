@@ -29,6 +29,13 @@
             <span class="pull-right"><i class="icon-angle-right"></i></span>
           </a>
         </li>
+        <% else %>
+        <li class="ngrey">
+          <%= link_to(new_user_session_path) do %>
+            <i class='icon icon-lock'></i>Login For More Tools
+            <span class="pull-right"><i class="icon-angle-right"></i></span>
+          <% end %>
+        </li>
         <% end %>
       </ul>
     </div>

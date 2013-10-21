@@ -1,8 +1,8 @@
 class WishlistsController < ApplicationController
 
   def index
-    @wishlists = current_user.wishlists.paginate(:page => params[:page], :per_page => 10) if user_signed_in?
-    @public_wishlists = Wishlist.public.paginate(:page => params[:page], :per_page => 10)
+    @wishlists = current_user.wishlists.paginate(:page => params[:my_page], :per_page => 10) if user_signed_in?
+    @public_wishlists = Wishlist.public.paginate(:page => params[:public_page], :per_page => 10)
   end
 
   def show
@@ -11,12 +11,13 @@ class WishlistsController < ApplicationController
   end
 
   def add_item
-    new_wishlist = Wishlist.find_or_create(user_id: current_user.id, name: params[:new_wishlist_name], public: params[:new_wishlist_public])
+    new_wishlist = Wishlist.find_or_create(user_id: current_user.id, name: params[:new_wishlist_name], public: params.fetch(:new_wishlist_public, false))
     if new_wishlist.valid?
       wishlist_item_params.delete(:wishlist)
       @wishlist_item = WishlistItem.new(wishlist_item_params.merge!(wishlist: new_wishlist))
     else
-      @wishlist_item = WishlistItem.new(wishlist_item_params)
+      @wishlist_item = WishlistItem.find_or_initialize_by(wishlist_id: wishlist_item_params[:wishlist_id], catalog_item_id: wishlist_item_params[:catalog_item_id])
+      @wishlist_item.update_attributes(wishlist_item_params)
     end
 
     if @wishlist_item.save
@@ -34,6 +35,16 @@ class WishlistsController < ApplicationController
       flash[:notice] = "Item removed from wishlist: #{@wishlist_item.wishlist.name}"
     else
       flash[:error] = @wishlist_item.errors.full_messages.to_sentence
+    end
+    redirect_to wishlists_path
+  end
+
+  def destroy
+    @wishlist = Wishlist.find(params[:id])
+    if @wishlist.destroy
+      flash[:notice] = "Wishlist: #{@wishlist.name} deleted."
+    else
+      flash[:error] = @wishlist.errors.full_messages.to_sentence
     end
     redirect_to wishlists_path
   end

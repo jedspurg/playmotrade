@@ -16,6 +16,7 @@
           <%= render "shared/flash" %>
           <div class="row-fluid">
             <div class="span8">
+              <% if user_signed_in? %>
               <div class="widget wviolet">
                 <div class="widget-head">
                   My Wishlists
@@ -50,7 +51,7 @@
                           </td>
                           <td><%= link_to "Edit", edit_wishlist_path(wishlist), :class => "btn btn-primary" %></td>
                           <td>
-                            <%= link_to wishlist_path(wishlist), :method => :delete, :data => {:confirm => "Are you sure?"}, :class => "btn"  do %>
+                            <%= link_to wishlist_path(wishlist), :method => :delete, :data => {:confirm => "Are you sure?"}, :class => "btn", :id => wishlist  do %>
                               <i class='icon-trash'></i>
                             <% end %>
                           </td>
@@ -60,10 +61,11 @@
                     </table>
                   </div>
                     <div class="widget-foot">
-                      <%= will_paginate @wishlists, :class => 'pagination pull-right' %>
+                      <%= will_paginate @wishlists, :class => 'pagination pull-right', :param_name => 'my_page' %>
                       <div class="clearfix"></div>
                     </div>
                 </div>
+                <% end %>
                 <div class="widget wviolet">
                   <div class="widget-head">
                     Public Wishlists
@@ -90,7 +92,7 @@
                     </table>
                   </div>
                     <div class="widget-foot">
-                      <%= will_paginate @public_wishlists, :class => 'pagination pull-right' %>
+                      <%= will_paginate @public_wishlists, :class => 'pagination pull-right', :param_name => 'public_page' %>
                       <div class="clearfix"></div>
                     </div>
                 </div>

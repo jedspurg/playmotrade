@@ -6,6 +6,24 @@
   <div class="widget-content">
     <div class="sidebar sidebar-right">
       <ul class="navi">
+        <% if controller.action_name == "show" %>
+        <li class="ngrey">
+          <%= link_to wishlists_path do %>
+            <i class='icon icon-list'></i>All My Wishlists
+            <span class="pull-right"><i class="icon-angle-right"></i></span>
+          <% end %>
+          </a>
+        </li>
+          <% if @wishlist.public? %>
+          <li class="ngrey">
+            <%= link_to email_wishlist_path(@wishlist) do %>
+              <i class='icon icon-envelope'></i>Email this Wishlist
+              <span class="pull-right"><i class="icon-angle-right"></i></span>
+            <% end %>
+            </a>
+          </li>
+          <% end %>
+        <% end %>
         <% if user_signed_in? %>
         <li class="ngrey">
           <%= link_to new_wishlist_path do %>
@@ -13,6 +31,13 @@
             <span class="pull-right"><i class="icon-angle-right"></i></span>
           <% end %>
           </a>
+        </li>
+        <% else %>
+        <li class="ngrey">
+          <%= link_to(new_user_session_path) do %>
+            <i class='icon icon-lock'></i>Login For More Tools
+            <span class="pull-right"><i class="icon-angle-right"></i></span>
+          <% end %>
         </li>
         <% end %>
       </ul>

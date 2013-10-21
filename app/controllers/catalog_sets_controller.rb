@@ -8,8 +8,10 @@ class CatalogSetsController < ApplicationController
   end
 
   def show
-    @wishlist      = Wishlist.find_or_create(:user => current_user, :name => "Main Wishlist")
-    @wishlist_item = WishlistItem.new
+    if user_signed_in?
+      @wishlist      = Wishlist.find_or_create(:user_id => current_user.try(:id), :name => "Main Wishlist")
+      @wishlist_item = WishlistItem.new
+    end
   end
 
   def edit

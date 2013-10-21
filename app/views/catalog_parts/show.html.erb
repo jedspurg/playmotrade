@@ -75,44 +75,48 @@
    <div class="clearfix"></div>
 </div>
 
-<div id="addToInventory" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="inventory-header" aria-hidden="false">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="inventory-header">Add Part To Store Inventory</h3>
+<% if can? :manage, current_user.try(:store) %>
+  <div id="addToInventory" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="inventory-header" aria-hidden="false">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="inventory-header">Add Part To Store Inventory</h3>
+    </div>
+    <%= form_for(@store_inventory_part, :url => add_part_to_inventory_path(current_user.store, @catalog_part)) do |f| %>
+    <div class="modal-body">
+      <div class="control-group">
+        <label class="control-label" for="quantity">Quantity</label>
+        <div class="controls">
+          <%= f.text_field :quantity, :class => "input-large" %>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="price">Price</label>
+        <div class="controls">
+          <%= f.text_field :price, :class => "input-large", :placeholder => "USD" %>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="condition">Condition</label>
+        <div class="controls">
+          <%= f.select(:condition, options_for_select(StoreInventoryPart::CONDITIONS, "New")) %>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="comment">Comment</label>
+        <div class="controls">
+          <%= f.text_area :comment, :class => "input-large" %>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn btn-success pull-left">Advanced Form</a>
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <button class="btn btn-primary" type="submit">Add to Inventory</button>
+    </div>
+    <% end %>
   </div>
-  <%= form_for(@store_inventory_part, :url => add_part_to_inventory_path(current_user.store, @catalog_part)) do |f| %>
-  <div class="modal-body">
-    <div class="control-group">
-      <label class="control-label" for="quantity">Quantity</label>
-      <div class="controls">
-        <%= f.text_field :quantity, :class => "input-large" %>
-      </div>
-    </div>
-    <div class="control-group">
-      <label class="control-label" for="price">Price</label>
-      <div class="controls">
-        <%= f.text_field :price, :class => "input-large", :placeholder => "USD" %>
-      </div>
-    </div>
-    <div class="control-group">
-      <label class="control-label" for="condition">Condition</label>
-      <div class="controls">
-        <%= f.select(:condition, options_for_select(StoreInventoryPart::CONDITIONS, "New")) %>
-      </div>
-    </div>
-    <div class="control-group">
-      <label class="control-label" for="comment">Comment</label>
-      <div class="controls">
-        <%= f.text_area :comment, :class => "input-large" %>
-      </div>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <a href="#" class="btn btn-success pull-left">Advanced Form</a>
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary" type="submit">Add to Inventory</button>
-  </div>
-  <% end %>
-</div>
+<% end %>
 
-<%= render 'shared/wishlist_modal', :item_id => @catalog_part.id, :item_type => @catalog_part.class.name.underscore %>
+<% if user_signed_in? %>
+  <%= render 'shared/wishlist_modal', :item_id => @catalog_part.id, :item_type => @catalog_part.class.name.underscore %>
+<% end %>

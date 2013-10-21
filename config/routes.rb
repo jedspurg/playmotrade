@@ -24,6 +24,9 @@ Playmotrade::Application.routes.draw do
     collection do
       post :add_item
     end
+    member do
+      post :email
+    end
   end
   match '/wishlists/:id/remove_item/:item_id', :as => :remove_wishlist_item, :via => :delete, :to => 'wishlists#remove_item'
   resources :stores do
