@@ -8,6 +8,7 @@ gem 'rails', '4.0.0'
 # Use postgresql as the database for Active Record
 gem 'pg'
 
+# Background jobs
 gem 'sidekiq'
 
 # Use SCSS for stylesheets
@@ -45,7 +46,7 @@ gem 'sunspot_solr'
 gem 'cancan'
 
 # Page pagination
-gem 'will_paginate', '~> 3.0'
+gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 
 # Rails to Javascript vars
