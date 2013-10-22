@@ -39,6 +39,11 @@
 thead.widget-head{
 	font-size: 13px !important;
 }
+
+.widget-head-fixed{
+  height:18px;
+  overflow:hidden;
+}
 .inv-set-img{
 	margin-left:10px;
 }

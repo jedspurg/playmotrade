@@ -13,33 +13,74 @@
       </div>
       <div class="matter">
         <div class="container-fluid">
-          <% @catalog_items.in_groups_of(4, false) do |row| %>
-            <div class="row-fluid">
-              <% row.each do |catalog_item| %>
-                <div class="span3">
-                  <div class="widget wlightblue">
-                    <div class="widget-head">
-                      <h6><%= catalog_item.name %></h6>
-                      <div class="clearfix"></div>
-                    </div>
-                    <div class="widget-content">
-                      <%= image_tag catalog_item.image.url(:medium), :class => 'catalog-img' %>
-                      <div class="clearfix"></div>
-                    </div>
-                    <div class="widget-foot">
-                      <p class="pull-left"><%= catalog_item.number %></p>
-                      <a href="#" class="btn pull-right btn-danger">View</a>
-                      <div class="clearfix"></div>
+          <div class="widget wviolet">
+            <div class="widget-head">
+              Recently Added Parts
+              <div class="clearfix"></div>
+            </div>
+            <div class="widget-content padd">
+              <div class="row-fluid">
+                <% @recent_catalog_parts.each do |catalog_item| %>
+                  <div class="span2">
+                    <div class="widget wviolet">
+                      <div class="widget-head widget-head-fixed">
+                        <small><%= catalog_item.name %></small>
+                        <div class="clearfix"></div>
+                      </div>
+                      <div class="widget-content">
+                        <%= image_tag catalog_item.image.url(:medium), :class => 'catalog-img' %>
+                        <div class="clearfix"></div>
+                      </div>
+                      <div class="widget-foot">
+                        <p class="pull-left"><%= catalog_item.number %></p>
+                        <%= link_to "View", catalog_part_path(catalog_item), :class => 'btn pull-right btn-danger' %>
+                        <div class="clearfix"></div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              <% end %>
+                <% end %>
+              </div>
             </div>
-          <% end %>
-          <div class="widget-foot">
-            <%= will_paginate @catalog_items, :class => 'pagination pull-right' %>
-            <div class="clearfix"></div>
+            <div class="widget-foot">
+              <%= link_to "View All Parts", catalog_parts_path, :class => 'btn pull-right' %>
+              <div class="clearfix"></div>
+            </div>
           </div>
+
+          <div class="widget worange">
+            <div class="widget-head">
+              Recently Added Sets
+              <div class="clearfix"></div>
+            </div>
+            <div class="widget-content padd">
+              <div class="row-fluid">
+                <% @recent_catalog_sets.each do |catalog_item| %>
+                  <div class="span2">
+                    <div class="widget worange">
+                      <div class="widget-head widget-head-fixed">
+                        <small><%= catalog_item.name %></small>
+                        <div class="clearfix"></div>
+                      </div>
+                      <div class="widget-content">
+                        <%= image_tag catalog_item.image.url(:medium), :class => 'catalog-img' %>
+                        <div class="clearfix"></div>
+                      </div>
+                      <div class="widget-foot">
+                        <p class="pull-left"><%= catalog_item.number %></p>
+                        <%= link_to "View", catalog_part_path(catalog_item), :class => 'btn pull-right btn-danger' %>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <div class="widget-foot">
+              <%= link_to "View All Sets", catalog_sets_path, :class => 'btn pull-right' %>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

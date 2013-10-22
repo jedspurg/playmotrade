@@ -76,12 +76,12 @@
    <%= render 'shared/footer' %>
 </div>
 
-<% if can? :manage, current_user.try(:store) %>
-  <div id="addToInventory" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="inventory-header" aria-hidden="false">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="inventory-header">Add Part To Store Inventory</h3>
-    </div>
+<div id="addToInventory" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="inventory-header" aria-hidden="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="inventory-header">Add Part To Store Inventory</h3>
+  </div>
+  <% if current_user.try(:store).present? %>
     <%= form_for(@store_inventory_part, :url => add_part_to_inventory_path(current_user.store, @catalog_part)) do |f| %>
     <div class="modal-body">
       <div class="control-group">
@@ -115,8 +115,17 @@
       <button class="btn btn-primary" type="submit">Add to Inventory</button>
     </div>
     <% end %>
-  </div>
-<% end %>
+  <% else %>
+    <div class="modal-body">
+    You must create a store to sell parts. It's quick, easy, and free.
+    </div>
+    <div class="modal-footer">
+    <%= link_to new_store_path, :class => "btn btn-success" do %>
+      <i class='icon icon-plus-sign'></i> Create a Store
+    <% end %>
+    </div>
+  <% end %>
+</div>
 
 <% if user_signed_in? %>
   <%= render 'shared/wishlist_modal', :item_id => @catalog_part.id, :item_type => @catalog_part.class.name.underscore %>
