@@ -9,6 +9,9 @@
 	font-weight: 400;
 }
 
+.no-border-navbar{
+  border: none;
+}
 .navbar *{
 	background-image: none !important;
 }
@@ -93,7 +96,6 @@ body{
 	line-height: 23px;
 	color: #666;
 	background:#111;
-	padding-top: 65px;
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -856,6 +858,20 @@ form label{
 .mainbar .container{
 	width: 100%;
 	padding: 0px !important
+}
+
+/* Home */
+
+.home{
+  position: relative;
+  width: auto;
+  background:#fff;
+  min-height: 400px;
+}
+
+.home .container{
+  width: 100%;
+  padding: 0px !important
 }
 
 /* Pagination*/
