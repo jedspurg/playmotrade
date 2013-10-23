@@ -24,11 +24,11 @@
               <% row.each do |catalog_part| %>
                 <div class="span2">
                   <div class="widget wlightblue">
-                    <div class="widget-head">
-                      <h6><%= catalog_part.name %></h6>
+                    <div class="widget-head widget-head-fixed">
+                      <small><%= catalog_part.name %></small>
                       <div class="clearfix"></div>
                     </div>
-                    <div class="widget-content">
+                    <div class="widget-content widget-content-fixed">
                       <%= image_tag catalog_part.image.url(:medium), :class => 'catalog-img' %>
                       <div class="clearfix"></div>
                     </div>

@@ -41,8 +41,10 @@ thead.widget-head{
 }
 
 .widget-head-fixed{
-  height:18px;
+  height:24px;
+  white-space:nowrap;
   overflow:hidden;
+  text-overflow: ellipsis;
 }
 .inv-set-img{
 	margin-left:10px;
@@ -1132,6 +1134,19 @@ form label{
   padding: 8px 15px;
   font-size: 13px;
   color: #555;
+}
+
+.widget .widget-content-fixed{
+  position:relative;
+  height:150px;
+  overflow:hidden;
+}
+
+.widget .widget-content-fixed img{
+  position:absolute;
+  display:block;
+  top:0;
+  left:0;
 }
 
 /* Widget colors */

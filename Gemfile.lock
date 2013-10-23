@@ -80,6 +80,13 @@ GEM
     gon (4.1.0)
       actionpack (>= 2.3.0)
       json
+    haml (4.0.2)
+      tilt
+    haml-rails (0.4)
+      actionpack (>= 3.1, < 4.1)
+      activesupport (>= 3.1, < 4.1)
+      haml (>= 3.1, < 4.1)
+      railties (>= 3.1, < 4.1)
     highline (1.6.19)
     hike (1.2.3)
     hirb (0.7.1)
@@ -207,6 +214,8 @@ DEPENDENCIES
   debugger
   devise
   gon
+  haml
+  haml-rails
   hirb (>= 0.7.1)
   jbuilder (~> 1.2)
   jquery-rails
