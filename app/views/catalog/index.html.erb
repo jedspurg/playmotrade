@@ -33,7 +33,7 @@
                       </div>
                       <div class="widget-foot">
                         <p class="pull-left"><%= catalog_item.number %></p>
-                        <%= link_to "View", catalog_part_path(catalog_item), :class => 'btn pull-right btn-danger' %>
+                        <%= link_to "View", catalog_part_path(catalog_item.catalogable_id), :class => 'btn pull-right btn-danger' %>
                         <div class="clearfix"></div>
                       </div>
                     </div>
@@ -67,7 +67,7 @@
                       </div>
                       <div class="widget-foot">
                         <p class="pull-left"><%= catalog_item.number %></p>
-                        <%= link_to "View", catalog_part_path(catalog_item), :class => 'btn pull-right btn-danger' %>
+                        <%= link_to "View", catalog_set_path(catalog_item.catalogable_id), :class => 'btn pull-right btn-danger' %>
                         <div class="clearfix"></div>
                       </div>
                     </div>
