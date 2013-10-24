@@ -1,0 +1,34 @@
+.row-fluid
+  .span12
+    .widget.worange
+      .widget-head
+        Available for Sale
+        .clearfix
+      .widget-content
+        %table.table.table-bordered
+          %thead
+            %tr
+              %th &nbsp;
+              %th Condition
+              %th Name
+              %th In Stock
+              %th Price
+              %th Store
+          %tbody
+            - @available_for_sale.each do |item|
+              %tr
+                %td= image_tag item.image(:small)
+                %td= item.condition
+                %td
+                  = item.name
+                  %br
+                  = item.comment
+                %td= item.quantity
+                %td= "$#{number_with_precision(item.price, :precision => 2)}"
+                %td
+                  = image_tag item.store.logo.url(:thumb)
+                  &nbsp;&nbsp;
+                  = link_to item.store.name, root_url(:subdomain => item.store.alias)
+        .widget-foot
+          = will_paginate @available_for_sale, :class => 'pagination pull-right'
+          .clearfix

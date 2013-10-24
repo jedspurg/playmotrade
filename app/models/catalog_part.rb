@@ -20,6 +20,8 @@ class CatalogPart < ActiveRecord::Base
     where(:color => color)
   }
 
+  scope :klickies, -> { where(:catalog_parts_category_id => 8)}
+
   searchable do
     text :name, :number, :color
   end

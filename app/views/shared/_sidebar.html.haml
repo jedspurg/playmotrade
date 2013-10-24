@@ -1,0 +1,78 @@
+.sidebar
+  .sidebar-inner
+    .sidebar-widget
+      %form.form-inline{:method => "get", :action => search_index_path}
+        .input-append.row-fluid
+          = text_field_tag :q, "", :class => "span10", :placeholder => "Search Catalog"
+          .btn-group
+            %button.btn.btn-info.dropdown-toggle
+              %i.icon-angle-right
+    %ul.navi
+      %li.has_submenu.nlightblue{:class => active_class([catalog_sets_path,catalog_parts_path,klickies_catalog_parts_path])}
+        %a{:href => "#"}
+          %i.icon-th
+          Catalog
+          %span.pull-right
+            %i.icon-angle-right
+        %ul
+          %li{:class => sub_active_class(catalog_sets_path)}
+            = link_to "Sets", catalog_sets_path
+          %li{:class => sub_active_class(catalog_parts_path)}
+            = link_to "Parts", catalog_parts_path
+          %li{:class => sub_active_class(klickies_catalog_parts_path)}
+            = link_to "Figures (Klickies)", klickies_catalog_parts_path
+      %li.has_submenu.nred{:class => active_class([catalog_index_path,stores_path,wishlists_path,orders_path])}
+        %a{:href => "#"}
+          %i.icon-shopping-cart
+          Buy
+          %span.pull-right
+            %i.icon-angle-right
+        %ul
+          %li{:class => sub_active_class(catalog_index_path)}
+            = link_to "Browse Catalog", catalog_index_path
+          %li{:class => sub_active_class(stores_path)}
+            = link_to "Browse Stores", stores_path
+          %li{:class => sub_active_class(orders_path)}
+            = link_to "My Orders", orders_path
+          %li{:class => sub_active_class(wishlists_path)}
+            = link_to "Wishlists", wishlists_path
+
+      %li.has_submenu.nviolet{:class => active_class([new_store_path, stores_path])}
+        %a{:href => "#"}
+          %i.icon-briefcase
+          Sell
+          %span.pull-right
+            %i.icon-angle-right
+        %ul
+          - if current_user.present? && current_user.store.present?
+            %li= link_to "My Store", root_url(:subdomain => current_user.store.alias)
+          - else
+            %li{:class => sub_active_class(new_store_path)}
+              = link_to "Create a Store", new_store_path
+          %li{:class => sub_active_class(stores_path)}
+            = link_to "Browse Stores", stores_path
+      %li.has_submenu.ngreen{:class => active_class([])}
+        %a{:href => "#"}
+          %i.icon-exchange
+          Trade
+          %span.pull-right
+            %i.icon-angle-right
+        %ul
+          %li{:class => sub_active_class(root_path)}
+            = link_to "Post an Item", root_url
+          %li{:class => sub_active_class(root_path)}
+            = link_to "My Trade List", root_url
+          %li{:class => sub_active_class(root_path)}
+            = link_to "Available Items", root_url
+      %li.norange{:class => active_class([users_path])}
+        = link_to users_path do
+          %i.icon-group
+          Members
+          %span.pull-right
+            %i.icon-angle-right
+      %li.nblue{:class => active_class([])}
+        = link_to root_path do
+          %i.icon-list-alt
+          Forums
+          %span.pull-right
+            %i.icon-angle-right

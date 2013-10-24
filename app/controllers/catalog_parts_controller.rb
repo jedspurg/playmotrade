@@ -7,6 +7,11 @@ class CatalogPartsController < ApplicationController
     @catalog_parts = CatalogPart.all.paginate(:page => params[:page], :per_page => 24)
   end
 
+  def klickies
+    @catalog_parts = CatalogPart.klickies.paginate(:page => params[:page], :per_page => 24)
+    render 'catalog_parts/index'
+  end
+
   def show
     if user_signed_in?
       @wishlist      = Wishlist.find_or_create(:user_id => current_user.id, :name => "Main Wishlist")

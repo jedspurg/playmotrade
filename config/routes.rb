@@ -17,9 +17,14 @@ Playmotrade::Application.routes.draw do
       get :inventory
     end
   end
-  resources :catalog_parts
+  resources :catalog_parts do
+    collection do
+      get :klickies
+    end
+  end
   resources :checkout
   resources :search
+  resources :orders
   resources :wishlists do
     collection do
       post :add_item
