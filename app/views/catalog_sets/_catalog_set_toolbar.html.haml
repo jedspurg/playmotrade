@@ -1,0 +1,42 @@
+.widget.wblue
+  .widget-head
+    Tools
+    .clearfix
+  .widget-content
+    .sidebar.sidebar-right
+      %ul.navi
+        %li.ngrey
+          = link_to inventory_catalog_set_path(@catalog_set) do
+            %i.icon-sitemap
+            View Set Inventory
+            %span.pull-right
+              %i.icon-angle-right
+        - if can? :edit, @catalog_part
+          %li.ngrey
+            = link_to edit_catalog_set_path(@catalog_set) do
+              %i.icon-pencil
+              Edit Part
+              %span.pull-right
+                %i.icon-angle-right
+        %li.ngrey
+          %a{:href => "#addToInventory", :"data-toggle" => "modal"}
+            %i.icon-plus-sign
+            Sell One Like This
+            %span.pull-right
+              %i.icon-angle-right
+        - if user_signed_in?
+          %li.ngrey
+            %a{:href => "#addToWishlist", :"data-toggle" => "modal"}
+              %i.icon-bookmark
+              Add To Wishlist
+              %span.pull-right
+                %i.icon-angle-right
+        - else
+          %li.ngrey
+            = link_to(new_user_session_path) do
+              %i.icon-lock
+              Login For More Tools
+              %span.pull-right
+                %i.icon-angle-right
+  .widget-foot
+    .clearfix

@@ -1,0 +1,64 @@
+- provide(:title, "Catalog")
+.content
+  = render "shared/sidebar"
+  .mainbar
+    .page-head
+      %h2.pull-left Catalog
+      .bread-crumb.pull-right
+        = link_to root_path do
+          %i.icon-home Home
+        %span.divider /
+        = link_to "Catalog", catalog_index_path
+      .clearfix
+    .matter
+      .container-fluid
+        .widget.wviolet
+          .widget-head
+            Recently Added Parts
+            .clearfix
+          .widget-content.padd
+            .row-fluid
+              - @recent_catalog_parts.each do |catalog_item|
+                .span2
+                  .widget.wviolet
+                    .widget-head.widget-head-fixed
+                      %small= catalog_item.name
+                      .clearfix
+                    .widget-content.widget-content-fixed
+                      = link_to catalog_part_path(catalog_item) do
+                        = image_tag catalog_item.image.url(:medium), :class => 'catalog-img'
+                      .clearfix
+                    .widget-foot
+                      %p.pull-left= catalog_item.number
+                      = link_to "View", catalog_part_path(catalog_item.catalogable_id), :class => 'btn pull-right btn-danger'
+                      .clearfix
+          .widget-foot
+            = link_to "View All Parts", catalog_parts_path, :class => 'btn pull-right'
+            .clearfix
+
+        .widget.worange
+          .widget-head
+            Recently Added Sets
+            .clearfix
+          .widget-content.padd
+            .row-fluid
+              - @recent_catalog_sets.each do |catalog_item|
+                .span2
+                  .widget.worange
+                    .widget-head.widget-head-fixed
+                      %small= catalog_item.name
+                      .clearfix
+                    .widget-content.widget-content-fixed
+                      = link_to catalog_set_path(catalog_item) do
+                        = image_tag catalog_item.image.url(:medium), :class => 'catalog-img'
+                      .clearfix
+                    .widget-foot
+                      %p.pull-left= catalog_item.number
+                      = link_to "View", catalog_set_path(catalog_item.catalogable_id), :class => 'btn pull-right btn-danger'
+                      .clearfix
+          .widget-foot
+            = link_to "View All Sets", catalog_sets_path, :class => 'btn pull-right'
+            .clearfix
+
+  .clearfix
+  = render 'shared/footer'

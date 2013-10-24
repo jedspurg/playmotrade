@@ -1,0 +1,28 @@
+.widget.wblue
+  .widget-head
+    Part Info
+    .clearfix
+  .widget-content
+    %ul.activity
+      %li
+        %strong Category:
+        = @catalog_part.try(:catalog_parts_category).try(:name)
+      %li
+        %strong Subcategory:
+        = @catalog_part.try(:catalog_parts_subcategory).try(:name)
+      %li
+        %strong Color:
+        = @catalog_part.try(:color)
+      %li
+        %strong Dimensions:
+        = @catalog_part.dimensions.to_s
+      %li
+        %strong Weight:
+        = @catalog_part.weight.to_s
+      %li
+        %strong Tags:
+        - @catalog_part.tags.each do |tag|
+          %span.label.label-info= tag.name
+  .widget-foot
+    .clearfix
+

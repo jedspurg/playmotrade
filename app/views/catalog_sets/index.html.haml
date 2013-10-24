@@ -1,0 +1,40 @@
+- provide(:title, "Catalog Sets")
+.content
+  = render 'shared/sidebar'
+  .mainbar
+    .page-head
+      %h2.pull-left Catalog Setss
+      .bread-crumb.pull-right
+        = link_to root_path do
+          %i.icon-home Home
+        %span.divider /
+        = link_to "Catalog", catalog_index_path
+        %span.divider /
+        = link_to "Catalog Sets", catalog_sets_path
+      .clearfix
+    .matter
+      .container-fluid
+        .widget-foot
+          = will_paginate @catalog_sets, :class => 'pagination pull-right'
+          .clearfix
+        - @catalog_sets.in_groups_of(6, false) do |row|
+          .row-fluid
+            - row.each do |catalog_set|
+              .span2
+                .widget.wlightblue
+                  .widget-head.widget-head-fixed
+                    %small= catalog_set.name
+                    .clearfix
+                  .widget-content.widget-content-fixed
+                    = link_to catalog_set_path(catalog_set) do
+                      = image_tag catalog_set.image.url(:medium), :class => 'catalog-img'
+                    .clearfix
+                  .widget-foot
+                    %p.pull-left= catalog_set.number
+                    = link_to "View", catalog_set_path(catalog_set), :class => 'btn pull-right btn-danger'
+                    .clearfix
+        .widget-foot
+          = will_paginate @catalog_sets, :class => 'pagination pull-right'
+          .clearfix
+  .clearfix
+  = render 'shared/footer'
