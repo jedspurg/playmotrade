@@ -1,0 +1,46 @@
+- provide(:title, "Members")
+.content
+  = render "shared/sidebar"
+  .mainbar
+    .page-head
+      %h2.pull-left Members
+      .bread-crumb.pull-right
+        = link_to root_path do
+          %i.icon-home Home
+        %span.divider /
+        = link_to "Members", users_path
+      .clearfix
+    .matter
+      .container-fluid
+        .row-fluid
+          .span12
+            .widget.worange
+              .widget-head
+                All Active Members
+                .clearfix
+              .widget-content
+                %table.table.table-bordered
+                  %thead
+                    %tr
+                      %th Name
+                      %th Store
+                      %th Country
+                      %th Member Since
+                  %tbody
+                    - @users.each do |user|
+                      %tr
+                        %td
+                          = image_tag user.avatar.url(:small)
+                          &nbsp;&nbsp;
+                          = link_to "#{user.first_name} #{user.last_name} [ #{user.username} ]", user_path(user)
+                        %td
+                          = link_to user.store.try(:name), root_url(:subdomain => user.store.try(:alias))
+                        %td
+                          = image_tag "/images/country_icons/#{user.country.id}.png"
+                          = user.country.name
+                        %td= user.created_at.strftime("%B %d, %Y")
+              .widget-foot
+                = will_paginate @users, :class => 'pagination pull-right'
+                .clearfix
+  .clearfix
+  = render 'shared/footer'

@@ -1,0 +1,80 @@
+- provide(:title, "Wishlists")
+.content
+  = render "shared/sidebar"
+  .mainbar
+    .page-head
+      %h2.pull-left Wishlists
+      .bread-crumb.pull-right
+        = link_to root_path do
+          %i.icon-home Home
+        %span.divider /
+        = link_to "Wishlists", wishlists_path
+      .clearfix
+    .matter
+      .container-fluid
+        = render "shared/flash"
+        .row-fluid
+          .span8
+            - if user_signed_in?
+              .widget.wviolet
+                .widget-head
+                  My Wishlists
+                  .clearfix
+                .widget-content
+                  %table.table
+                    %thead
+                      %tr
+                        %th Name
+                        %th Number of Items
+                        %th Created
+                        %th Last Updated
+                        %th Public
+                        %th
+                        %th
+                    %tbody
+                      - @wishlists.each do |wishlist|
+                        %tr
+                          %td
+                            %strong= link_to wishlist.name, wishlist_path(wishlist)
+                          %td= wishlist.wishlist_items.count
+                          %td= wishlist.created_at.strftime("%m/%d/%Y")
+                          %td= wishlist.updated_at.strftime("%m/%d/%Y")
+                          %td
+                            - if wishlist.public == true
+                              %i.icon-ok
+                            - else
+                              %i.icon-ban-circle
+                          %td= link_to "Edit", edit_wishlist_path(wishlist), :class => "btn btn-primary"
+                          %td
+                            = link_to wishlist_path(wishlist), :method => :delete, :data => {:confirm => "Are you sure?"}, :class => "btn", :id => wishlist  do
+                              %i.icon-trash
+                .widget-foot
+                  = will_paginate @wishlists, :class => 'pagination pull-right', :param_name => 'my_page'
+                  .clearfix
+
+            .widget.wviolet
+              .widget-head
+                Public Wishlists
+                .clearfix
+              .widget-content
+                %table.table.table-bordered
+                  %thead
+                    %tr
+                      %th Name
+                      %th Owner
+                      %th Number of Items
+                  %tbody>
+                    - @public_wishlists.each do |wishlist|
+                      %tr
+                        %td
+                          %strong
+                            = link_to wishlist.name, wishlist_path(wishlist)
+                        %td= wishlist.user.name
+                        %td= wishlist.wishlist_items.count
+                .widget-foot
+                  = will_paginate @public_wishlists, :class => 'pagination pull-right', :param_name => 'public_page'
+                  .clearfix
+          .span4
+            = render "wishlists/wishlist_toolbar"
+  .clearfix
+  = render 'shared/footer'

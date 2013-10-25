@@ -1,0 +1,49 @@
+- provide(:title, "Wishlists")
+.content
+  = render "shared/sidebar"
+  .mainbar
+    .page-head
+      %h2.pull-left Wishlists
+      .bread-crumb.pull-right
+        = link_to root_path do
+          %i.icon-home Home
+        %span.divider /
+        = link_to "Wishlists", wishlists_path
+        %span.divider /
+        = @wishlist.name
+      .clearfix
+    .matter
+      .container-fluid
+        = render "shared/flash"
+        .row-fluid
+          .span8
+            - if user_signed_in?
+              .widget.wviolet
+                .widget-head
+                  My Wishlists
+                  .clearfix
+                .widget-content
+                  %table.table
+                    %tbody
+                      - @wishlist_items.each do |item|
+                        %tr
+                          %td= image_tag item.image(:thumb)
+                          %td
+                            %strong
+                            = item.name
+                          %td= item.number
+                          %td= item.color
+                          %td
+                            Min. Quantity:
+                            = item.min_quantity
+                          - if @wishlist.user == current_user
+                            %td
+                              = link_to remove_wishlist_item_path(@wishlist, item), :method => :delete, :data => {:confirm => "Are you sure?"}, :class => "btn", :id => item  do
+                                %i.icon-trash
+                .widget-foot
+                  = will_paginate @wishlist_items, :class => 'pagination pull-right', :param_name => 'my_page'
+                  .clearfix
+          .span4
+            = render "wishlists/wishlist_toolbar"
+  .clearfix
+  = render 'shared/footer'

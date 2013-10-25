@@ -1,0 +1,37 @@
+.widget.wblue
+  .widget-head
+    Tools
+    .clearfix
+  .widget-content
+    .sidebar.sidebar-right
+      %ul.navi
+        - if controller.action_name == "show"
+          %li.ngrey
+            = link_to wishlists_path do
+              %i.icon-list
+              All Wishlists
+              %span.pull-right
+                %i.icon-angle-right
+          - if @wishlist.public?
+            %li.ngrey
+              = link_to email_wishlist_path(@wishlist) do
+                %i.icon-envelope
+                Email this Wishlist
+                %span.pull-right
+                  %i.icon-angle-right
+        - if user_signed_in?
+          %li.ngrey
+            = link_to new_wishlist_path do
+              %i.icon-plus-sign
+              Create Wishlist
+              %span.pull-right
+                %i.icon-angle-right
+        - else
+          %li.ngrey
+            = link_to(new_user_session_path) do
+              %i.icon.icon-lock
+              Login For More Tools
+              %span.pull-right
+                %i.icon-angle-right
+  .widget-foot
+    .clearfix
