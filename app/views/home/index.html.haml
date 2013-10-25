@@ -1,0 +1,89 @@
+- provide(:title, "Home")
+.content.home-content
+  .home-top.container-fluid
+    .row-fluid
+      .span12.home-message
+        %h1 Playmotrade is the unofficial Playmobil marketplace.
+        %h2 Creating a store is fast and free. Get started today.
+      .span6.span6-fixed
+        .widget.wlightblue
+          .widget-head
+            .pull-left Register
+            .clearfix
+          .widget-content.padd
+            = form_tag(new_user_registration_path, :method => :get, :class => 'form-inline') do
+              = text_field_tag :email, nil, :placeholder => 'Email'
+              = text_field_tag :username, nil, :placeholder => 'Username'
+              %button{:type => "submit", :class => "btn btn-primary"} Create Account
+            .clearfix
+  .home.container-fluid
+    .row-fluid
+      .span4
+        .widget.wred
+          .widget-head
+            .pull-left BUY
+            .clearfix
+          .widget-content
+            = image_tag("/img/home-3.jpg", :width => "100%", :alt => "BUY")
+            .sidebar.sidebar-right
+              %ul.navi
+                %li.ngrey
+                  = link_to catalog_index_path do
+                    %i.icon-book
+                    Browse Catalog
+                    %span.pull-right
+                      %i.icon-angle-right
+                %li.ngrey
+                  = link_to stores_path do
+                    %i.icon-shopping-cart
+                    Browse Stores
+                    %span.pull-right
+                      %i.icon-angle-right
+            .clearfix
+      .span4
+        .widget.wviolet
+          .widget-head
+            .pull-left SELL
+            .clearfix
+          .widget-content
+            = image_tag("/img/home-1.jpg", :width => "100%", :alt => "SELL")
+            .sidebar.sidebar-right
+              %ul.navi
+                %li.ngrey
+                  = link_to new_store_path do
+                    %i.icon-home
+                    Create a Store
+                    %span.pull-right
+                      %i.icon-angle-right
+                %li.ngrey
+                  = link_to root_path do
+                    %i.icon-list
+                    List an Item
+                    %span.pull-right
+                      %i.icon-angle-right
+            .clearfix
+      .span4
+        .widget.wgreen
+          .widget-head
+            .pull-left TRADE
+            .clearfix
+          .widget-content
+            = image_tag("/img/home-2.jpg", :width => "100%", :alt => "TRADE")
+            .sidebar.sidebar-right
+              %ul.navi
+                %li.ngrey
+                  = link_to root_path do
+                    %i.icon-exchange
+                    Browse Trades
+                    %span.pull-right
+                      %i.icon-angle-right
+                %li.ngrey
+                  = link_to root_path do
+                    %i.icon-reorder
+                    Create a Tradelist
+                    %span.pull-right
+                      %i.icon-angle-right
+            .clearfix
+
+  .clearfix
+  = render 'shared/home_footer'
