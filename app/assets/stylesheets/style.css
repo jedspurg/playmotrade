@@ -902,6 +902,42 @@ form label{
   margin-top:-20px !important;
 }
 
+.home-top{
+  min-height:500px;
+  background:#000 url('/img/home-top.jpg') no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.home-message{
+  padding:80px 24px;
+  color:#f1f1f1;
+}
+
+.home-message h1{
+  font-size:50px;
+  line-height:55px;
+  color:#f1f1f1;
+  font-weight:bold;
+  text-shadow: 0 2px 2px #000 !important;
+}
+
+.home-message h2{
+  color:#f1f1f1;
+  font-weight:bold;
+  text-shadow: 0 2px 2px #000 !important;
+}
+
+.span6-fixed{
+  width:640px !important;
+}
+
+.span6-fixed .widget{
+  box-shadow: 2px 2px 2px #000 !important;
+}
+
 /* Pagination*/
 
 .pagination{
