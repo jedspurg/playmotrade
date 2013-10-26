@@ -1,0 +1,59 @@
+- provide(:title, "Catalog")
+.content
+  = render "shared/sidebar"
+  .mainbar
+    .page-head
+      %h2.pull-left Catalog
+      .bread-crumb.pull-right
+        = link_to root_path do
+          %i.icon-home Home
+        %span.divider /
+        = link_to "Catalog", catalog_index_path
+        %span.divider /
+        = link_to "Catalog Parts", catalog_parts_path
+        %span.divider /
+        = link_to @catalog_part.number, catalog_part_path(@catalog_part)
+      .clearfix
+    .matter
+      .container-fluid
+        = render "shared/flash"
+        .row-fluid
+          .span8
+            .widget.wlightblue
+              .widget-head
+                .pull-left= @catalog_part.name
+                .pull-right= @catalog_part.number
+                .clearfix
+              .widget-content
+                .row-fluid
+                  .span4
+                    = image_tag @catalog_part.image.url(:large), :class => 'catalog-img'
+                  .span8
+                    %ul.activity
+                      %li
+                        %strong This part appears in the following sets:
+                      - @catalog_part.in_sets.each do |set|
+                        %li
+                          .row-fluid
+                            .span3
+                              = link_to catalog_set_path(set) do
+                                = image_tag set.image.url(:thumb), :class => 'catalog-img'
+                            .span5
+                              = link_to catalog_set_path(set) do
+                                = set.number
+                                %br
+                                = set.name
+                            .span4
+                              = link_to "View Inventory".html_safe, inventory_catalog_set_path(set), :class => 'btn btn-danger pull-right'
+                .clearfix
+          .span4
+            = render "catalog_parts/part_info"
+            = render "catalog_parts/catalog_part_toolbar"
+          .clearfix
+          = render "shared/items_available"
+  .clearfix
+  = render 'shared/footer'
+= render 'catalog_parts/add_to_inventory'
+
+- if user_signed_in?
+  = render 'shared/wishlist_modal', :item_id => @catalog_part.id, :item_type => @catalog_part.class.name.underscore

@@ -1,0 +1,42 @@
+.sidebar
+  .sidebar-inner
+    .sidebar-widget
+      %form.form-inline{:method => "get", :action => search_store_url(@store)}
+        .input-append.row-fluid
+          = text_field_tag :q, "", :class => "span10", :placeholder => "Search Store"
+          .btn-group
+            %button.btn.btn-info
+              %i.icon-angle-right
+    %ul.navi
+      %li.has_submenu.nred
+        %a{:href => "#"}
+          %i.icon-home
+          My Store
+          %span.pull-right
+            %i.icon-angle-right
+        %ul
+          %li= link_to "My Store Home", root_url(:subdomain => @store.alias)
+          %li= link_to "My Store Settings", edit_store_path(@store)
+
+      %li.has_submenu.nred
+        %a{:href => "#"}
+          %i.icon-th
+          Manage Inventory
+          %span.pull-right
+            %i.icon-angle-right
+        %ul
+          %li
+            = link_to "My Current Inventory", root_url
+            = link_to "List a Set", root_url
+            = link_to "Part Out a Set", root_url
+            = link_to "List a Part", root_url
+      %li.has_submenu.nred
+        %a{:href => "#"}
+          %i.icon-th
+          My Store Orders
+          %span.pull-right
+            %i.icon-angle-right
+        %ul
+          %li
+            = link_to "Open", root_url
+            = link_to "Closed", root_url

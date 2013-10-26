@@ -1,0 +1,65 @@
+- provide(:title, "Catalog Set Inventory")
+.content
+  = render "shared/sidebar"
+  .mainbar
+    .page-head
+      %h2.pull-left Catalog Set Inventory
+      .bread-crumb.pull-right
+        = link_to root_path do
+          %i.icon-home Home
+        %span.divider /
+        = link_to "Catalog", catalog_index_path
+      .clearfix
+    .matter
+      .container-fluid
+        .row-fluid
+          .span12
+            .row-fluid
+              .span2
+                = link_to catalog_set_path(@catalog_set) do
+                  = image_tag @catalog_set.image.url(:medium), :class => 'catalog-img'
+              .span5
+                = link_to catalog_set_path(@catalog_set) do
+                  = @catalog_set.number
+                  %br
+                  = @catalog_set.name
+              .span5
+                .pull-right
+                  - if @catalog_inventory.present? && @catalog_inventory.complete?
+                    %span.label.label-success
+                      %i.icon-ok Complete
+                  - else
+                    %span.label.label-important
+                      %i.icon-remove Incomplete
+                  - if @catalog_inventory.present? && @catalog_inventory.verified?
+                    %span.label.label-success
+                      %i.icon-ok Verified
+                  - else
+                    %span.label.label-important
+                      %i.icon-remove Not Verified
+            - if @catalog_iventory_list.blank?
+              %br
+              .alert.alert-error There is currently no inventory data available for this set.
+            - else
+              .widget.wlightblue
+                .widget-content
+                  %table.table.table-bordered.wlightblue#set-inventory
+                    %thead.widget-head
+                      %tr
+                        %th Image
+                        %th Quantity
+                        %th Color
+                        %th Number
+                        %th Name
+                    %tbody
+                      - @catalog_iventory_list.each do |part|
+                        %tr
+                          %td
+                            = link_to catalog_part_path(part.catalog_part), :rel => 'popover', :class => 'part-preview', :"data-content" => "#{image_tag part.catalog_part.image.url(:medium).html_safe}" do
+                              = image_tag part.catalog_part.image.url(:thumb)
+                          %td= part.quantity
+                          %td= part.catalog_part.try(:color)
+                          %td= link_to part.catalog_part.try(:number), catalog_part_path(part.catalog_part)
+                          %td= link_to part.catalog_part.try(:name), catalog_part_path(part.catalog_part)
+  .clearfix
+  = render 'shared/footer'

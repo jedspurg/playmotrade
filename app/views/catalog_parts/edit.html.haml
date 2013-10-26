@@ -1,0 +1,103 @@
+- provide(:title, "Edit Catalog Part")
+.content
+  = render "shared/sidebar"
+  .mainbar
+    .page-head
+      %h2.pull-left Edit Catalog Set
+      .bread-crumb.pull-right
+        = link_to root_path do
+          %i.icon-home Home
+        %span.divider /
+        = link_to "Catalog", catalog_index_path
+        %span.divider /
+        = link_to "Catalog Parts", catalog_parts_path
+        %span.divider /
+        = link_to @catalog_part.number, catalog_part_path(@catalog_part)
+      .clearfix
+    .matter
+      .container-fluid
+        = render "shared/flash"
+        .row-fluid
+          .span2
+            .widget.wlightblue
+              .widget-head
+                .pull-left= @catalog_part.number.to_s
+                .clearfix
+              .widget-content
+                = image_tag @catalog_part.image.url(:large), :class => 'catalog-img'
+                %ul.activity
+                  %li
+                    %strong Name:
+                    = @catalog_part.name.to_s
+                  %li
+                    %strong Number:
+                    = @catalog_part.number.to_s
+                  %li
+                    %strong Category:
+                    = @catalog_part.try(:catalog_parts_category).try(:name)
+                  %li
+                    %strong Subcategory:
+                    = @catalog_part.try(:catalog_parts_subcategory).try(:name)
+                  %li
+                    %strong Color:
+                    = @catalog_part.color.to_s
+                  %li
+                    %strong Dimensions:
+                    = @catalog_part.dimensions.to_s
+                  %li
+                    %strong Weight:
+                    = @catalog_part.weight.to_s
+                  %li
+                    %strong Tags:
+                    - @catalog_part.tags.each do |tag|
+                      %span.label.label-info= tag.name
+          .span10
+            .widget.worange
+              .widget-head
+                .pull-left Edit Catalog Part
+                .clearfix
+              .widget-content
+                .padd
+                  .form.quick-post
+                    = form_for @catalog_part, :html => {:class => "form-horizontal", :multipart => true} do |f|
+                      .control-group
+                        %label.control-label{:for => "image"} Image
+                        .controls
+                          = f.file_field :image
+                      .control-group
+                        %label.control-label{:for => "name"} Name
+                        .controls
+                          = f.text_field :name, :class => "input-large"
+                      .control-group
+                        %label.control-label{:for => "number"} Number
+                        .controls
+                          = f.text_field :number, :class => "input-large"
+                      .control-group
+                        %label.control-label{:for => "color"} Color
+                        .controls
+                          = f.text_field :color, :class => "input-large"
+                      .control-group
+                        %label.control-label Category
+                        .controls
+                          = f.select :catalog_parts_category_id, options_for_select(CatalogPartsCategory.all.pluck(:name, :id).sort, @catalog_part.catalog_parts_category.try(:id))
+                      .control-group
+                        %label.control-label Subcategory
+                        .controls
+                          = f.select :catalog_parts_subcategory_id, options_for_select(CatalogPartsSubcategory.all.pluck(:name, :id).sort, @catalog_part.catalog_parts_subcategory.try(:id))
+                      .control-group
+                        %label.control-label{:for => "dimensions"} Dimensions
+                        .controls
+                          = f.text_field :dimensions, :class => "input-large"
+                      .control-group
+                        %label.control-label{:for => "weight"} Weight
+                        .controls
+                          = f.text_field :weight, :class => "input-large"
+                      .control-group
+                        %label.control-label{:for => "tags"} Tags
+                        .controls
+                          = f.text_field :tags, :value => @catalog_part.tags.map(&:name).join(', '), :class => "input-large"
+                      .form-actions
+                        = f.submit "Update", class: "btn btn-success"
+                  .clearfix
+  .clearfix
+  = render 'shared/footer'
