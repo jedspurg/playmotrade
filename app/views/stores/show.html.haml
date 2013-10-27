@@ -1,0 +1,22 @@
+- provide(:title, @store.name)
+.content
+  - if @user_owned
+    = render "shared/store_admin_sidebar", :store => @store
+  - else
+    = render "shared/store_sidebar", :store => @store
+  .mainbar
+    .page-head
+      %h2.pull-left
+        = image_tag @store.logo.url(:medium)
+        &nbsp;&nbsp;
+        = @store.name
+      .clearfix
+    .matter
+      .container-fluid
+        = render "shared/flash"
+        .row-fluid
+          .span12
+            = @store.landing_page.to_s.html_safe
+          .clearfix
+  .clearfix
+  = render 'shared/footer'

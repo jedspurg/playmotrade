@@ -1,0 +1,36 @@
+- provide(:title, @store.name)
+.content
+  - if @user_owned
+    = render "shared/store_admin_sidebar", :locals => { :store => @store }
+  - else
+    = render "shared/sidebar", :locals => { :store => @store }
+  .mainbar
+    .page-head
+      %h2.pull-left= @store.name
+      .clearfix
+    .matter
+      .container-fluid
+        = render "shared/flash"
+        .row-fluid
+          .span12
+            .widget.wred
+              .widget-head
+                %i.icon-lock
+                Store Closed
+              .widget-content
+                .padd.error
+                  %h4= @store.closed_message
+                  %p This store is currently closed. If the owner has given you the break-in password, enter it below.
+                  %br
+                  %form.form-search#searchform{:method => "post", :action => break_in_store_path(@store)}
+                    = password_field_tag :break_in_password
+                    %button.btn{:type => "submit"} Break In
+                  %br
+                  .horizontal-links
+                    = link_to "Playmotrade Home", root_url
+                    |
+                    = link_to "About This Store", root_url
+                    |
+                    = link_to "Contact Store Owner", root_url
+  .clearfix
+  = render 'shared/footer'

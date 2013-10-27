@@ -55,8 +55,8 @@ class StoresController < ApplicationController
 
   def break_in
     if params[:break_in_password] == @store.bypass_password
-      session["#{@store.alias}_break_in"] = true
-      redirect_to root_url(:subdomain => @store.alias)
+      session[:store_break_in] = Digest::MD5.hexdigest(@store.alias)
+      render :action => :show
     else
       flash[:error] = "Break in password is incorrect"
       render :action => :store_closed
@@ -110,7 +110,7 @@ class StoresController < ApplicationController
     inventory_id = @store.store_inventory.id
 
     case @type
-    when :parts
+    when :part
       @store_inventory = StoreInventoryPart.search do
         fulltext "#{params[:q]}*" do
           boost_fields :name => 2.0
@@ -118,7 +118,7 @@ class StoresController < ApplicationController
         with(:store_inventory_id).equal_to(inventory_id)
         paginate :page => params[:page], :per_page => 24
       end.results
-    when :sets
+    when :set
       @store_inventory = StoreInventorySet.search do
         fulltext "#{params[:q]}*" do
           boost_fields :name => 2.0
@@ -186,7 +186,7 @@ class StoresController < ApplicationController
   end
 
   def check_if_store_closed
-    if @store.active != true && current_user != @store.user && session["#{@store.alias}_break_in"] != true
+    if @store.active != true && current_user != @store.user && session[:store_break_in] != Digest::MD5.hexdigest(@store.alias)
       render :action => :store_closed
     end
   end

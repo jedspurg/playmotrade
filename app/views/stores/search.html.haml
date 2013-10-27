@@ -1,0 +1,42 @@
+- provide(:title, "Search")
+.content
+  - if @user_owned
+    = render "shared/store_admin_sidebar", :store => @store
+  - else
+    = render "shared/store_sidebar", :store => @store
+  .mainbar
+    .page-head
+      %h2.pull-left
+      Search
+      .btn-group
+        %a{"data-type" => "", :class => "search-type btn #{params[:type].blank? ? 'active' : ''}"} All
+        %a{"data-type" => "set", :class => "search-type btn #{params[:type] == "set" ? 'active' : ''}"} Sets Only
+        %a{"data-type" => "part", :class => "search-type btn #{params[:type] == "part" ? 'active' : ''}"} Parts Only
+      .bread-crumb.pull-right
+        = link_to root_path do
+          %i.icon-home
+          Home
+        %span.divider /
+        = link_to "Search", search_index_path
+      %form#search-type-form{:method => "get", :action =>  search_store_url(@store)}
+        = hidden_field_tag :q, params[:q]
+        = hidden_field_tag :type, nil, :id => "search-type"
+      .clearfix
+    .matter
+      .container-fluid
+        .row-fluid
+          .span12
+            .widget.wred
+              .widget-head
+                Items that match "#{params[:q]}"
+                .clearfix
+              .widget-content
+                %table.table
+                  %tbody
+                    - @store_inventory.each do |item|
+                      = render "stores/inventory/inventory_row", :item => item
+              .widget-foot
+                = will_paginate @store_inventory, :class => 'pagination pull-right'
+                .clearfix
+  .clearfix
+  = render 'shared/footer'

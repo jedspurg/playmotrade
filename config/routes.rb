@@ -36,7 +36,7 @@ Playmotrade::Application.routes.draw do
   match '/wishlists/:id/remove_item/:item_id', :as => :remove_wishlist_item, :via => :delete, :to => 'wishlists#remove_item'
   resources :stores do
     member do
-      get :break_in
+      post :break_in
       get :store_closed
       get :search
       post :add_items_to_cart
