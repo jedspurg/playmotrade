@@ -1,0 +1,21 @@
+%tr
+  %td
+    = link_to catalog_part_url(item.catalog_object, :subdomain => ""), :rel => 'popover', :class => 'part-preview', :"data-content" => "#{image_tag item.image(:medium).html_safe}" do
+      = image_tag item.image
+  %td
+    %strong Condition:
+    = item.condition
+    %br
+    %strong= item.name
+    %br
+    = item.number
+  %td.text-right
+    .text-right.store-prices
+      %strong= item.quantity
+      X $
+      = number_with_precision item.price, :precision => 2
+      %br
+      %strong
+        Total: $#{number_with_precision item.total, :precision => 2}
+      %br
+      = link_to "Remove", remove_items_from_cart_path(@store, item), :method => :delete, :data => {:confirm => "Are you sure?"}, :class => "btn btn-danger"

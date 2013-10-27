@@ -1,0 +1,32 @@
+%tr
+  %td= image_tag item.image(:thumb)
+  %td
+    %strong= item.name
+    %br
+    = item.number
+  %td
+    - if item.color.present?
+      %strong
+        Color:
+        = item.color
+  %td
+    - if item.comment.present?
+      %strong
+        Seller Comments:
+        = item.comment
+  %td.text-right
+    .text-right.store-prices
+      %strong Condition:
+      = item.condition
+      %br
+      %strong Price:
+      $#{number_with_precision item.price, :precision => 2} each
+      %br
+      %strong Quantity Available:
+      = item.quantity
+    .input-append
+      = form_for(@cart_item, :url => {:action => "add_items_to_cart"}) do |f|
+        = f.hidden_field :store_inventory_item_id, :value => item.id
+        = f.hidden_field :store_inventory_item_type, :value => item.inventory_object_type
+        = f.text_field :quantity, :class => "span4"
+        %button.btn.btn-success{:type => "submit"} Add to Cart
