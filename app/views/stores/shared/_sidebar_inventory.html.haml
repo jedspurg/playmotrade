@@ -1,0 +1,12 @@
+%li.norange.open
+  = link_to root_url do
+    %i.icon-th
+    Parts by Category
+    %span.pull-right
+      %i.icon-angle-right
+  %ul
+    - @store.store_inventory.part_categories.each do |cat_id|
+      %li
+        = link_to root_url do
+          = CatalogPartsCategory.find_by(:id => cat_id).try(:name)
+          %span.label.label-part-total= @store.store_inventory.total_parts_by_category(cat_id)

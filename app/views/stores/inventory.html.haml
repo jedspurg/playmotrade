@@ -1,0 +1,30 @@
+- provide(:title, "Store Inventory")
+.content
+  = render "shared/store_sidebar"
+  .mainbar
+    .page-head
+      %h2.pull-left
+        = image_tag @store.logo.url(:medium)
+        &nbsp;&nbsp;
+        = @store.name
+      .clearfix
+    .matter
+      .container-fluid
+        = render "shared/flash"
+        .row-fluid
+          .span8
+            .widget.wviolet
+              .widget-head
+                = @type.to_s.capitalize
+                .clearfix
+              .widget-content
+                %table.table.table-hover
+                  %tbody
+                    - @store_inventory.each do |item|
+                      = render "stores/inventory/inventory_row", :item => item
+              .widget-foot
+                = will_paginate @store_inventory, :class => 'pagination pull-right'
+                .clearfix
+          = render "stores/shared/store_info", :store => @store
+  .clearfix
+  = render 'shared/footer'

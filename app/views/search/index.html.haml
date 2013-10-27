@@ -1,0 +1,47 @@
+- provide(:title, "Search")
+.content
+  = render "shared/sidebar"
+  .mainbar
+    .page-head
+      %h2.pull-left
+        Search
+        .btn-group
+          %a{"data-type" => "", :class => "search-type btn #{params[:type].blank? ? 'active' : ''}"} All
+          %a{"data-type" => "set", :class => "search-type btn #{params[:type] == "set" ? 'active' : ''}"} Sets Only
+          %a{"data-type" => "part", :class => "search-type btn #{params[:type] == "part" ? 'active' : ''}"} Parts Only
+      .bread-crumb.pull-right
+        = link_to root_path do
+          %i.icon-home
+          Home
+        %span.divider /
+        = link_to "Search", search_index_path
+      %form#search-type-form{:method => "get", :action => search_index_path}
+        = hidden_field_tag :q, params[:q]
+        = hidden_field_tag :type, nil, :id => "search-type"
+      .clearfix
+    .matter
+      .container-fluid
+        .widget-foot
+          = will_paginate @catalog_items, :class => 'pagination pull-right'
+          .clearfix
+        - @catalog_items.in_groups_of(4, false) do |row|
+          .row-fluid
+            - row.each do |catalog_item|
+              .span3
+                .widget.wlightblue
+                  .widget-head.widget-head-fixed
+                    = catalog_item.name
+                    .clearfix
+                  .widget-content.widget-content-fixed
+                    = image_tag catalog_item.image.url(:medium), :class => 'catalog-img'
+                    .clearfix
+                  .widget-foot
+                    %p.pull-left
+                    = catalog_item.number
+                    = link_to "View", catalog_item_path(catalog_item), :class => 'btn pull-right btn-danger'
+                    .clearfix
+        .widget-foot
+          = will_paginate @catalog_items, :class => 'pagination pull-right'
+          .clearfix
+  .clearfix
+  = render 'shared/footer'
