@@ -1,0 +1,42 @@
+- provide(:title, "Store Inventory")
+.content
+  = render "shared/store_sidebar"
+  .mainbar
+    .page-head
+      %h2.pull-left
+        = image_tag @store.logo.url(:medium)
+        &nbsp;&nbsp;
+        = @store.name
+      .clearfix
+    .matter
+      .container-fluid
+        = render "shared/flash"
+        .row-fluid
+          .span8
+            .widget.wblue
+              .widget-head
+                Shopping Cart
+                .clearfix
+              .widget-content
+                %table.table.table-hover
+                  %tbody
+                    - @cart_items.each do |item|
+                      = render "stores/inventory/cart_row", :item => item
+              .widget-foot
+                %h6.pull-left
+                  Unique Items: #{@cart.total_unique_items} | Total Items: #{@cart.total_items}
+                %h4.pull-right
+                  Total: $#{number_with_precision @cart.total_cost, :precision => 2}
+                .clearfix
+              .widget-foot
+                = link_to store_inventory_path(@store, :all) , :class => "btn pull-left" do
+                  %i.icon-chevron-left
+                  Continue Shopping
+                = link_to store_inventory_path(@store, :all) , :class => "btn btn-success pull-right" do
+                  Checkout
+                  %i.icon-chevron-right
+                .clearfix
+
+          = render "stores/shared/store_info", :store => @store
+  .clearfix
+  = render 'shared/footer'

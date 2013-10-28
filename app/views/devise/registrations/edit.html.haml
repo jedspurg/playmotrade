@@ -1,0 +1,56 @@
+- provide(:title, "Edit Profile")
+.content
+  = render "shared/sidebar"
+  .mainbar
+    .page-head
+      %h2.pull-left
+        Profile
+        %span.page-meta Edit your personal settings. Store settings are edited through your store front.
+      .bread-crumb.pull-right
+        = link_to root_path do
+          %i.icon-home
+          Home
+        %span.divider /
+        = link_to("Edit Profile", edit_user_registration_path, :class => "bread-current")
+      .clearfix
+    .matter
+      .container-fluid
+        = render "shared/flash"
+        .row-fluid
+          .span12
+            .widget.wred
+              .widget-head
+                .pull-left Edit Your Profile
+                .clearfix
+              .widget-content
+                .padd
+                  .form.profile
+                    = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+                      = render partial: "form", locals: {f: f}
+                      .control-group
+                        %label.control-label{:for => "user[username]"} Username
+                        .controls
+                          = f.text_field :username, :class => "input-large"
+                      .control-group
+                        %label.control-label{:for => "user[password]"} New Password
+                        .controls
+                          = f.password_field :password, :class => "input-large"
+                          %span.help-inline Leave blank if you don't want to change it
+                      .control-group
+                        %label.control-label{:for => "user[password_confirmation]"} Retype Password
+                        .controls
+                          = f.password_field :password_confirmation, :class => "input-large"
+                      .control-group
+                        %label.control-label{:for => "user[current_password]"} Current Password
+                        .controls
+                          = f.password_field :current_password, :class => "input-large"
+                          %span.help-inline We need your current password to confirm your changes
+                      .form-actions
+                        = f.submit "Update Profile", class: "btn btn-success"
+                        %button.btn{:type => "reset"} Reset
+                .widget-foot
+                  %h5 Cancel my account
+                  %p= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "btn btn-danger"
+  .clearfix
+  = render 'shared/footer'
+

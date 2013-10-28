@@ -1,0 +1,67 @@
+- provide(:title, "Catalog")
+.content
+  = render "shared/sidebar"
+  .mainbar
+    .page-head
+      %h2.pull-left Catalog
+      .bread-crumb.pull-right
+        = link_to root_path do
+          %i.icon-home
+          Home
+        %span.divider /
+        = link_to "Catalog", catalog_index_path
+        %span.divider /
+        = link_to "Catalog Sets", catalog_sets_path
+        %span.divider /
+        = link_to @catalog_set.number, catalog_set_path(@catalog_set)
+      .clearfix
+    .matter
+      .container-fluid
+        = render "shared/flash"
+        .row-fluid
+          .span8
+            .widget.wlightblue
+              .widget-head
+                .pull-left= @catalog_set.name
+                .pull-right= @catalog_set.number
+                .clearfix
+              .widget-content
+                .row-fluid
+                  .span6
+                    = image_tag @catalog_set.image.url(:large), :class => 'catalog-img'
+                  .span6
+                    %ul.activity
+                      %li
+                        %strong Theme:
+                        = @catalog_set.theme.to_s
+                      %li
+                        %strong Part Count:
+                        = @catalog_set.part_count.to_s
+                      %li
+                        %strong Figure Count:
+                        = @catalog_set.figure_count.to_s
+                      %li
+                        %strong Release Date:
+                        = @catalog_set.release_date.to_s
+                      %li
+                        %strong Retire Date:
+                        = @catalog_set.retire_date.to_s
+                      %li
+                        %strong Dimensions:
+                        = @catalog_set.dimensions.to_s
+                      %li
+                        %strong Weight:
+                        = @catalog_set.weight.to_s
+                      %li
+                        %strong Tags:
+                        - @catalog_set.tags.each do |tag|
+                          %span.label.label-info= tag.name
+                  .clearfix
+          .span4
+            = render "catalog_sets/catalog_set_toolbar"
+          = render "shared/items_available"
+  .clearfix
+  = render 'shared/footer'
+= render 'catalog_sets/add_to_inventory'
+- if user_signed_in?
+  = render 'shared/wishlist_modal', :item_id => @catalog_set.id, :item_type => @catalog_set.class.name.underscore

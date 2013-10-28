@@ -1,0 +1,35 @@
+.admin-form
+  .container-fluid
+    = render "shared/flash"
+    .row-fluid
+      .span12
+        .widget.wred
+          .widget-head
+            %i.icon-lock
+            Register
+          .widget-content
+            .padd
+              = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "form-horizontal", :multipart => true}) do |f|
+                = render partial: "form", locals: {f: f}
+                .control-group
+                  %label.control-label{:for => "user[username]"} Username
+                  .controls
+                    = f.text_field :username, :class => "input-large", :value => params[:username]
+                .control-group
+                  %label.control-label{:for => "user[password]"} Password
+                  .controls
+                    = f.password_field :password, :class => "input-large"
+                .control-group
+                  %label.control-label{:for => "user[password_confirmation]"} Retype Password
+                  .controls
+                    = f.password_field :password_confirmation, :class => "input-large"
+                .control-group
+                  %label.checkbox.inline
+                    = f.check_box :agrees_to_tos
+                    Agree with Terms and Conditions
+                .form-actions
+                  = f.submit "Register", class: "btn btn-success"
+                  %button.btn{:type => "reset"} Reset
+            .widget-foot
+              Already Registered?
+              = link_to('Login', new_user_session_path)

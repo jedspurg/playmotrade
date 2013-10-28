@@ -1,0 +1,55 @@
+.control-group
+  %label.control-label{:for => "user[first_name]"} First Name
+  .controls
+    = f.text_field :first_name, :class => "input-large"
+.control-group
+  %label.control-label{:for => "user[last_name]"} Last Name
+  .controls
+    = f.text_field :last_name, :class => "input-large"
+.control-group
+  %label.control-label{:for => "user[email]"} Email
+  .controls
+    = f.email_field :email, :class => "input-large", :value => params[:email]
+    - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+      %div Currently awaiting confirmation for: #{resource.unconfirmed_email}
+- unless resource.new_record?
+  .control-group
+    %label.control-label{:for => "user[avatar]"} Current Avatar
+    .controls
+      = image_tag resource.avatar.url(:thumb)
+.control-group
+  %label.control-label{:for => "user[avatar]"} Avatar
+  .controls
+    = f.file_field :avatar, :class => "input-large"
+.control-group
+  %label.control-label{:for => "user[telephone]"} Telephone
+  .controls
+    = f.telephone_field :telephone, :class => "input-large"
+.control-group
+  %label.control-label{:for => "user[address1]"} Address 1
+  .controls
+    = f.text_field :address1, :class => "input-large"
+.control-group
+  %label.control-label{:for => "user[address2]"} Address 2
+  .controls
+    = f.text_field :address2, :class => "input-large"
+.control-group
+  %label.control-label Country
+  .controls
+    = f.collection_select :country_id, Country.all, :id, :name
+.control-group
+  %label.control-label{:for => "user[state]"} State
+  .controls
+    = f.text_field :state, :class => "input-large"
+.control-group
+  %label.control-label{:for => "user[city]"} City
+  .controls
+    = f.text_field :city, :class => "input-large"
+.control-group
+  %label.control-label{:for => "user[zip]"} Zip
+  .controls
+    = f.text_field :zip, :class => "input-large"
+.control-group
+  %label.control-label{:for => "user[about]"} About
+  .controls
+    = f.text_area :about, :class => "input-large"

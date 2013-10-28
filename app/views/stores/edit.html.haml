@@ -1,0 +1,78 @@
+- provide(:title, "Edit Store Settings")
+.content
+  = render "shared/store_admin_sidebar"
+  .mainbar
+    .page-head
+      %h2.pull-left Edit Store Settings
+      .bread-crumb.pull-right
+        = link_to root_path do
+          %i.icon-home
+          Home
+        %span.divider / Edit Store Settings
+      .clearfix
+    .matter
+      .container-fluid
+        = render "shared/flash"
+        .row-fluid
+          .span12
+            .widget.wred
+              .widget-head
+                .pull-left Store Details
+                .clearfix
+              .widget-content
+                .padd
+                  .form.profile
+                    = form_for(@store) do |f|
+                      .control-group
+                        %label.control-label{:for => "store[name]"} Store Name
+                        .controls
+                          = f.text_field :name, :class => "input-large"
+                      .control-group
+                        %label.control-label{:for => "store[alias]"} Alias
+                        .controls
+                          = f.text_field :alias, :class => "input-large"
+                          %br
+                          %span.help-inline
+                            Keep this short and without spaces, dashes, underscores, or special characters.
+                            %br
+                            This will serve as your Playmotrade subdomain (yourstore.playmotrade.com)
+                      .control-group
+                        %label.control-label{:for => "store[current_logo]"} Current Logo
+                        .controls
+                          = image_tag @store.logo.url(:medium)
+                      .control-group
+                        %label.control-label{:for => "store[logo]"} Logo
+                        .controls
+                          = f.file_field :logo, :class => "input-large"
+                      .control-group
+                        %label.control-label{:for => "store[about]"} About
+                        .controls
+                          = f.text_area :about, :class => "input-large"
+                      .control-group
+                        %label.control-label{:for => "store[landing_page]"} Landing Page (accepts HTML)
+                        .controls
+                          = f.text_area :landing_page, :class => "input-large tinymce"
+                      .control-group
+                        %label.checkbox.inline
+                          = f.check_box :active
+                          Open?
+                      .control-group
+                        %label.control-label{:for => "store[closed_message]"} Closed Message
+                        .controls
+                          = f.text_area :closed_message, :class => "input-large"
+                      .control-group
+                        %label.control-label{:for => "store[bypass_password]"} Break-in Password
+                        .controls
+                          = f.text_field :bypass_password, :class => "input-large"
+                          %br
+                          %span.help-inline
+                            You can allow potential customers access to your closed store by giving them this password.
+                      .form-actions
+                        = f.submit "Update Store", class: "btn btn-success"
+                        %button.btn{:type => "reset"} Reset
+  .clearfix
+  = render 'shared/footer'
+
+- content_for :script_files do
+  = tinymce_assets
+  = tinymce
