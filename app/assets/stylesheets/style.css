@@ -668,9 +668,14 @@ form label{
   color: #fff;
 }
 
-.sidebar-right .navi > li > a:hover, .sidebar-right .navi > li.open > a {
+.sidebar-right .navi > li > a:hover{
   border-bottom: 1px solid #ddd;
   color: #000;
+}
+.sidebar-right .navi > li.open > a {
+  border-top: 1px solid #fff;
+  border-bottom:none;
+  color: #fff;
 }
 
 .sidebar-footer .navi > li > a {

@@ -27,13 +27,13 @@
             = image_tag("/img/home-3.jpg", :width => "100%", :alt => "BUY")
             .sidebar.sidebar-right
               %ul.navi
-                %li.ngrey
+                %li.nred.open
                   = link_to catalog_index_path do
                     %i.icon-book
                     Browse Catalog
                     %span.pull-right
                       %i.icon-angle-right
-                %li.ngrey
+                %li.nred.open
                   = link_to stores_path do
                     %i.icon-shopping-cart
                     Browse Stores
@@ -49,13 +49,13 @@
             = image_tag("/img/home-1.jpg", :width => "100%", :alt => "SELL")
             .sidebar.sidebar-right
               %ul.navi
-                %li.ngrey
+                %li.nviolet.open
                   = link_to new_store_path do
                     %i.icon-home
                     Create a Store
                     %span.pull-right
                       %i.icon-angle-right
-                %li.ngrey
+                %li.nviolet.open
                   = link_to root_path do
                     %i.icon-list
                     List an Item
@@ -71,13 +71,13 @@
             = image_tag("/img/home-2.jpg", :width => "100%", :alt => "TRADE")
             .sidebar.sidebar-right
               %ul.navi
-                %li.ngrey
+                %li.ngreen.open
                   = link_to root_path do
                     %i.icon-exchange
                     Browse Trades
                     %span.pull-right
                       %i.icon-angle-right
-                %li.ngrey
+                %li.ngreen.open
                   = link_to root_path do
                     %i.icon-reorder
                     Create a Tradelist
