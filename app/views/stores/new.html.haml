@@ -15,65 +15,66 @@
       .clearfix
     .matter
       .container-fluid
+        = render "shared/flash"
         - if current_user.blank?
           .row-fluid
             .span12
               .alert.alert-error
                 You must be logged in to create a store.
-        = render "shared/flash"
-        .row-fluid
-          .span12
-            .widget.wred
-              .widget-head
-                .pull-left Store Details
-                .clearfix
-              .widget-content
-                .padd
-                  .form.profile
-                    = form_for(@store) do |f|
-                      .control-group
-                        %label.control-label{:for => "store[name]"} Store Name
-                        .controls
-                          = f.text_field :name, :class => "input-large"
-                      .control-group
-                        %label.control-label{:for => "store[alias]"} Alias
-                        .controls
-                          = f.text_field :alias, :class => "input-large"
-                          %br
-                          %span.help-inline
-                            Keep this short and without spaces, dashes, underscores, or special characters.
+        - else
+          .row-fluid
+            .span12
+              .widget.wred
+                .widget-head
+                  .pull-left Store Details
+                  .clearfix
+                .widget-content
+                  .padd
+                    .form.profile
+                      = form_for(@store) do |f|
+                        .control-group
+                          %label.control-label{:for => "store[name]"} Store Name
+                          .controls
+                            = f.text_field :name, :class => "input-large"
+                        .control-group
+                          %label.control-label{:for => "store[alias]"} Alias
+                          .controls
+                            = f.text_field :alias, :class => "input-large"
                             %br
-                            This will serve as your Playmotrade subdomain (yourstore.playmotrade.com)
-                      .control-group
-                        %label.control-label{:for => "store[logo]"} Logo
-                        .controls
-                          = f.file_field :logo, :class => "input-large"
-                      .control-group
-                        %label.control-label{:for => "store[about]"} About
-                        .controls
-                          = f.text_area :about, :class => "input-large"
-                      .control-group
-                        %label.control-label{:for => "store[landing_page]"} Landing Page (accepts HTML)
-                        .controls
-                          = f.text_area :landing_page, :class => "input-large tinymce"
-                      .control-group
-                        %label.checkbox.inline
-                          = f.check_box :active
-                          Open?
-                      .control-group
-                        %label.control-label{:for => "store[closed_message]"} Closed Message
-                        .controls
-                          = f.text_area :closed_message, :class => "input-large"
-                      .control-group
-                        %label.control-label{:for => "store[bypass_password]"} Break-in Password
-                        .controls
-                          = f.text_field :bypass_password, :class => "input-large"
-                          %br
-                          %span.help-inline
-                            You can allow potential customers access to your closed store by giving them this password.
-                      .form-actions
-                        = f.submit "Create Store", class: "btn btn-success"
-                        %button.btn{:type => "reset"} Reset
+                            %span.help-inline
+                              Keep this short and without spaces, dashes, underscores, or special characters.
+                              %br
+                              This will serve as your Playmotrade subdomain (yourstore.playmotrade.com)
+                        .control-group
+                          %label.control-label{:for => "store[logo]"} Logo
+                          .controls
+                            = f.file_field :logo, :class => "input-large"
+                        .control-group
+                          %label.control-label{:for => "store[about]"} About
+                          .controls
+                            = f.text_area :about, :class => "input-large"
+                        .control-group
+                          %label.control-label{:for => "store[landing_page]"} Landing Page (accepts HTML)
+                          .controls
+                            = f.text_area :landing_page, :class => "input-large tinymce"
+                        .control-group
+                          %label.checkbox.inline
+                            = f.check_box :active
+                            Open?
+                        .control-group
+                          %label.control-label{:for => "store[closed_message]"} Closed Message
+                          .controls
+                            = f.text_area :closed_message, :class => "input-large"
+                        .control-group
+                          %label.control-label{:for => "store[bypass_password]"} Break-in Password
+                          .controls
+                            = f.text_field :bypass_password, :class => "input-large"
+                            %br
+                            %span.help-inline
+                              You can allow potential customers access to your closed store by giving them this password.
+                        .form-actions
+                          = f.submit "Create Store", class: "btn btn-success"
+                          %button.btn{:type => "reset"} Reset
   .clearfix
   = render 'shared/footer'
 
