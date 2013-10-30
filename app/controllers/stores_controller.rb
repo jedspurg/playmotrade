@@ -3,6 +3,7 @@ class StoresController < ApplicationController
   before_filter :find_store_by_name_or_id, :except => [:index, :new, :create]
   before_filter :check_if_store_closed, :only => [:show]
   before_filter :find_or_build_user_cart_for_store, :only => [:show, :inventory, :add_items_to_cart, :cart]
+  before_filter :check_cart_items_availability, :only => [:show, :inventory, :add_items_to_cart, :cart]
   before_filter :reload_cart, :only => [:show, :inventory, :add_items_to_cart, :cart]
 
   def index
