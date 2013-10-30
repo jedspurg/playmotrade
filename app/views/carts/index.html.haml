@@ -1,0 +1,50 @@
+- provide(:title, "Carts")
+.content
+  = render "shared/sidebar"
+  .mainbar
+    .page-head
+      %h2.pull-left Carts
+      .bread-crumb.pull-right
+        = link_to root_path do
+          %i.icon-home
+          Home
+        %span.divider /
+        = link_to "Carts", carts_path
+      .clearfix
+    .matter
+      .container-fluid
+        .row-fluid
+          - if @carts.present?
+            .span12
+              .widget.wgreen
+                .widget-head
+                  All My Open Carts
+                  .clearfix
+                .widget-content
+                  %table.table.table-bordered
+                    %thead
+                      %tr
+                        %th Store
+                        %th Unique Items in Cart
+                        %th Items in Cart
+                        %th Cost
+                        %th &nbsp;
+                    %tbody
+                      - @carts.each do |cart|
+                        %tr
+                          %td
+                            = image_tag cart.store.logo.url(:thumb)
+                            &nbsp;&nbsp;
+                            = link_to cart.store.name, root_url(:subdomain => cart.store.alias)
+                          %td= cart.total_unique_items
+                          %td= cart.total_items
+                          %td $#{number_with_precision cart.total_cost, :precision => 2}
+                          %td= link_to "View Cart", cart_store_url(cart.store, :subdomain => cart.store.alias), :class => "btn btn-danger"
+                .widget-foot
+                  = will_paginate @carts, :class => 'pagination pull-right'
+                  .clearfix
+          - else
+            %br
+              .alert.alert-error You do not currently have any open carts.
+  .clearfix
+  = render 'shared/footer'

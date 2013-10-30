@@ -5,6 +5,8 @@ class Cart < ActiveRecord::Base
 
   has_many :cart_items
 
+  scope :open, -> { where(:checked_out => false) }
+
   def total_unique_items
     cart_items.count
   end

@@ -11,6 +11,7 @@ Playmotrade::Application.routes.draw do
   match '/' => 'home#index', :via => :get, :constraints => { :subdomain => /^(|www)$/ }
   resources :home
   resources :users
+  resources :carts
   resources :catalog
   resources :catalog_sets do
     member do
