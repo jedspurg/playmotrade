@@ -3,6 +3,7 @@ class StoresController < ApplicationController
   before_filter :find_store_by_name_or_id, :except => [:index, :new, :create]
   before_filter :check_if_store_closed, :only => [:show]
   before_filter :find_or_build_user_cart_for_store, :only => [:show, :inventory, :add_items_to_cart, :cart]
+  before_filter :reload_cart, :only => [:show, :inventory, :add_items_to_cart, :cart]
 
   def index
     @stores = Store.paginate(:page => params[:page], :per_page => 30)
@@ -47,7 +48,6 @@ class StoresController < ApplicationController
   end
 
   def cart
-    @cart_items = @cart.cart_items
   end
 
   def store_closed
@@ -93,7 +93,7 @@ class StoresController < ApplicationController
   def add_set_to_inventory
     @store_inventory_set = StoreInventorySet.new(store_inventory_set_params.merge!({
       :store_inventory => @store.store_inventory,
-      :catalog_set    => CatalogSet.find(params[:set_id])
+      :catalog_set     => CatalogSet.find(params[:set_id])
     }))
     if @store_inventory_set.save
       flash[:notice] = "Set added to inventory"
@@ -179,16 +179,29 @@ class StoresController < ApplicationController
 
   def find_or_build_user_cart_for_store
     if user_signed_in?
-      @cart = Cart.find_or_create_by_store_id_and_user_id_and_checked_out(:store_id => @store.id, :user_id => current_user.id, :checked_out => false)
+      @cart = Cart.find_or_create_by_store_id_and_user_id_and_checked_out({
+        :store_id => @store.id,
+        :user_id => current_user.id,
+        :checked_out => false
+      })
     else
       @cart = Cart.new
     end
+  end
+
+  def reload_cart
+    @cart.reload
   end
 
   def check_if_store_closed
     if @store.active != true && current_user != @store.user && session[:store_break_in] != Digest::MD5.hexdigest(@store.alias)
       render :action => :store_closed
     end
+  end
+
+  def check_cart_items_availability
+    @cart.check_item_availability
+    flash[:error] = @cart.errors.full_messages.to_sentence
   end
 
   def store_params

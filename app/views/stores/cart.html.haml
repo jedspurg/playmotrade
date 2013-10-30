@@ -20,7 +20,7 @@
               .widget-content
                 %table.table.table-hover
                   %tbody
-                    - @cart_items.each do |item|
+                    - @cart.cart_items.each do |item|
                       = render "stores/inventory/cart_row", :item => item
               .widget-foot
                 %h6.pull-left
