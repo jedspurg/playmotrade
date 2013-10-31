@@ -126,28 +126,6 @@ $(document).ready(function(){
 
   });
 
-/* Date picker */
-
-  $(function() {
-    $('#datetimepicker1').datetimepicker({
-      pickTime: false
-    });
-  });
-
-
-
-   $(function() {
-    $('#datetimepicker2').datetimepicker({
-      pickDate: false
-    });
-  });
-
-
-  $(function() {
-    $( "#todaydate" ).datepicker();
-  });
-
-
 /* Notification box */
 
 

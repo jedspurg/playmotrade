@@ -46,6 +46,9 @@ gem "paperclip"
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 
+# Scoping
+gem "ransack"
+
 # Auth Rules
 gem 'cancan'
 
