@@ -69,9 +69,9 @@ class StoresController < ApplicationController
     @type        = (params[:type].present? ? params[:type].to_sym : :all)
     case @type
     when :parts
-      @store_inventory = @store.store_inventory.store_inventory_parts.paginate(:page => params[:page], :per_page => 30)
+      @store_inventory = @store.store_inventory.store_inventory_parts.active.paginate(:page => params[:page], :per_page => 30)
     when :sets
-      @store_inventory = @store.store_inventory.store_inventory_sets.paginate(:page => params[:page], :per_page => 30)
+      @store_inventory = @store.store_inventory.store_inventory_sets.active.paginate(:page => params[:page], :per_page => 30)
     else
       @store_inventory = @store.store_inventory.all_items.paginate(:page => params[:page], :per_page => 30)
     end

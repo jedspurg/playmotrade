@@ -34,6 +34,8 @@
             = link_to "Browse Stores", stores_path
           %li{:class => sub_active_class(orders_path)}
             = link_to "My Orders", orders_path
+          %li{:class => sub_active_class(carts_path)}
+            = link_to "My Open Carts", carts_path
           %li{:class => sub_active_class(wishlists_path)}
             = link_to "Wishlists", wishlists_path
 

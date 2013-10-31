@@ -6,6 +6,8 @@ class StoreInventoryPart < ActiveRecord::Base
   belongs_to :catalog_part
   has_one :store, :through => :store_inventory
 
+  scope :active, -> { where("quantity > 0 AND price > 0")}
+
   CONDITIONS = ["New", "Used (Like New)", "Used (Good)", "Used (Acceptable)"]
 
   searchable do

@@ -21,12 +21,12 @@
                   All My Open Carts
                   .clearfix
                 .widget-content
-                  %table.table.table-bordered
+                  %table.table.table-bordered.table-striped
                     %thead
                       %tr
                         %th Store
                         %th Unique Items in Cart
-                        %th Items in Cart
+                        %th Total Items in Cart
                         %th Cost
                         %th &nbsp;
                     %tbody
@@ -39,7 +39,11 @@
                           %td= cart.total_unique_items
                           %td= cart.total_items
                           %td $#{number_with_precision cart.total_cost, :precision => 2}
-                          %td= link_to "View Cart", cart_store_url(cart.store, :subdomain => cart.store.alias), :class => "btn btn-danger"
+                          %td
+                            = link_to "View Cart", cart_store_url(cart.store, :subdomain => cart.store.alias), :class => "btn btn-danger"
+                            &nbsp;&nbsp;
+                            = link_to cart_path(cart), :method => :delete, :data => {:confirm => "Are you sure?"}, :class => "btn", :id => cart  do
+                              %i.icon-trash
                 .widget-foot
                   = will_paginate @carts, :class => 'pagination pull-right'
                   .clearfix
