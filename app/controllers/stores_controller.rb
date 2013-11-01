@@ -112,7 +112,7 @@ class StoresController < ApplicationController
 
     case @type
     when :part
-      @store_inventory = StoreInventoryPart.search do
+      @store_inventory = Sunspot.search(StoreInventoryPart) do
         fulltext "#{params[:q]}*" do
           boost_fields :name => 2.0
         end
@@ -120,7 +120,7 @@ class StoresController < ApplicationController
         paginate :page => params[:page], :per_page => 24
       end.results
     when :set
-      @store_inventory = StoreInventorySet.search do
+      @store_inventory = Sunspot.search(StoreInventorySet) do
         fulltext "#{params[:q]}*" do
           boost_fields :name => 2.0
         end
