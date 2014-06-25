@@ -32,21 +32,22 @@
                       %th Available Sets
                   %tbody
                     - @stores.each do |store|
-                      %tr
-                        %td
-                          = image_tag store.logo.url(:thumb)
-                          &nbsp;&nbsp;
-                          = link_to store.name, root_url(:subdomain => store.alias)
-                        %td= (store.active ? 'Open' : 'Closed')
-                        %td
-                          = image_tag store.user.avatar.url(:small)
-                          &nbsp;&nbsp;
-                          = link_to "#{store.user.first_name} #{store.user.last_name} [ #{store.user.username} ]", user_path(store.user)
-                        %td
-                          = image_tag "/images/country_icons/#{store.user.country.id}.png"
-                          = store.user.country.name
-                        %td= store.store_inventory.total_parts
-                        %td= store.store_inventory.total_sets
+                      - if store.user.present?
+                        %tr
+                          %td
+                            = image_tag store.logo.url(:thumb)
+                            &nbsp;&nbsp;
+                            = link_to store.name, root_url(:subdomain => store.alias)
+                          %td= (store.active ? 'Open' : 'Closed')
+                          %td
+                            = image_tag(store.user.avatar.url(:small))
+                            &nbsp;&nbsp;
+                            = link_to "#{store.user.first_name} #{store.user.last_name} [ #{store.user.username} ]", user_path(store.user)
+                          %td
+                            = image_tag "/images/country_icons/#{store.user.country.id}.png"
+                            = store.user.country.name
+                          %td= store.store_inventory.total_parts
+                          %td= store.store_inventory.total_sets
               .widget-foot
                 = will_paginate @users, :class => 'pagination pull-right'
                 .clearfix
