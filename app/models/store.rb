@@ -1,6 +1,7 @@
 class Store < ActiveRecord::Base
 
   after_save :find_or_build_store_inventory
+  before_save :domainize_alias
 
   belongs_to :user
   has_one :store_inventory, :dependent => :destroy
@@ -24,6 +25,12 @@ class Store < ActiveRecord::Base
 
   protected ###################################################################
 
+  # before_save
+  def domainize_alias
+    self.alias = self.alias.downcase.gsub(" ", "-")
+  end
+
+  # after_save
   def find_or_build_store_inventory
     store_inventory = StoreInventory.find_or_create_by(:store_id => id)
   end
