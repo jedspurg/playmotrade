@@ -25,7 +25,7 @@
             %i.icon-angle-right
         %ul
           %li
-            = link_to "My Current Inventory", root_url
+            = link_to "My Current Inventory", inventory_store_url(@store, :subdomain => @store.alias)
             = link_to "List a Set", root_url
             = link_to "Part Out a Set", root_url
             = link_to "List a Part", root_url
