@@ -191,7 +191,7 @@ class StoresController < ApplicationController
   end
 
   def reload_cart
-    @cart.reload
+    @cart.reload if !@cart.new_record?
   end
 
   def check_if_store_closed
