@@ -65,8 +65,8 @@ class StoresController < ApplicationController
   end
 
   def inventory
-    @cart_item   = CartItem.new
-    @type        = (params[:type].present? ? params[:type].to_sym : :all)
+    @cart_item = CartItem.new
+    @type      = (params[:type].present? ? params[:type].to_sym : :all)
     case @type
     when :parts
       @store_inventory = @store.store_inventory.store_inventory_parts.active.paginate(:page => params[:page], :per_page => 30)
@@ -74,6 +74,29 @@ class StoresController < ApplicationController
       @store_inventory = @store.store_inventory.store_inventory_sets.active.paginate(:page => params[:page], :per_page => 30)
     else
       @store_inventory = @store.store_inventory.all_items.paginate(:page => params[:page], :per_page => 30)
+    end
+  end
+
+  def wishlist
+    @wishlists = current_user.wishlists
+    @wishlist = if params[:wishlist_id].present?
+      current_user.wishlists.find(params[:wishlist_id])
+    elsif current_user.wishlists.blank?
+      Wishlist.create(:user_id => current_user.id, :name => "Main Wishlist")
+    else
+      current_user.wishlists.first
+    end
+    @cart_item     = CartItem.new
+    @type          = (params[:type].present? ? params[:type].to_sym : :all)
+    wishlist_parts = @store.store_inventory.store_inventory_parts.active.where(catalog_part_id: @wishlist.parts.pluck(:catalog_item_id))
+    wishlist_sets  = @store.store_inventory.store_inventory_sets.active.where(catalog_set_id: @wishlist.sets.pluck(:catalog_item_id))
+    @store_inventory = case @type
+    when :parts
+      wishlist_parts.paginate(:page => params[:page], :per_page => 30)
+    when :sets
+      wishlist_sets.paginate(:page => params[:page], :per_page => 30)
+    else
+      (wishlist_parts + wishlist_sets).paginate(:page => params[:page], :per_page => 30)
     end
   end
 

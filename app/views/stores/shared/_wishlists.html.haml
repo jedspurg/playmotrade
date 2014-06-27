@@ -1,0 +1,18 @@
+.span4
+  .widget.wblue
+    .widget-head
+      My Wishlists
+    .clearfix
+    .widget-content
+      .sidebar.sidebar-right
+        %ul.navi
+          - @wishlists.each do |wishlist|
+            %li.ngrey{:class => (wishlist == @wishlist ? 'open' : '')}
+              = link_to store_wishlist_url(@store, wishlist, 'all', :subdomain => @store.alias) do
+                - if !wishlist.public
+                  %i.icon-lock
+                = wishlist.name
+                %span.pull-right
+                  %i.icon-angle-right
+    .widget-foot
+      .clearfix

@@ -43,11 +43,13 @@ Playmotrade::Application.routes.draw do
       post :add_items_to_cart
       get :cart
       get :inventory
+      get :wishlist
     end
   end
   match '/stores/:id/add_part_to_inventory/:part_id', :as => :add_part_to_inventory, :via => :post, :to => 'stores#add_part_to_inventory'
   match '/stores/:id/add_set_to_inventory/:set_id', :as => :add_set_to_inventory, :via => :post, :to => 'stores#add_set_to_inventory'
   match '/stores/:id/inventory/:type', :as => :store_inventory, :via => :get, :to => 'stores#inventory'
+  match '/stores/:id/wishlist/:wishlist_id/:type', :as => :store_wishlist, :via => :get, :to => 'stores#wishlist'
   match '/stores/:id/remove/:item_id', :as => :remove_items_from_cart, :via => :delete, :to => 'stores#remove_items_from_cart'
 
 end

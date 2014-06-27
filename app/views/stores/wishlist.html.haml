@@ -1,0 +1,34 @@
+- provide(:title, "Store Inventory on My Wishlists")
+.content
+  = render "shared/store_sidebar"
+  .mainbar
+    .page-head
+      %h2.pull-left
+        = image_tag @store.logo.url(:medium)
+        &nbsp;&nbsp;
+        = @store.name
+      .clearfix
+    .matter
+      .container-fluid
+        = render "shared/flash"
+        .row-fluid
+          .span8
+            - if @store_inventory.count > 0
+              .widget.wviolet
+                .widget-head
+                  = @type.to_s.capitalize
+                  .clearfix
+                .widget-content
+                  %table.table.table-hover
+                    %tbody
+                      - @store_inventory.each do |item|
+                        = render "stores/inventory/inventory_row", :item => item
+                .widget-foot
+                  = will_paginate @store_inventory, :class => 'pagination pull-right'
+                  .clearfix
+            - else
+              .alert.alert-error
+                No inventory matched on this wishlist.
+          = render "stores/shared/wishlists", :wishlists => @wishlists, :store => @store
+  .clearfix
+  = render 'shared/footer'
