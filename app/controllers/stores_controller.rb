@@ -5,6 +5,7 @@ class StoresController < ApplicationController
   before_filter :find_or_build_user_cart_for_store, :only => [:show, :inventory, :add_items_to_cart, :cart]
   before_filter :check_cart_items_availability, :only => [:show, :inventory, :add_items_to_cart, :cart]
   before_filter :reload_cart, :only => [:show, :inventory, :add_items_to_cart, :cart]
+  before_filter :setup_wishlists
 
   def index
     @stores = Store.paginate(:page => params[:page], :per_page => 30)
@@ -78,14 +79,6 @@ class StoresController < ApplicationController
   end
 
   def wishlist
-    @wishlists = current_user.wishlists
-    @wishlist = if params[:wishlist_id].present?
-      current_user.wishlists.find(params[:wishlist_id])
-    elsif current_user.wishlists.blank?
-      Wishlist.create(:user_id => current_user.id, :name => "Main Wishlist")
-    else
-      current_user.wishlists.first
-    end
     @cart_item     = CartItem.new
     @type          = (params[:type].present? ? params[:type].to_sym : :all)
     wishlist_parts = @store.store_inventory.store_inventory_parts.active.where(catalog_part_id: @wishlist.parts.pluck(:catalog_item_id))
@@ -192,6 +185,17 @@ class StoresController < ApplicationController
   end
 
   protected ###################################################################
+
+  def setup_wishlists
+    @wishlists = current_user.wishlists
+    @wishlist = if params[:wishlist_id].present?
+      current_user.wishlists.find(params[:wishlist_id])
+    elsif current_user.wishlists.blank?
+      Wishlist.create(:user_id => current_user.id, :name => "Main Wishlist")
+    else
+      current_user.wishlists.first
+    end
+  end
 
   def find_store_by_name_or_id
     if request.subdomain.present?
