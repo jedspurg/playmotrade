@@ -5,7 +5,7 @@ class StoresController < ApplicationController
   before_filter :find_or_build_user_cart_for_store, :only => [:show, :inventory, :add_items_to_cart, :cart]
   before_filter :check_cart_items_availability, :only => [:show, :inventory, :add_items_to_cart, :cart]
   before_filter :reload_cart, :only => [:show, :inventory, :add_items_to_cart, :cart]
-  before_filter :setup_wishlists
+  before_filter :setup_wishlists, :except => [:index, :new, :create]
 
   def index
     @stores = Store.paginate(:page => params[:page], :per_page => 30)
