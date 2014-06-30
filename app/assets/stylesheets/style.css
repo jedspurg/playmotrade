@@ -675,6 +675,12 @@ form label{
 .sidebar-right .navi > li.open > a {
   border-top: 1px solid #fff;
   border-bottom:none;
+  color: #fff;
+}
+
+.sidebar-right .navi > li.current > a {
+  border-top: 1px solid #fff;
+  border-bottom:none;
   color: #222 !important;
 }
 

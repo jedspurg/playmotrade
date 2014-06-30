@@ -7,7 +7,7 @@
       .sidebar.sidebar-right
         %ul.navi
           - @wishlists.each do |wishlist|
-            %li.ngrey{:class => (wishlist == @wishlist ? 'open' : '')}
+            %li.ngrey{:class => (wishlist == @wishlist ? 'current' : '')}
               = link_to store_wishlist_url(@store, wishlist, 'all', :subdomain => @store.alias) do
                 - if !wishlist.public
                   %i.icon-lock

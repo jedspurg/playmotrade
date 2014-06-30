@@ -23,5 +23,6 @@
         %ul
           %li= link_to "All Parts", store_inventory_path(@store, :parts)
           %li= link_to "All Sets", store_inventory_path(@store, :sets)
-          %li= link_to "On My Wishlist", store_wishlist_path(@store, @wishlist, 'all')
+          - if user_signed_in?
+            %li= link_to "On My Wishlist", store_wishlist_path(@store, @wishlist, 'all')
       = render "stores/shared/sidebar_inventory", :store => @store

@@ -187,7 +187,7 @@ class StoresController < ApplicationController
   protected ###################################################################
 
   def setup_wishlists
-    if current_user.present?
+    if user_signed_in?
       @wishlists = current_user.wishlists
       @wishlist  = if params[:wishlist_id].present?
         current_user.wishlists.find(params[:wishlist_id])
