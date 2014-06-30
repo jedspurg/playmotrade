@@ -187,9 +187,9 @@ class StoresController < ApplicationController
   protected ###################################################################
 
   def setup_wishlists
-    @wishlists = current_user.wishlists
     if current_user.present?
-      @wishlist = if params[:wishlist_id].present?
+      @wishlists = current_user.wishlists
+      @wishlist  = if params[:wishlist_id].present?
         current_user.wishlists.find(params[:wishlist_id])
       elsif current_user.wishlists.blank?
         Wishlist.create(:user_id => current_user.id, :name => "Main Wishlist")
@@ -197,7 +197,8 @@ class StoresController < ApplicationController
         current_user.wishlists.first
       end
     else
-      @wishlist = Wishlist.new
+      @wishlists = []
+      @wishlist  = Wishlist.new
     end
   end
 
