@@ -63,12 +63,14 @@
                     #step2.step-pane
                       SHIPPING - BASED ON STORE SETTINGS......
                     #step3.step-pane
+                      %h6 Credit Card Information
+                      %hr
                       .control-group
                         %label.control-label Card Number
                         .controls
                           %input{"data-stripe" => "number", size: "20", type: "text"}/
                       .control-group
-                        %label.control-label CVC
+                        %label.control-label CVV
                         .controls
                           %input.span1{"data-stripe" => "cvc", size: "4", type: "text"}/
                       .control-group

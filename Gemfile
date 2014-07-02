@@ -65,6 +65,9 @@ gem 'gon'
 # WYSIWYG
 gem 'tinymce-rails'
 
+# Money conversion
+gem 'money-rails'
+
 group :development do
   gem 'capistrano'
   gem 'better_errors'
