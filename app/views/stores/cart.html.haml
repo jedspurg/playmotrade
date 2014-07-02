@@ -32,7 +32,7 @@
                 = link_to store_inventory_path(@store, :all) , :class => "btn pull-left" do
                   %i.icon-chevron-left
                   Continue Shopping
-                = link_to store_inventory_path(@store, :all) , :class => "btn btn-success pull-right" do
+                = link_to cart_checkout_url(@cart, :subdomain => nil) , :class => "btn btn-success pull-right" do
                   Checkout
                   %i.icon-chevron-right
                 .clearfix

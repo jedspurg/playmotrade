@@ -1,0 +1,17 @@
+- provide(:title, 'Checkout')
+.content
+  = render "shared/sidebar"
+  .mainbar
+    .page-head
+      %h2.pull-left
+        Checkout
+      .clearfix
+    .matter
+      .container-fluid
+        = render "shared/flash"
+        .row-fluid
+          .span12
+            Thank you!
+          .clearfix
+  .clearfix
+  = render 'shared/footer'

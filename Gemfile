@@ -42,6 +42,9 @@ gem 'devise'
 # File attachments
 gem "paperclip"
 
+# Payment Processing
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
 # Searching
 gem 'sunspot_rails'
 gem 'sunspot_solr'

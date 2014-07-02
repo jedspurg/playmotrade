@@ -1,0 +1,146 @@
+- provide(:title, 'Checkout')
+.content
+  = render "shared/sidebar"
+  .mainbar
+    .page-head
+      %h2.pull-left
+        Checkout
+      .clearfix
+    .matter
+      .container-fluid
+        = render "shared/flash"
+        .alert.alert-danger.payment-errors.hide
+        .row-fluid
+          .span12
+            .box
+              %form#payment-form.form-horizontal{action: "#{checkout_index_path}", method: "POST"}
+                .box-content
+                  #MyWizard.wizard
+                    %ul.steps
+                      %li.active{"data-target" => "#step1"}
+                        %span.badge.badge-info 1
+                        %span.chevron
+                        Review
+                      %li{"data-target" => "#step2"}
+                        %span.badge 2
+                        %span.chevron
+                        Shipping
+                      %li{"data-target" => "#step3"}
+                        %span.badge 3
+                        %span.chevron
+                        Payment
+                      %li{"data-target" => "#step4"}
+                        %span.badge 4
+                        %span.chevron
+                        Confirmation
+                      %li{"data-target" => "#step5"}
+                        %span.badge> 5
+                        Complete
+                    .actions
+                      %button.btn.btn-prev{type: "button"}
+                        %i.icon-angle-left
+                        Prev
+                      %button#form-go.btn.btn-success.btn-next{"data-last" => "Finish", type: "button", "data-loading-text" => "Loading..." }
+                        Next
+                        %i.icon-angle-right
+                  .step-content
+                    #step1.step-pane.active
+                      .widget.wblue
+                        .widget-head
+                          Items to be purchased
+                          .clearfix
+                        .widget-content
+                          %table.table.table-hover
+                            %tbody
+                              - @cart.cart_items.each do |item|
+                                = render "checkout/shared/checkout_row", :item => item
+                        .widget-foot
+                          %h6.pull-left
+                            Unique Items: #{@cart.total_unique_items} | Total Items: #{@cart.total_items}
+                          %h4.pull-right
+                            Total: $#{number_with_precision @cart.total_cost, :precision => 2}
+                          .clearfix
+                    #step2.step-pane
+                      SHIPPING - BASED ON STORE SETTINGS......
+                    #step3.step-pane
+                      .control-group
+                        %label.control-label Card Number
+                        .controls
+                          %input{"data-stripe" => "number", size: "20", type: "text"}/
+                      .control-group
+                        %label.control-label CVC
+                        .controls
+                          %input.span1{"data-stripe" => "cvc", size: "4", type: "text"}/
+                      .control-group
+                        %label.control-label Expiration (MM/YYYY)
+                        .controls
+                          %input.span1{"data-stripe" => "exp-month", size: "2", type: "text"}/
+                          %span /
+                          %input.span1{"data-stripe" => "exp-year", size: "4", type: "text"}/
+                          = hidden_field_tag :cart_id, @cart.id
+
+                    #step4.step-pane
+                      .alert.alert-info
+                        %button.close{"data-dismiss" => "alert", type: "button"} ×
+                        %strong Heads up!
+                        This alert needs your attention, but it's not super important.
+                      %p
+                        This is where the terms of service are placed and an acceptance checkbox prevents the user from moving forward.
+                      .controls
+                        %label.checkbox.inline
+                          %input#inlineCheckbox2{type: "checkbox", value: "option5"}/
+                          I agree
+                    #step5.step-pane
+                      .widget.wblue
+                        .widget-head
+                          Review
+                          .clearfix
+                        .widget-content
+                          %table.table.table-hover
+                            %tbody
+                              - @cart.cart_items.each do |item|
+                                = render "checkout/shared/checkout_row", :item => item
+                              %tr
+                                %td{:colspan => 3}
+                                  %h6.pull-right
+                                    SHIPPING:
+                        .widget-foot
+                          %h6.pull-left
+                            Unique Items: #{@cart.total_unique_items} | Total Items: #{@cart.total_items}
+                          %h4.pull-right
+                            Total: $#{number_with_precision @cart.total_cost, :precision => 2}
+                          .clearfix
+  .clearfix
+  = render 'shared/footer'
+- content_for :script do
+  :javascript
+    Stripe.setPublishableKey("#{Rails.configuration.stripe[:publishable_key]}");
+
+    function stripeResponseHandler(status, response) {
+      var $form = $('#payment-form');
+      if(response.error){
+        $('.payment-errors').text(response.error.message).show();
+        $('#form-go').button('reset');
+      }else{
+        var token = response.id;
+        $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+        $form.get(0).submit();
+      }
+    };
+
+    $(document).ready(function(){
+      if($('.payment-errors').length > 1){
+        $('.payment-errors').show();
+      }
+      var wizard = $("#MyWizard").wizard();
+      wizard.on('finished', function (e, data) {
+        $('#form-go').button('loading');
+        var $form = $('#payment-form');
+        $(this).prop('disabled', true);
+        Stripe.card.createToken($form, stripeResponseHandler);
+      });
+    });
+
+- content_for :script_files do
+  = javascript_include_tag 'wizard'
+  %script{src: "https://js.stripe.com/v2/", type: "text/javascript"}
