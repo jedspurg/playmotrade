@@ -35,7 +35,8 @@
                           &nbsp;&nbsp;
                           = link_to "#{user.first_name} #{user.last_name} [ #{user.username} ]", user_path(user)
                         %td
-                          = link_to user.store.try(:name), root_url(:subdomain => user.store.try(:alias))
+                          - if user.store.present?
+                            = link_to user.store.try(:name), root_url(:subdomain => user.store.try(:alias))
                         %td
                           = image_tag "/images/country_icons/#{user.country.id}.png"
                           = user.country.name
