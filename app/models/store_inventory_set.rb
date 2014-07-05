@@ -6,6 +6,9 @@ class StoreInventorySet < ActiveRecord::Base
   belongs_to :catalog_set
   has_one :store, :through => :store_inventory
 
+  monetize :quantity_price
+  monetize :price
+
   scope :active, -> { where("quantity > 0 AND price > 0")}
 
   CONDITIONS = ["New (Sealed)", "New (Complete)", "New (Incomplete)", "Used (Complete)", "Used (Incomplete)"]
