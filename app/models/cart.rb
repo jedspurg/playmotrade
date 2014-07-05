@@ -1,4 +1,4 @@
-class Cart < ActiveRecord::Base
+  class Cart < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :store
@@ -17,9 +17,9 @@ class Cart < ActiveRecord::Base
   end
 
   def total_cost
-    total = 0.0
+    total = Money.new(0)
     cart_items.each do |item|
-      total += (item.quantity * item.price.to_f)
+      total += (item.quantity * item.price)
     end
     total
   end
@@ -43,6 +43,11 @@ class Cart < ActiveRecord::Base
     if items_deleted
       errors.add(:base, "Some items were deleted from your cart because they are no longer available in this store")
     end
+  end
+
+  # TODO - Make this work...
+  def calculate_shipping(shipping_option_id=nil)
+    Money.new(5)
   end
 
 end

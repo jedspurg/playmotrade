@@ -8,6 +8,14 @@ class CartItem < ActiveRecord::Base
   validates :quantity, :presence => true
   validate :item_availability
 
+  def update_store_inventory_item!
+    new_quantity = associated_object.quantity - quantity
+    if new_quantity >= 0
+      associated_object.update_attributes!(quantity: new_quantity)
+    else
+      errors.add(:quanity, "#{quantity} is not available for #{name}.")
+    end
+  end
 
   def item_availability
     if quantity.to_i > associated_object.quantity

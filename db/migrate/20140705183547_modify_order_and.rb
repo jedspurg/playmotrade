@@ -1,6 +1,6 @@
 class ModifyOrderAnd < ActiveRecord::Migration
   def change
-    remove_column :order_items, :store_inventory_item_type
+    remove_column :order_items, :store_inventory_item_type, :string
 
     add_column :orders, :status, :string, :null => false, :default => 'open'
     add_column :orders, :created_at, :datetime, :null => false
