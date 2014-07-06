@@ -68,6 +68,9 @@ gem 'tinymce-rails'
 # Money conversion
 gem 'money-rails'
 
+# Open Auth
+gem 'oauth2'
+
 group :development do
   gem 'capistrano'
   gem 'better_errors'
