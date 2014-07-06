@@ -17,12 +17,12 @@
           .span12
             .widget.worange
               .widget-head
-                = "#{@user.username} [#{@user.first_name}#{@user.last_name}]"
+                = "#{@user.username} [#{@user.first_name} #{@user.last_name}]"
                 .clearfix
               .widget-content
                 .row-fluid
                   .span4.padd
-                    = image_tag @user.avatar.url(:large)
+                    = image_tag @user.avatar.url(:medium)
                     .member-country
                       = image_tag "/images/country_icons/#{@user.country.id}.png"
                       = @user.country.name
