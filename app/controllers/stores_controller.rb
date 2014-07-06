@@ -15,6 +15,10 @@ class StoresController < ApplicationController
   end
 
   def new
+    if current_user.store.present?
+      redirect_to edit_store_path(current_user.store)
+      return
+    end
     @store = Store.new
   end
 
