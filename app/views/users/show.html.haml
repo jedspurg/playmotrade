@@ -1,0 +1,53 @@
+- provide(:title, "Members")
+.content
+  = render "shared/sidebar"
+  .mainbar
+    .page-head
+      %h2.pull-left Members
+      .bread-crumb.pull-right
+        = link_to root_path do
+          %i.icon-home
+          Home
+        %span.divider /
+        = link_to "Members", users_path
+      .clearfix
+    .matter
+      .container-fluid
+        .row-fluid
+          .span12
+            .widget.worange
+              .widget-head
+                = "#{@user.username} [#{@user.first_name}#{@user.last_name}]"
+                .clearfix
+              .widget-content
+                .row-fluid
+                  .span4.padd
+                    = image_tag @user.avatar.url(:large)
+                    .member-country
+                      = image_tag "/images/country_icons/#{@user.country.id}.png"
+                      = @user.country.name
+                    .member-since
+                      = "Member Since: #{@user.created_at.strftime("%m/%d/%Y")}"
+                    - if @user.store.present?
+                      .member-store
+                        = "Playmotrade Store:  #{link_to @user.store.try(:name), root_url(:subdomain => @user.store.try(:alias))}".html_safe
+                  .span8
+                    %h6= "#{@user.username}'s Wishlists"
+                    %table.table
+                      %thead
+                        %tr
+                          %th Name
+                          %th Number of Items
+                          %th Created
+                          %th Last Updated
+                      %tbody
+                        - @user.wishlists.public.each do |wishlist|
+                          %tr
+                            %td
+                              %strong= link_to wishlist.name, wishlist_path(wishlist)
+                            %td= wishlist.wishlist_items.count
+                            %td= wishlist.created_at.strftime("%m/%d/%Y")
+                            %td= wishlist.updated_at.strftime("%m/%d/%Y")
+                .clearfix
+  .clearfix
+  = render 'shared/footer'
