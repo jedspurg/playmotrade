@@ -1,10 +1,4 @@
 class CheckoutController < ApplicationController
-  force_ssl if: :ssl_configured?
-
-  def ssl_configured?
-    !Rails.env.development?
-  end
-
   before_filter :setup_cart
 
   def new
