@@ -34,6 +34,7 @@ Playmotrade::Application.routes.draw do
       resources :checkout
       resources :payment_processor
     end
+    match '/payment_processor', :as => :payment_processor, :via => :get, :to => 'payment_processor#index'
     match '/checkout/new/:cart_id', :as => :cart_checkout, :via => :get, :to => 'checkout#new'
   end
 
