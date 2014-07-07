@@ -1,6 +1,6 @@
 %tr
   %td
-    = link_to catalog_part_url(item.catalog_object, :subdomain => ""), :rel => 'popover', :class => 'part-preview', :"data-content" => "#{image_tag item.image(:medium).html_safe}" do
+    = link_to catalog_item_url(item.catalog_object, :subdomain => ""), :rel => 'popover', :class => 'part-preview', :"data-content" => "#{image_tag item.image(:medium).html_safe}" do
       = image_tag item.image
   %td
     %strong Condition:

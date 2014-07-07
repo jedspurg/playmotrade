@@ -31,4 +31,8 @@ module ApplicationHelper
     send("#{catalog_item.catalogable_type.underscore}_path", catalog_item.catalogable_id)
   end
 
+  def catalog_item_url(catalog_item, options={})
+    send("#{catalog_item.catalogable_type.underscore}_url", catalog_item.catalogable_id, options)
+  end
+
 end
