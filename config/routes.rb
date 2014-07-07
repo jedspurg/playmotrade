@@ -27,6 +27,8 @@ Playmotrade::Application.routes.draw do
   if Rails.env.development?
     resources :checkout
     resources :payment_processor
+    match '/stripe_setup', :as => :stripe_setup, :via => :get, :to => 'payment_processor#index'
+    match '/stripe_callback', :as => :stripe_callback, :via => :get, :to => 'payment_processor#new'
     match '/checkout/new/:cart_id', :as => :cart_checkout, :via => :get, :to => 'checkout#new'
   else
     # Force SSL on these routes.....
@@ -34,7 +36,8 @@ Playmotrade::Application.routes.draw do
       resources :checkout
       resources :payment_processor
     end
-    match '/payment_processor', :as => :payment_processor, :via => :get, :to => 'payment_processor#index'
+    match '/stripe_setup', :as => :stripe_setup, :via => :get, :to => 'payment_processor#index'
+    match '/stripe_callback', :as => :stripe_callback, :via => :get, :to => 'payment_processor#new'
     match '/checkout/new/:cart_id', :as => :cart_checkout, :via => :get, :to => 'checkout#new'
   end
 

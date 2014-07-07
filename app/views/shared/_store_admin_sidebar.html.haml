@@ -18,7 +18,7 @@
           %li= link_to "View My Store", root_url(:subdomain => @store.alias)
           %li= link_to "Settings", edit_store_path(@store)
           %li= link_to "Shipping Options", edit_store_path(@store)
-          %li= link_to "Payment Processor", payment_processor_url(:subdomain => nil)
+          %li= link_to "Payment Processor", stripe_setup_url(:subdomain => nil)
       %li.has_submenu.nred
         %a{:href => "#"}
           %i.icon-th
