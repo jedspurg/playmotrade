@@ -44,6 +44,10 @@ Playmotrade::Application.routes.draw do
       get :cart
       get :inventory
       get :wishlist
+      get :payment_processor
+    end
+    collection do
+      get :stripe_callback
     end
   end
   match '/stores/:id/add_part_to_inventory/:part_id', :as => :add_part_to_inventory, :via => :post, :to => 'stores#add_part_to_inventory'

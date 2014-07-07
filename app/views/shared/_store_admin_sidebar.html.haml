@@ -15,8 +15,10 @@
           %span.pull-right
             %i.icon-angle-right
         %ul
-          %li= link_to "My Store Home", root_url(:subdomain => @store.alias)
-          %li= link_to "My Store Settings", edit_store_path(@store)
+          %li= link_to "View My Store", root_url(:subdomain => @store.alias)
+          %li= link_to "Settings", edit_store_path(@store)
+          %li= link_to "Shipping Options", edit_store_path(@store)
+          %li= link_to "Payment Processor", payment_processor_store_path(@store)
       %li.has_submenu.nred
         %a{:href => "#"}
           %i.icon-th

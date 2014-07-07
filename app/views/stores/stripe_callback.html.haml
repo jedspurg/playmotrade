@@ -1,0 +1,28 @@
+- provide(:title, @store.name)
+.content
+  = render "shared/store_admin_sidebar", :store => @store
+  .mainbar
+    .page-head
+      %h2.pull-left Payment Processor
+      .bread-crumb.pull-right
+        = link_to store_path(@store) do
+          %i.icon-home
+          My Store
+        %span.divider /
+        Payment Processor
+      .clearfix
+    .matter
+      .container-fluid
+        = render "shared/flash"
+        .row-fluid
+          .widget.wblue
+            .widget-head
+              Connect with Stripe®
+              .clearfix
+            .widget-content.padd
+              %p
+                = @store.name
+                = @response
+
+  .clearfix
+  = render 'shared/footer'

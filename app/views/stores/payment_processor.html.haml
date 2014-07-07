@@ -1,0 +1,92 @@
+- provide(:title, @store.name)
+.content
+  = render "shared/store_admin_sidebar", :store => @store
+  .mainbar
+    .page-head
+      %h2.pull-left Payment Processor
+      .bread-crumb.pull-right
+        = link_to store_path(@store) do
+          %i.icon-home
+          My Store
+        %span.divider /
+        Payment Processor
+      .clearfix
+    .matter
+      .container-fluid
+        = render "shared/flash"
+        .row-fluid
+          .widget.wblue
+            .widget-head
+              Connect with Stripe®
+              .clearfix
+            .widget-content.padd
+              %p
+                Playmotrade® uses Stripe® for its payment processing. This helps keep the user experience consistent and allows for payments to be processed at the time of transaction. Store owners must connect with Stripe® in order to process payments. Stripe® is currently limited to businesses (stores) in 14 countries, but can accept payments from anywhere in the world:
+              .row-fluid
+                .availability.span6
+                  %ul.padd{style: "height:259px"}
+                    %li.open.CA
+                      %a{href: "https://dashboard.stripe.com/register?country=CA"}
+                        %img{"data-1x" => "https://stripe.com/img/flags/ca.png", "data-2x" => "https://stripe.com/img/flags/ca@2x.png", "data-3x" => "https://stripe.com/img/flags/ca@2x.png", "data-hires" => "true", height: "17", src: "https://stripe.com/img/flags/ca.png", width: "23"}/
+                        %span Canada
+                    %li.open.IE
+                      %a{href: "https://dashboard.stripe.com/register?country=IE"}
+                        %img{"data-1x" => "https://stripe.com/img/flags/ie.png", "data-2x" => "https://stripe.com/img/flags/ie@2x.png", "data-3x" => "https://stripe.com/img/flags/ie@2x.png", "data-hires" => "true", height: "17", src: "https://stripe.com/img/flags/ie.png", width: "23"}/
+                        %span Ireland
+                    %li.open.GB
+                      %a{href: "https://dashboard.stripe.com/register?country=GB"}
+                        %img{"data-1x" => "https://stripe.com/img/flags/gb.png", "data-2x" => "https://stripe.com/img/flags/gb@2x.png", "data-3x" => "https://stripe.com/img/flags/gb@2x.png", "data-hires" => "true", height: "17", src: "https://stripe.com/img/flags/gb.png", width: "23"}/
+                        %span United Kingdom
+                    %li.open.US
+                      %a{href: "https://dashboard.stripe.com/register?country=US"}
+                        %img{"data-1x" => "https://stripe.com/img/flags/us.png", "data-2x" => "https://stripe.com/img/flags/us@2x.png", "data-3x" => "https://stripe.com/img/flags/us@2x.png", "data-hires" => "true", height: "17", src: "https://stripe.com/img/flags/us.png", width: "23"}/
+                        %span United States
+                    %li.open.beta.AU
+                      %a{href: "https://dashboard.stripe.com/register?country=AU"}
+                        %img{"data-1x" => "https://stripe.com/img/flags/au.png", "data-2x" => "https://stripe.com/img/flags/au@2x.png", "data-3x" => "https://stripe.com/img/flags/au@2x.png", "data-hires" => "true", height: "17", src: "https://stripe.com/img/flags/au.png", width: "23"}/
+                        %span Australia
+                    %li.open.beta.BE
+                      %a{href: "https://dashboard.stripe.com/register?country=BE"}
+                        %img{"data-1x" => "https://stripe.com/img/flags/be.png", "data-2x" => "https://stripe.com/img/flags/be@2x.png", "data-3x" => "https://stripe.com/img/flags/be@2x.png", "data-hires" => "true", height: "17", src: "https://stripe.com/img/flags/be.png", width: "23"}/
+                        %span Belgium
+                    %li.open.beta.FI
+                      %a{href: "https://dashboard.stripe.com/register?country=FI"}
+                        %img{"data-1x" => "https://stripe.com/img/flags/fi.png", "data-2x" => "https://stripe.com/img/flags/fi@2x.png", "data-3x" => "https://stripe.com/img/flags/fi@2x.png", "data-hires" => "true", height: "17", src: "https://stripe.com/img/flags/fi.png", width: "23"}/
+                        %span Finland
+                    %li.open.beta.FR
+                      %a{href: "https://dashboard.stripe.com/register?country=FR"}
+                        %img{"data-1x" => "https://stripe.com/img/flags/fr.png", "data-2x" => "https://stripe.com/img/flags/fr@2x.png", "data-3x" => "https://stripe.com/img/flags/fr@2x.png", "data-hires" => "true", height: "17", src: "https://stripe.com/img/flags/fr.png", width: "23"}/
+                        %span France
+                    %li.open.beta.DE
+                      %a{href: "https://dashboard.stripe.com/register?country=DE"}
+                        %img{"data-1x" => "https://stripe.com/img/flags/de.png", "data-2x" => "https://stripe.com/img/flags/de@2x.png", "data-3x" => "https://stripe.com/img/flags/de@2x.png", "data-hires" => "true", height: "17", src: "https://stripe.com/img/flags/de.png", width: "23"}/
+                        %span Germany
+                    %li.open.beta.LU
+                      %a{href: "https://dashboard.stripe.com/register?country=LU"}
+                        %img{"data-1x" => "https://stripe.com/img/flags/lu.png", "data-2x" => "https://stripe.com/img/flags/lu@2x.png", "data-3x" => "https://stripe.com/img/flags/lu@2x.png", "data-hires" => "true", height: "17", src: "https://stripe.com/img/flags/lu.png", width: "23"}/
+                        %span Luxembourg
+                    %li.open.beta.NL
+                      %a{href: "https://dashboard.stripe.com/register?country=NL"}
+                        %img{"data-1x" => "https://stripe.com/img/flags/nl.png", "data-2x" => "https://stripe.com/img/flags/nl@2x.png", "data-3x" => "https://stripe.com/img/flags/nl@2x.png", "data-hires" => "true", height: "17", src: "https://stripe.com/img/flags/nl.png", width: "23"}/
+                        %span Netherlands
+                    %li.open.beta.ES
+                      %a{href: "https://dashboard.stripe.com/register?country=ES"}
+                        %img{"data-1x" => "https://stripe.com/img/flags/es.png", "data-2x" => "https://stripe.com/img/flags/es@2x.png", "data-3x" => "https://stripe.com/img/flags/es@2x.png", "data-hires" => "true", height: "17", src: "https://stripe.com/img/flags/es.png", width: "23"}/
+                        %span Spain
+                    %li.beta.private.CH
+                      %a{href: "#"}
+                        %img{"data-1x" => "https://stripe.com/img/flags/ch.png", "data-2x" => "https://stripe.com/img/flags/ch@2x.png", "data-3x" => "https://stripe.com/img/flags/ch@2x.png", "data-hires" => "true", height: "17", src: "https://stripe.com/img/flags/ch.png", width: "23"}/
+                        %span Switzerland
+                    %li.beta.private.IT
+                      %a{href: "#"}
+                        %img{"data-1x" => "https://stripe.com/img/flags/it.png", "data-2x" => "https://stripe.com/img/flags/it@2x.png", "data-3x" => "https://stripe.com/img/flags/it@2x.png", "data-hires" => "true", height: "17", src: "https://stripe.com/img/flags/it.png", width: "23"}/
+                        %span Italy
+                .clearfix
+            .widget-foot
+              %a.btn.btn-success.pull-right{href: "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_4M2KcgnqMp84wsjspHnkS9cNGljXXDbp&state=#{current_user.store.id}&scope=read_write"}
+                %i.icon-credit-card
+                Connect with Stripe
+              .clearfix
+
+  .clearfix
+  = render 'shared/footer'

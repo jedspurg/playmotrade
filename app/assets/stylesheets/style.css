@@ -1719,3 +1719,65 @@ border:1px solid #eee;
 .step-content .active .btn-group .active {
   display: inline-block;
 }
+
+.availability ul {
+  margin: -10px 0 0 -10px;
+  padding: 0;
+  list-style: none;
+  height: 260px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -o-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -o-box-lines: multiple;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.availability li {
+  font-size: .9em;
+  line-height: 17px;
+  width: 208px;
+  height: 37px;
+  position: relative;
+  color: #292e31;
+  -webkit-font-smoothing: subpixel-antialiasing;
+  white-space: nowrap;
+  cursor: default;
+}
+
+.availability li.beta a:after {
+  content: 'Beta';
+  text-transform: uppercase;
+  display: inline-block;
+  font-size: 9px;
+  line-height: 9px;
+  font-weight: 500;
+  color: #b5bbbe;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 15px;
+  padding: 2px 2px;
+  border: 1px solid #d0d4d6;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  position: relative;
+  top: -2px;
+  margin-left: 2px;
+}
+
+.availability li.beta.private a:after {
+  content: 'Private Beta';
+}

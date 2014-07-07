@@ -2,7 +2,15 @@ class CheckoutController < ApplicationController
   before_filter :setup_cart
 
   def new
-    redirect_to root_url(:subdomain => nil) if @cart.blank?
+    if @cart.blank?
+      flash[:error] = "Cannot checkout without a cart."
+      redirect_to root_url(:subdomain => nil)
+      return
+    end
+    if !request.ssl? && !Rails.env.development?
+      redirect_to cart_checkout_url(@cart, :subdomain => nil, :protocol => "https")
+      return
+    end
   end
 
   def create

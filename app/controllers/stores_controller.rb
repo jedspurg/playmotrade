@@ -1,6 +1,6 @@
 class StoresController < ApplicationController
 
-  before_filter :find_store_by_name_or_id, :except => [:index, :new, :create]
+  before_filter :find_store_by_name_or_id, :except => [:index, :new, :create, :stripe_callback]
   before_filter :check_if_store_closed, :only => [:show]
   before_filter :find_or_build_user_cart_for_store, :only => [:show, :inventory, :add_items_to_cart, :cart]
   before_filter :check_cart_items_availability, :only => [:show, :inventory, :add_items_to_cart, :cart]
@@ -186,6 +186,23 @@ class StoresController < ApplicationController
       flash[:error] = @cart_item.errors.full_messages.to_sentence
     end
     redirect_to cart_store_path(@store)
+  end
+
+  def payment_processor
+    if !request.ssl? && !Rails.env.development?
+      redirect_to payment_processor_store_url(@store, subdomain: nil, )
+    end
+  end
+
+  def stripe_callback
+    @store = Store.find_by(id: params[:state])
+    uri = URI.parse("https://connect.stripe.com/oauth/token")
+    @response = Net::HTTP.post_form(uri, {
+      "client_secret" => Stripe.api_key,
+      "code"          => params[:code],
+      "grant_type"    => "authorization_code"
+    })
+
   end
 
   protected ###################################################################

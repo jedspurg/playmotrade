@@ -34,6 +34,15 @@
                   = link_to(edit_user_registration_path) do
                     %i.icon-user
                     Edit Settings
+                - if current_user.store.present?
+                  %li
+                    = link_to store_path(current_user.store) do
+                      %i.icon-money
+                      My Store
+                %li
+                  = link_to orders_path do
+                    %i.icon-inbox
+                    My Orders
                 %li
                   = link_to carts_path do
                     %i.icon-shopping-cart
