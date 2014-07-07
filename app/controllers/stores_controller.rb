@@ -190,7 +190,8 @@ class StoresController < ApplicationController
 
   def payment_processor
     if !request.ssl? && !Rails.env.development?
-      redirect_to payment_processor_store_url(@store, subdomain: nil, )
+      redirect_to :protocol => 'https://', :action => :payment_processor
+      return false
     end
   end
 

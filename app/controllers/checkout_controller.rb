@@ -7,10 +7,6 @@ class CheckoutController < ApplicationController
       redirect_to root_url(:subdomain => nil)
       return
     end
-    if !request.ssl? && !Rails.env.development?
-      redirect_to cart_checkout_url(@cart, :subdomain => nil, :protocol => "https")
-      return
-    end
   end
 
   def create

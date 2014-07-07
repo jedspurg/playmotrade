@@ -23,7 +23,12 @@ Playmotrade::Application.routes.draw do
       get :klickies
     end
   end
-  resources :checkout
+
+  scope :protocol => 'https://', :constraints => { :protocol => 'https://' } do
+    resources :checkout
+  end
+  match '/checkout/new/:cart_id', :as => :cart_checkout, :via => :get, :to => 'checkout#new'
+
   resources :search
   resources :orders
   resources :wishlists do
@@ -56,6 +61,4 @@ Playmotrade::Application.routes.draw do
   match '/stores/:id/wishlist/:wishlist_id/:type', :as => :store_wishlist, :via => :get, :to => 'stores#wishlist'
   match '/stores/:id/remove/:item_id', :as => :remove_items_from_cart, :via => :delete, :to => 'stores#remove_items_from_cart'
 
-  resources :checkout
-  match '/checkout/new/:cart_id', :as => :cart_checkout, :via => :get, :to => 'checkout#new'
 end
