@@ -62,7 +62,8 @@ class CheckoutController < ApplicationController
         store:           @cart.store,
         shipping:        shipping_total,
         total:           order_total,
-        application_fee: (order_total * APPLICATION_FEE_PERCENTAGE)
+        application_fee: (order_total * APPLICATION_FEE_PERCENTAGE),
+        status:          'pending shipment'
       })
       @cart.cart_items.each do |item|
         @order.order_items.build({

@@ -1,4 +1,4 @@
-%tr{:class => (item.modified ? 'error' : '')}
+%tr
   %td
     = link_to catalog_part_url(item.catalog_object, :subdomain => ""), :rel => 'popover', :class => 'part-preview', :"data-content" => "#{image_tag item.image(:medium).html_safe}" do
       = image_tag item.image
@@ -15,7 +15,4 @@
       X
       = humanized_money_with_symbol(item.price, no_cents_if_whole: false)
       %br
-      %strong
-        Total: #{humanized_money_with_symbol(item.total, no_cents_if_whole: false)}
-      %br
-      = link_to "Remove", remove_items_from_cart_path(@store, item), :method => :delete, :data => {:confirm => "Are you sure?"}, :class => "btn btn-danger"
+      %strong Total: #{humanized_money_with_symbol(item.total, no_cents_if_whole: false)}

@@ -7,9 +7,9 @@
   .mainbar
     .page-head
       %h2.pull-left
-      Orders
-      - if @store.present?
-        = "in #{@store.name}"
+        Orders
+        - if @store.present?
+          = "in #{@store.name}"
       .bread-crumb.pull-right
         = link_to root_path do
           %i.icon-home
@@ -27,7 +27,7 @@
                 Open Orders
                 .clearfix
               .widget-content
-                %table.table.table-bordered.table-hover
+                %table.table.table-bordered
                   %thead
                     %tr
                       %th Order ID

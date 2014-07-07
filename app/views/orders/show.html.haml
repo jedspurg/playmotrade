@@ -1,0 +1,49 @@
+- provide(:title, "Orders")
+.content
+  - if @store.present?
+    = render "shared/store_sidebar"
+  - else
+    = render "shared/sidebar"
+  .mainbar
+    .page-head
+      %h2.pull-left
+        = "Order ##{@order.id}"
+        - if @store.present?
+          = "in #{@store.name}"
+      .bread-crumb.pull-right
+        = link_to root_path do
+          %i.icon-home
+          Home
+        %span.divider /
+        = link_to "Orders", orders_path
+      .clearfix
+    .matter
+      .container-fluid
+        = render "shared/flash"
+        .row-fluid
+          .span12
+            .widget.wblue
+              .widget-head
+                %span.label{class: @order.status_class}= @order.status
+                Order Summary
+                .clearfix
+              .widget-content
+                %table.table.table-hover
+                  %tbody
+                    - @order.order_items.each do |item|
+                      = render "orders/shared/order_item_row", :item => item
+              .widget-foot
+                .row-fluid
+                  .span6
+                    %h6.pull-left
+                      Unique Items: #{@order.order_items.count} | Total Items: #{@order.total_items}
+                  .span6
+                    %h6{style: "text-align:right;"}
+                      Subtotal: #{humanized_money_with_symbol(@order.subtotal, no_cents_if_whole: false)}
+                    %h6{style: "text-align:right;"}
+                      Shipping: #{humanized_money_with_symbol(@order.shipping, no_cents_if_whole: false)}
+                    %h5{style: "text-align:right;"}
+                      %strong Total: #{humanized_money_with_symbol(@order.total, no_cents_if_whole: false)}
+                .clearfix
+  .clearfix
+  = render 'shared/footer'
