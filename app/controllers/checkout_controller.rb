@@ -20,10 +20,14 @@ class CheckoutController < ApplicationController
         current_user.update_column(:stripe_id, token)
       end
       charge = Stripe::Charge.create(
-        :amount      => @order.total.cents,
-        :currency    => @order.total.currency.to_s.downcase,
-        :card        => token,
-        :description => "Playmotrade Order ##{@order.id} - #{@cart.store.name}"
+        {
+          :amount          => @order.total.cents,
+          :currency        => @order.total.currency.to_s.downcase,
+          :card            => token,
+          :description     => "Playmotrade Order ##{@order.id} - #{@cart.store.name}",
+          :application_fee => @order.application_fee.cents
+        },
+        Base64.decode64(@cart.store.stripe_access_token)
       )
       update_store_inventory!
 
@@ -43,11 +47,13 @@ class CheckoutController < ApplicationController
   def create_order!
     ActiveRecord::Base.transaction do
       shipping_total = @cart.calculate_shipping(params[:store_shipping_option_id])
+      order_total    = @cart.total_cost + shipping_total
       @order = Order.create({
-        user:     @cart.user,
-        store:    @cart.store,
-        shipping: shipping_total,
-        total:    @cart.total_cost
+        user:            @cart.user,
+        store:           @cart.store,
+        shipping:        shipping_total,
+        total:           order_total,
+        application_fee: (order_total * APPLICATION_FEE_PERCENTAGE)
       })
       @cart.cart_items.each do |item|
         @order.order_items.build({
