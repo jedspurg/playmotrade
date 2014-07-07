@@ -24,10 +24,28 @@ Playmotrade::Application.routes.draw do
     end
   end
 
-  scope :protocol => 'https://', :constraints => { :protocol => 'https://' } do
+  if Rails.env.development?
     resources :checkout
+    resources :payment_processor do
+      collection do
+        get :set_up
+        get :callback
+      end
+    end
+    match '/checkout/new/:cart_id', :as => :cart_checkout, :via => :get, :to => 'checkout#new'
+  else
+    # Force SSL on these routes.....
+    scope :protocol => 'https://', :constraints => { :protocol => 'https://' } do
+      resources :checkout
+      resources :payment_processor do
+        collection do
+          get :set_up
+          get :callback
+        end
+      end
+    end
+    match '/checkout/new/:cart_id', :as => :cart_checkout, :via => :get, :to => 'checkout#new'
   end
-  match '/checkout/new/:cart_id', :as => :cart_checkout, :via => :get, :to => 'checkout#new'
 
   resources :search
   resources :orders
@@ -49,10 +67,6 @@ Playmotrade::Application.routes.draw do
       get :cart
       get :inventory
       get :wishlist
-      get :payment_processor
-    end
-    collection do
-      get :stripe_callback
     end
   end
   match '/stores/:id/add_part_to_inventory/:part_id', :as => :add_part_to_inventory, :via => :post, :to => 'stores#add_part_to_inventory'

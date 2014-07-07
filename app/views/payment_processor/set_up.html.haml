@@ -74,16 +74,16 @@
                         %img{"data-1x" => "https://stripe.com/img/flags/es.png", "data-2x" => "https://stripe.com/img/flags/es@2x.png", "data-3x" => "https://stripe.com/img/flags/es@2x.png", "data-hires" => "true", height: "17", src: "https://stripe.com/img/flags/es.png", width: "23"}/
                         %span Spain
                     %li.beta.private.CH
-                      %a{href: "#"}
+                      %a{href: "https://stripe.com/global"}
                         %img{"data-1x" => "https://stripe.com/img/flags/ch.png", "data-2x" => "https://stripe.com/img/flags/ch@2x.png", "data-3x" => "https://stripe.com/img/flags/ch@2x.png", "data-hires" => "true", height: "17", src: "https://stripe.com/img/flags/ch.png", width: "23"}/
                         %span Switzerland
                     %li.beta.private.IT
-                      %a{href: "#"}
+                      %a{href: "https://stripe.com/global"}
                         %img{"data-1x" => "https://stripe.com/img/flags/it.png", "data-2x" => "https://stripe.com/img/flags/it@2x.png", "data-3x" => "https://stripe.com/img/flags/it@2x.png", "data-hires" => "true", height: "17", src: "https://stripe.com/img/flags/it.png", width: "23"}/
                         %span Italy
                 .clearfix
             .widget-foot
-              %a.btn.btn-success.pull-right{href: "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_4M2KcgnqMp84wsjspHnkS9cNGljXXDbp&state=#{current_user.store.id}&scope=read_write"}
+              %a.btn.btn-success.pull-right{href: "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=#{Rails.configuration.stripe[:connect_key]}&state=#{current_user.store.id}&scope=read_write"}
                 %i.icon-credit-card
                 Connect with Stripe
               .clearfix

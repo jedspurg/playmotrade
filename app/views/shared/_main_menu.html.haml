@@ -21,7 +21,7 @@
                       %i.icon-shopping-cart
                       View Cart
                   %li
-                    = link_to root_url do
+                    = link_to cart_checkout_url(@cart, :subdomain => nil, :protocol => "https") do
                       %i.icon-truck
                       Checkout
             %li.dropdown.pull-right

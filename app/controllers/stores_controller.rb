@@ -188,24 +188,6 @@ class StoresController < ApplicationController
     redirect_to cart_store_path(@store)
   end
 
-  def payment_processor
-    if !request.ssl? && !Rails.env.development?
-      redirect_to :protocol => 'https://', :action => :payment_processor
-      return false
-    end
-  end
-
-  def stripe_callback
-    @store = Store.find_by(id: params[:state])
-    uri = URI.parse("https://connect.stripe.com/oauth/token")
-    @response = Net::HTTP.post_form(uri, {
-      "client_secret" => Stripe.api_key,
-      "code"          => params[:code],
-      "grant_type"    => "authorization_code"
-    })
-
-  end
-
   protected ###################################################################
 
   def setup_wishlists
