@@ -2,7 +2,7 @@
   %td= link_to "Order ##{order.id}", order_path(order)
   %td
     %span.label{class: order.status_class}= order.status
-  %td= total_items
+  %td= order.total_items
   %td= order.subtotal.to_s
   %td= order.shipping.to_s
   %td= order.total.to_s
