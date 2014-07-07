@@ -64,6 +64,7 @@ Playmotrade::Application.routes.draw do
       get :inventory
       get :wishlist
     end
+    resources :orders
   end
   match '/stores/:id/add_part_to_inventory/:part_id', :as => :add_part_to_inventory, :via => :post, :to => 'stores#add_part_to_inventory'
   match '/stores/:id/add_set_to_inventory/:set_id', :as => :add_set_to_inventory, :via => :post, :to => 'stores#add_set_to_inventory'

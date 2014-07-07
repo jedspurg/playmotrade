@@ -71,6 +71,9 @@ gem 'money-rails'
 # Open Auth
 gem 'oauth2'
 
+# Analytics
+gem 'google-analytics-rails'
+
 group :development do
   gem 'capistrano'
   gem 'better_errors'

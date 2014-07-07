@@ -91,6 +91,7 @@ GEM
     gon (4.1.0)
       actionpack (>= 2.3.0)
       json
+    google-analytics-rails (0.0.6)
     haml (4.0.2)
       tilt
     haml-rails (0.4)
@@ -252,6 +253,7 @@ DEPENDENCIES
   debugger
   devise
   gon
+  google-analytics-rails
   haml
   haml-rails
   hirb (>= 0.7.1)

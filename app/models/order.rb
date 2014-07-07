@@ -3,7 +3,7 @@ class Order < ActiveRecord::Base
   belongs_to :store
   has_many :order_items, :dependent => :destroy
 
-  VALID_STATES = ['open', 'pending', 'canceled', 'shipped']
+  VALID_STATES = ['open', 'pending shipment', 'canceled', 'shipped', 'completed']
 
   validates :user, :store, :order_items, presence: true
   validates :order_items, presence: true, on: :update

@@ -37,6 +37,9 @@ class CheckoutController < ApplicationController
       )
       update_store_inventory!
 
+      # empty the current cart....
+      @cart = nil
+
     rescue Stripe::CardError, Stripe::InvalidRequestError => e
       @order.destroy
       flash[:error] = e.message

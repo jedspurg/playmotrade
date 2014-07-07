@@ -85,4 +85,6 @@ Playmotrade::Application.configure do
   #Paperclip.options[:command_path] = "/usr/bin/convert"
 
   config.action_mailer.default_url_options = { :host => 'playmotrade.com' }
+
+  GA.tracker = 'UA-52571681-1'
 end
