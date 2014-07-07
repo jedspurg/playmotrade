@@ -8,7 +8,7 @@
             %button.btn.btn-info
               %i.icon-angle-right
     %ul.navi
-      %li.has_submenu.nred
+      %li.has_submenu.nred{:class => active_class([edit_store_path(@store),stripe_setup_path, stripe_callback_path])}
         %a{:href => "#"}
           %i.icon-home
           My Store

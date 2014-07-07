@@ -5,6 +5,7 @@ class Store < ActiveRecord::Base
 
   belongs_to :user
   has_one :store_inventory, :dependent => :destroy
+  has_many :orders
   validates :name, :presence => true, :uniqueness => true
   validates :user_id, :presence => true, :uniqueness => true
   validates :alias, :presence => true, :uniqueness => true
