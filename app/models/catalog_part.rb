@@ -21,6 +21,7 @@ class CatalogPart < ActiveRecord::Base
   }
 
   scope :klickies, -> { where(:catalog_parts_category_id => 8)}
+  scope :non_klicky, -> { where('catalog_parts_category_id != 8')}
 
   searchable do
     text :name, :number, :color

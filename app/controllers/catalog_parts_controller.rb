@@ -4,7 +4,7 @@ class CatalogPartsController < ApplicationController
   before_filter :store_inventory_part, :only => [:show]
 
   def index
-    @catalog_parts = CatalogPart.all.paginate(:page => params[:page], :per_page => 24)
+    @catalog_parts = CatalogPart.non_klicky.paginate(:page => params[:page], :per_page => 24)
   end
 
   def klickies
