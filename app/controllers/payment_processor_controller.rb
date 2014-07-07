@@ -17,7 +17,7 @@ class PaymentProcessorController < ApplicationController
       "grant_type"    => "authorization_code"
     })
 
-    parsed_response = JSON.parse(@response).symbolize_keys!
+    parsed_response = JSON.parse(@response.body).symbolize_keys!
     if parsed_response.fetch(:error_description, nil).present?
       flash[:error] = parsed_response[:error_description]
     end
