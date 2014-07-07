@@ -39,6 +39,7 @@ Playmotrade::Application.routes.draw do
     match '/stripe_setup', :as => :stripe_setup, :via => :get, :to => 'payment_processor#index'
     match '/stripe_callback', :as => :stripe_callback, :via => :get, :to => 'payment_processor#new'
     match '/checkout/new/:cart_id', :as => :cart_checkout, :via => :get, :to => 'checkout#new'
+    match '/checkout_process', :as => :checkout_process, :via => :post, :to => 'checkout#create'
   end
 
   resources :search
