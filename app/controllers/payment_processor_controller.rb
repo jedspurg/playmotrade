@@ -1,6 +1,6 @@
 class PaymentProcessorController < ApplicationController
 
-  def set_up
+  def index
     if current_user.store.blank?
       flash[:error] = "You must first create a store to setup payment processing."
       redirect_to new_store_path
@@ -8,7 +8,7 @@ class PaymentProcessorController < ApplicationController
     @store = current_user.store
   end
 
-  def callback
+  def new
     @store = Store.find_by(id: params[:state])
     uri = URI.parse("https://connect.stripe.com/oauth/token")
     @response = Net::HTTP.post_form(uri, {
