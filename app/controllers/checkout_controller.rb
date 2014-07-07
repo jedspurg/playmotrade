@@ -7,6 +7,12 @@ class CheckoutController < ApplicationController
       redirect_to root_url(:subdomain => nil)
       return
     end
+    @publishable_key = @cart.store.stripe_publishable_key
+    if @publishable_key.blank?
+      flash[:error] = "This store is not set up for payment processing."
+      redirect_to root_url(:subdomain => nil)
+      return
+    end
   end
 
   def create
@@ -31,7 +37,7 @@ class CheckoutController < ApplicationController
       )
       update_store_inventory!
 
-    rescue Stripe::CardError => e
+    rescue Stripe::CardError, Stripe::InvalidRequestError => e
       @order.destroy
       flash[:error] = e.message
       render :new
