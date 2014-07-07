@@ -24,6 +24,10 @@ class Store < ActiveRecord::Base
     StoreInventory.find_by(:store_id => id)
   end
 
+  def payment_compliant?
+    stripe_access_token.present? && stripe_publishable_key.present?
+  end
+
   protected ###################################################################
 
   # before_save
