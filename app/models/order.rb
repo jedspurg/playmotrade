@@ -11,5 +11,5 @@ class Order < ActiveRecord::Base
 
   monetize :total_cents
   monetize :shipping_cents
-  monetize :application_fee
+  monetize :application_fee_cents
 end
