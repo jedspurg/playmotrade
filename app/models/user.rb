@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   has_many :carts
   has_many :orders
   has_many :wishlists
+  has_many :pages
+
   belongs_to :country
 
   scope :active, -> { where(['confirmed_at IS NOT NULL']) }
