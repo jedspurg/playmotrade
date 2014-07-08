@@ -2,7 +2,7 @@
   .navbar-inner.no-border-navbar
     .container
       = link_to root_url(:subdomain => nil), :class => "brand" do
-        = image_tag "/img/logo.png", :alt => "Playmotrade - Unofficial Playmobil Marketplace"
+        = image_tag "/img/logo.png", :alt => "Playmotrade® - Unofficial Playmobil® Marketplace"
       .nav-collapse.collapse
         - if user_signed_in?
           %ul.nav.pull-right
@@ -12,9 +12,7 @@
                   %i.icon-shopping-cart
                   Cart
                   %span.badge.badge-info
-                    = @cart.total_unique_items
-                    |
-                    $#{number_with_precision @cart.total_cost, :precision => 2}
+                    #{@cart.total_unique_items} | #{humanized_money_with_symbol(@cart.total_cost, no_cents_if_whole: false)}
                 %ul.dropdown-menu
                   %li
                     = link_to(cart_store_path(@store)) do
