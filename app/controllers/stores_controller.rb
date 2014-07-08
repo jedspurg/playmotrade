@@ -62,10 +62,12 @@ class StoresController < ApplicationController
   def break_in
     if @store.bypass_password.present? && params[:break_in_password] == @store.bypass_password
       session[:store_break_in] = Digest::MD5.hexdigest(@store.alias)
-      redirect_to :action => :show
+      redirect_to root_url(:subdomain => @store.alias)
+      return
     else
       flash[:error] = "Break in password is incorrect"
-      redirect_to :action => :store_closed
+      redirect_to store_closed_store_url(:subdomain => @store.alias)
+      return
     end
   end
 
