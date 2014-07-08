@@ -1,7 +1,7 @@
 .navbar.navbar-inverse
   .navbar-inner.no-border-navbar
     .container
-      = link_to root_url(:subdomain => ""), :class => "brand" do
+      = link_to root_url(:subdomain => nil), :class => "brand" do
         = image_tag "/img/logo.png", :alt => "Playmotrade - Unofficial Playmobil Marketplace"
       .nav-collapse.collapse
         - if user_signed_in?
@@ -31,33 +31,33 @@
                 %b.caret
               %ul.dropdown-menu
                 %li
-                  = link_to(edit_user_registration_path) do
+                  = link_to(edit_user_registration_url(:subdomain => nil)) do
                     %i.icon-user
                     Edit Settings
                 - if current_user.store.present?
                   %li
-                    = link_to store_path(current_user.store) do
+                    = link_to root_url(:subdomain => current_user.store.alias) do
                       %i.icon-money
                       My Store
                 %li
-                  = link_to orders_path do
+                  = link_to orders_url(:subdomain => nil) do
                     %i.icon-inbox
                     My Orders
                 %li
-                  = link_to carts_path do
+                  = link_to carts_url(:subdomain => nil) do
                     %i.icon-shopping-cart
                     My Open Carts
                 %li
-                  = link_to wishlists_path do
+                  = link_to wishlists_url(:subdomain => nil) do
                     %i.icon-list
                     My Wishlists
                 %li
-                  =link_to(destroy_user_session_path) do
+                  =link_to(destroy_user_session_url(:subdomain => nil)) do
                     %i.icon-off
                     Logout
         - else
           %ul.nav.pull-right
             %li
-              = link_to(new_user_session_path) do
+              = link_to(new_user_session_url(:subdomain => nil)) do
                 %i.icon-lock
                 Login
