@@ -208,7 +208,12 @@ class StoresController < ApplicationController
 
   def find_store_by_name_or_id
     if request.subdomain.present?
-      @store = Store.find_by(:alias => request.subdomain)
+      if request.subdomain == 'www'
+        redirect_to root_url(:subdomain => nil)
+        return
+      else
+        @store = Store.find_by(:alias => request.subdomain)
+      end
     else
       @store = Store.find(params[:id])
     end
