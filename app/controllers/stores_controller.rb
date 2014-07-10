@@ -66,7 +66,7 @@ class StoresController < ApplicationController
       return
     else
       flash[:error] = "Break in password is incorrect"
-      redirect_to store_closed_store_url(:subdomain => @store.alias)
+      render :store_closed
       return
     end
   end

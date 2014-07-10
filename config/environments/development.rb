@@ -30,4 +30,5 @@ Playmotrade::Application.configure do
   Paperclip.options[:command_path] = "/usr/local/bin/"
 
   config.action_mailer.default_url_options = { :host => 'playmotrade.com' }
+  config.session_options[:domain] = ".playmotrade.dev"
 end

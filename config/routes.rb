@@ -62,6 +62,7 @@ Playmotrade::Application.routes.draw do
   resources :stores do
     member do
       post :break_in
+      get :break_in
       get :store_closed
       get :search
       post :add_items_to_cart
