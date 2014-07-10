@@ -1,0 +1,41 @@
+- provide(:title, "Edit Page")
+.content
+  - if current_user.admin? || current_user.blank?
+    = render "shared/sidebar"
+  - else
+    = render "shared/store_admin_sidebar"
+  .mainbar
+    .page-head
+      %h2.pull-left
+        Edit Page
+      .bread-crumb.pull-right
+        = link_to root_path do
+          %i.icon-home
+          Home
+        %span.divider /
+        = link_to 'Pages', pages_path
+      .clearfix
+    .matter
+      .container-fluid
+        = render "shared/flash"
+        - if current_user.blank?
+          .row-fluid
+            .span12
+              .alert.alert-error
+                You must be logged in to edit a page.
+        - else
+          .row-fluid
+            .span12
+              .widget.wred
+                .widget-head
+                  .pull-left Page Details
+                  .clearfix
+                .widget-content
+                  .padd
+                    = render 'form'
+  .clearfix
+  = render 'shared/footer'
+
+- content_for :script_files do
+  = tinymce_assets
+  = tinymce

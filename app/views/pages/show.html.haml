@@ -1,0 +1,21 @@
+- provide(:title, @page.title)
+.content
+  - if @page.site_page?
+    = render "shared/sidebar", :store => @store
+  - else
+    = render "shared/store_sidebar", :store => @store
+  .mainbar
+    .page-head
+      %h2
+        %span.pull-left= @page.title
+        %span.pull-right= link_to "Edit", edit_page_path(@page), :class => 'btn btn-warning'
+      .clearfix
+    .matter
+      .container-fluid
+        = render "shared/flash"
+        .row-fluid
+          .span12
+            = @page.body.to_s.html_safe
+          .clearfix
+  .clearfix
+  = render 'shared/footer'

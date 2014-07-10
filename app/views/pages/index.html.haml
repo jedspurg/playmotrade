@@ -1,0 +1,63 @@
+- provide(:title, "Pages")
+.content
+  - if current_user.admin? || current_user.blank?
+    = render "shared/sidebar"
+  - else
+    = render "shared/store_admin_sidebar"
+  .mainbar
+    .page-head
+      %h2.pull-left Pages
+      .bread-crumb.pull-right
+        = link_to root_path do
+          %i.icon-home
+          Home
+        %span.divider / Pages
+      .clearfix
+    .matter
+      .container-fluid
+        - if !current_user.admin?
+          .alert.alert-info Create custom pages for your store. These will be listed in the sidebar and ordered accordingly.
+        = render "shared/flash"
+        .row-fluid
+          .span12
+            .widget.worange
+              .widget-head
+                = "#{(current_user.admin? ? 'Site' : 'My Store')} Pages"
+                .clearfix
+              .widget-content
+                %table.table.table-bordered
+                  %thead
+                    %tr
+                      %th Order
+                      %th Active
+                      %th title
+                      %th URL
+                      - if current_user.admin?
+                        %th Category
+                      %th Created
+                      %th Last Updated
+                      %th
+                  %tbody
+                    - @pages.each do |page|
+                      %tr
+                        %td= page.position
+                        %td
+                          - if page.active?
+                            %i.icon-check
+                          - else
+                            %i.icon-ban
+                        %td= page.title
+                        %td= page_url(page.slug)
+                        - if current_user.admin?
+                          %td= page.page_category.try(:name)
+                        %td= page.created_at.strftime("%B %d, %Y")
+                        %td= page.updated_at.strftime("%B %d, %Y")
+                        %td
+                          = link_to 'View', page_path(page.slug), class: 'btn btn-info'
+                          = link_to 'Edit', edit_page_path(page), class: 'btn btn-warning'
+                          = link_to 'Delete', page_path(page), confirm: 'Are you sure?', method: :delete, class: 'btn btn-danger'
+              .widget-foot
+                = link_to "Add a Page", new_page_path, class: 'btn btn-success pull-right'
+                .clearfix
+  .clearfix
+  = render 'shared/footer'

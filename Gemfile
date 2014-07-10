@@ -64,6 +64,7 @@ gem 'gon'
 
 # WYSIWYG
 gem 'tinymce-rails'
+gem 'tinymce-rails-imageupload', github: 'PerfectlyNormal/tinymce-rails-imageupload'
 
 # Money conversion
 gem 'money-rails'
@@ -73,6 +74,9 @@ gem 'oauth2'
 
 # Analytics
 gem 'google-analytics-rails'
+
+# Ordering...
+gem 'acts_as_list'
 
 group :development do
   gem 'capistrano'

@@ -1,0 +1,40 @@
+.form.profile
+  = form_for(@page) do |f|
+    .control-group
+      %label.control-label{:for => "page[title]"} Page Title
+      .controls
+        = f.text_field :title, :class => "input-large"
+    .control-group
+      %label.control-label{:for => "page[slug]"} Slug
+      .controls
+        = f.text_field :slug, :class => "input-large"
+        %br
+        %span.help-inline
+          The page slug is used to build the web address for the page.
+    .control-group
+      %label.control-label{:for => "page[body]"} Content
+      .controls
+        = f.text_area :body, :class => "input-large tinymce"
+    - if current_user.admin?
+      .control-group
+        %label.control-label Category
+        .controls
+          = f.collection_select :page_category_id, @available_categories, :id, :name
+    - else
+      = f.hidden :page_category_id, @available_categories.id
+    - unless @page.new_record?
+      .control-group
+        %label.control-label Position
+        .controls
+          = f.select :position, (1..(Page.by_page_category_id(@page.page_category_id).count))
+    .control-group
+      %label.checkbox.inline
+        = f.check_box :active
+        Active?
+    .form-actions
+      - if @page.new_record?
+        = f.submit "Create Page", class: "btn btn-success"
+        %a.btn{:type => "reset"} Reset
+      - else
+        = f.submit "Update Page", class: "btn btn-success"
+        = link_to 'Delete Page', page_path(@page), confirm: 'Are you sure?', method: :delete, class: 'btn btn-danger'

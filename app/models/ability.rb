@@ -4,7 +4,7 @@ class Ability
   def initialize(current_user)
     if current_user.present?
 
-      if  current_user.admin?
+      if current_user.admin?
         can :manage, :all
       else
         can :read, :all

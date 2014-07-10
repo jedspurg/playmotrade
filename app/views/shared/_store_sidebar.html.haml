@@ -8,12 +8,16 @@
             %button.btn.btn-info
               %i.icon-angle-right
     %ul.navi
-      %li.nlightblue
+      %li.has_submenu.nlightblue.open
         = link_to root_url(:subdomain => @store.alias) do
           %i.icon-home
           Store Home
           %span.pull-right
             %i.icon-angle-right
+        - if @store.pages.present?
+          %ul
+            - @store.pages.each do |page|
+              %li= link_to page.title, page_url(page.slug, :subdomain => @store.alias)
       %li.nred.open
         = link_to store_inventory_path(@store, :all)  do
           %i.icon-th
