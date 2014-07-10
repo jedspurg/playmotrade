@@ -21,7 +21,7 @@
         .controls
           = f.collection_select :page_category_id, @available_categories, :id, :name
     - else
-      = f.hidden :page_category_id, @available_categories.id
+      = f.hidden_field :page_category_id, @available_categories.id
     - unless @page.new_record?
       .control-group
         %label.control-label Position
