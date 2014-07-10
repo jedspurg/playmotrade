@@ -15,8 +15,9 @@
       .container-fluid
         = render "shared/flash"
         .row-fluid
-          .span12
+          .span8
             = @store.landing_page.to_s.html_safe
+          = render "stores/shared/store_info", :store => @store
           .clearfix
   .clearfix
   = render 'shared/footer'

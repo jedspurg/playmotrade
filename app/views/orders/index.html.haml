@@ -21,25 +21,31 @@
       .container-fluid
         = render "shared/flash"
         .row-fluid
-          .span12
-            .widget.wblue
-              .widget-head
-                Open Orders
-                .clearfix
-              .widget-content
-                %table.table.table-bordered
-                  %thead
-                    %tr
-                      %th Order ID
-                      %th Status
-                      %th Items
-                      %th Subtotal
-                      %th Shipping
-                      %th Total
-                    - @orders.each do |order|
-                      = render "orders/shared/order_row", :order => order
-              .widget-foot
-                = will_paginate @orders, :class => 'pagination pull-right'
-                .clearfix
+          %div{class: (@store.present? ? 'span8' : 'span12')}
+            - if @orders.present?
+              .widget.wblue
+                .widget-head
+                  Open Orders
+                  .clearfix
+                .widget-content
+                  %table.table.table-bordered
+                    %thead
+                      %tr
+                        %th Order ID
+                        %th Status
+                        %th Items
+                        %th Subtotal
+                        %th Shipping
+                        %th Total
+                      - @orders.each do |order|
+                        = render "orders/shared/order_row", :order => order
+                .widget-foot
+                  = will_paginate @orders, :class => 'pagination pull-right'
+                  .clearfix
+            - else
+              .alert.alert-error
+                You have no orders in this store.
+          - if @store.present?
+            = render "stores/shared/store_info", :store => @store
   .clearfix
   = render 'shared/footer'
