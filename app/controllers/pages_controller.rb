@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   before_filter :setup_categories, :only => [:new, :edit]
+  before_filter :find_store_by_name_or_id
 
   def index
     if params[:category_id].present?
@@ -78,5 +79,16 @@ class PagesController < ApplicationController
 
   def page_params
     params.require(:page).permit(:title, :slug, :body, :page_category_id, :active, :position, :file)
+  end
+
+  def find_store_by_name_or_id
+    if request.subdomain.present?
+      if request.subdomain == 'www'
+        redirect_to root_url(:subdomain => nil)
+        return
+      else
+        @store = Store.find_by(:alias => request.subdomain)
+      end
+    end
   end
 end
