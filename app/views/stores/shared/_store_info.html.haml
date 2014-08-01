@@ -2,8 +2,11 @@
   .widget.wlightblue
     .widget-head
       .pull-left
-        = store.name
-        Resources
+        - if @store.sidebar_title.present?
+          = @store.sidebar_title
+        - else
+          = @store.name
+          Resources
       .clearfix
     .widget-content
       .sidebar.sidebar-right

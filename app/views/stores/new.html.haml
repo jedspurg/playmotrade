@@ -58,6 +58,10 @@
                           .controls
                             = f.text_area :landing_page, :class => "input-large tinymce"
                         .control-group
+                          %label.control-label{:for => "store[sidebar_title]"} Sidebar Title
+                          .controls
+                            = f.text_field :sidebar_title, :class => "input-large"
+                        .control-group
                           %label.checkbox.inline
                             = f.check_box :active
                             Open?
