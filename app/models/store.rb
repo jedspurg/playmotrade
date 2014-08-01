@@ -7,6 +7,7 @@ class Store < ActiveRecord::Base
   has_one :store_inventory, :dependent => :destroy
   has_many :orders
   has_many :pages, -> { order("position ASC") }, through: :user
+  has_many :shipping_options, :dependent => :destroy
   validates :name, :presence => true, :uniqueness => true
   validates :user_id, :presence => true, :uniqueness => true
   validates :alias, :presence => true, :uniqueness => true

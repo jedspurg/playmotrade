@@ -1,0 +1,61 @@
+- provide(:title, "Shipping Options")
+.content
+  = render "shared/store_admin_sidebar"
+  .mainbar
+    .page-head
+      %h2.pull-left
+        Shipping Options
+      .bread-crumb.pull-right
+        = link_to root_path do
+          %i.icon-home
+          Home
+        %span.divider /
+        = link_to "My Store", store_url(@store, subdomain: @store.alias)
+        %span.divider /
+        = link_to "Shipping Options", store_shipping_options_path(@store)
+      .clearfix
+    .matter
+      .container-fluid
+        = render "shared/flash"
+        .row-fluid
+          .span12
+            .widget.wblue
+              .widget-head
+                Shipping Options for #{@store.name}
+                .clearfix
+              .widget-content
+                %table.table.table-bordered
+                  %thead
+                    %tr
+                      %th Country
+                      %th Type
+                      %th Base Price
+                      %th Tax
+                      %th Last Updated
+                      %th.span3 &nbsp;
+                    - if @shipping_options.present?
+                      - @shipping_options.each do |shipping_option|
+                        %tr
+                          %td
+                            = image_tag "/images/country_icons/#{shipping_option.country_id}.png"
+                            = shipping_option.country.name
+                          %td= shipping_option.option.humanize
+                          %td= humanized_money_with_symbol((shipping_option.base_price * 100), no_cents_if_whole: false)
+                          %td #{shipping_option.tax.to_f}%
+                          %td= shipping_option.updated_at.strftime("%B %d, %Y")
+                          %td
+                            = link_to 'Edit', edit_store_shipping_option_path(@store, shipping_option), class: 'btn btn-warning'
+                            = link_to 'Delete', store_shipping_option_path(@store, shipping_option), confirm: 'Are you sure?', method: :delete, class: 'btn btn-danger'
+                    - else
+                      %tr
+                        %td{colspan: 6}
+                          .alert.alert-error
+                            You do not currently have any shipping options setup.
+                            %strong
+                              Users will not be able to buy from your store unless you have at least one shipping option present.
+                .widget-foot
+                  = link_to "Add a Shipping Option", new_store_shipping_option_path(@store), class: 'btn btn-success pull-left'
+                  = will_paginate @shipping_options, :class => 'pagination pull-right'
+                  .clearfix
+  .clearfix
+  = render 'shared/footer'

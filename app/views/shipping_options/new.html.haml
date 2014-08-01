@@ -1,0 +1,59 @@
+- provide(:title, "Shipping Options")
+.content
+  = render "shared/store_admin_sidebar"
+  .mainbar
+    .page-head
+      %h2.pull-left
+        Shipping Options
+      .bread-crumb.pull-right
+        = link_to root_path do
+          %i.icon-home
+          Home
+        %span.divider /
+        = link_to "My Store", store_url(@store, subdomain: @store.alias)
+        %span.divider /
+        = link_to "Shipping Options", store_shipping_options_path(@store)
+      .clearfix
+    .matter
+      .container-fluid
+        = render "shared/flash"
+        .row-fluid
+          .span12
+            = form_for [@store, @shipping_option] do |f|
+              .widget.wred
+                .widget-head
+                  .pull-left New Shipping Option
+                  .clearfix
+                .widget-content
+                  .padd
+                    .form.profile
+                      .control-group
+                        %label.control-label Country
+                        .controls
+                          = f.collection_select :country_id, @available_countries, :id, :name, include_blank: false
+                      .control-group
+                        %label.control-label{:for => "shipping_option[option]"} Type
+                        .controls
+                          = f.select :option, options_for_select(ShippingOption::VALID_SHIPPING_TYPES.map{|o| [o.humanize, o.to_s]}), include_blank: false
+                      .control-group
+                        %label.control-label{:for => "shipping_option[tax]"} Tax/VAT Percentage
+                        .controls
+                          .input-append
+                            = f.text_field :tax, :class => "input-large"
+                            %span.add-on %
+                      .control-group
+                        %label.control-label{:for => "shipping_option[base_price_cents]"} Base Price
+                        .controls
+                          = f.text_field :base_price_cents, :class => "input-large"
+                          %br
+                            %span.help-inline
+                              Base price is ignored if option type is set to 'Free'.
+                      .control-group
+                        %label.control-label Currency
+                        .controls
+                          = f.collection_select :base_price_currency, AVAILABLE_CURRENCIES
+                .widget-foot
+                  = f.submit "Create Shipping Option", class: "btn btn-success"
+                  %button.btn{:type => "reset"} Reset
+  .clearfix
+  = render 'shared/footer'
