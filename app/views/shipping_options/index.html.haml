@@ -40,7 +40,7 @@
                             = image_tag "/images/country_icons/#{shipping_option.country_id}.png"
                             = shipping_option.country.name
                           %td= shipping_option.option.humanize
-                          %td= humanized_money_with_symbol((shipping_option.base_price * 100), no_cents_if_whole: false)
+                          %td= humanized_money_with_symbol((shipping_option.base_price), no_cents_if_whole: false)
                           %td #{shipping_option.tax.to_f}%
                           %td= shipping_option.updated_at.strftime("%B %d, %Y")
                           %td

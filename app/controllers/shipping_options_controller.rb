@@ -51,7 +51,7 @@ class ShippingOptionsController < ApplicationController
   private #####################################################################
 
   def shipping_option_params
-    params.require(:shipping_option).permit(:country_id, :tax, :base_price_cents, :base_price_currency, :option)
+    params.require(:shipping_option).permit(:country_id, :tax, :base_price, :base_price_currency, :per_gram_price, :per_gram_price_currency, :option)
   end
 
   def find_store

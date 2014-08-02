@@ -5,6 +5,7 @@ class ShippingOption < ActiveRecord::Base
   belongs_to :country
 
   monetize :base_price_cents, with_model_currency: :base_price_currency
+  monetize :per_gram_price_cents, with_model_currency: :per_gram_price_currency
 
   validates :store_id, :country_id, :base_price_cents, :option, presence: true
 end

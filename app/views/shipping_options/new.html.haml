@@ -26,7 +26,22 @@
                   .clearfix
                 .widget-content
                   .padd
-                    .form.profile
+                    .form
+                      .alert.alert-info
+                        Shipping Options allow you to specify shipping costs for each country to which you ship. There are four option types:
+                        %ul.padd
+                          %li
+                            %strong Free:
+                            This is the simplest option. You, the seller, will pay all shipping and handling charges. Base price, item price, and item weight are not used to calculate shipping charges.
+                          %li
+                            %strong Flat Rate:
+                            Using this option will allow you to set a flat rate for all shipping from your store. Flat Rate uses the base price as the Flat Rate cost.
+                          %li
+                            %strong By Item:
+                            By Item allows you to specify shipping costs per inventory item. The per item costs are totaled and added to any Base Price that you may have set. Per item shipping costs should be set in you store's base currency. These will be converted to the buyer's currency based on the current exchange rates provided by Google. If this option is used and an item's shipping price is not set, it will be assumed that the item ships for no additional charge.
+                          %li
+                            %strong By Weight:
+                            By Weight allows you to set a per-gram price for all of your products. This is totaled and added to any Base Price that you may have set. If this option is used and an item's weight is not set in the catalog, it will be assumed that the item ships for no additional charge.
                       .control-group
                         %label.control-label Country
                         .controls
@@ -42,16 +57,18 @@
                             = f.text_field :tax, :class => "input-large"
                             %span.add-on %
                       .control-group
-                        %label.control-label{:for => "shipping_option[base_price_cents]"} Base Price
+                        %label.control-label{:for => "shipping_option[base_price]"} Base Price
                         .controls
-                          = f.text_field :base_price_cents, :class => "input-large"
+                          = f.text_field :base_price, :class => "input-large"
+                          = f.select :base_price_currency, options_for_select(AVAILABLE_CURRENCIES, selected: @shipping_option.base_price_currency), {with_css_classes: false}, {class: "input-small"}
                           %br
                             %span.help-inline
                               Base price is ignored if option type is set to 'Free'.
                       .control-group
-                        %label.control-label Currency
+                        %label.control-label{:for => "shipping_option[base_price_cents]"} Cost Per Gram
                         .controls
-                          = f.collection_select :base_price_currency, AVAILABLE_CURRENCIES
+                          = f.text_field :per_gram_price, :class => "input-large"
+                          = f.select :per_gram_price_currency, options_for_select(AVAILABLE_CURRENCIES, selected: @shipping_option.per_gram_price_currency), {with_css_classes: false}, {class: "input-small"}
                 .widget-foot
                   = f.submit "Create Shipping Option", class: "btn btn-success"
                   %button.btn{:type => "reset"} Reset
