@@ -73,7 +73,7 @@
                       %br
                       = @cart.user.country.try(:name)
                       %br
-                      Shipping Option for Your Country: #{@cart.store.shipping_type_for(@cart).humanize}
+                      Shipping Option for Your Country: #{@cart.store.shipping_type_for(@cart).to_s.humanize}
                       Total Shipping Cost: #{humanized_money_with_symbol(@shipping, no_cents_if_whole: false)}
                     #step3.step-pane
                       %h6 Credit Card Information
