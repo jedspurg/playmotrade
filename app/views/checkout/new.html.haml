@@ -61,7 +61,8 @@
                             Total: #{humanized_money_with_symbol(@cart.total_cost, no_cents_if_whole: false)}
                           .clearfix
                     #step2.step-pane
-                      Ship To:
+                      %strong Ship To:
+                      %br
                       = @cart.user.name
                       %br
                       = @cart.user.address1
@@ -73,8 +74,11 @@
                       %br
                       = @cart.user.country.try(:name)
                       %br
-                      Shipping Option for Your Country: #{@cart.store.shipping_type_for(@cart).to_s.humanize}
-                      Total Shipping Cost: #{humanized_money_with_symbol(@shipping, no_cents_if_whole: false)}
+                      %strong Shipping Option for Your Country:
+                      #{@cart.store.shipping_type_for(@cart).to_s.humanize}
+                      %br
+                      %strong Total Shipping Cost:
+                      #{humanized_money_with_symbol(@shipping, no_cents_if_whole: false)}
                     #step3.step-pane
                       %h6 Credit Card Information
                       %hr
