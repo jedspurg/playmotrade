@@ -70,7 +70,7 @@
                       - if @cart.user.address2.present?
                         = @cart.user.address2
                         %br
-                      = "#{@cart.user.city}, #{@cart.user.state}, #{@cart.user.zip}"
+                      = "#{@cart.user.city}, #{@cart.user.state} #{@cart.user.zip}"
                       %br
                       = @cart.user.country.try(:name)
                       %br

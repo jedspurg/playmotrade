@@ -14,7 +14,7 @@ class CheckoutController < ApplicationController
       return
     end
 
-    if @cart.store.shipping_available_for_cart?(@cart)
+    if !@cart.store.shipping_available_for_cart?(@cart)
       flash[:warning] = "This store does not ship to your country."
       redirect_to cart_store_path(@cart.store)
       return
