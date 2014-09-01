@@ -30,6 +30,20 @@ class Store < ActiveRecord::Base
     stripe_access_token.present? && stripe_publishable_key.present?
   end
 
+  def shipping_available_for_cart?(cart)
+    shipping_options.where(country: cart.user.country).present?
+  end
+
+  def calculate_shipping(cart)
+    shipping_option = shipping_options.where(country: cart.user.country).take
+    shipping_option.calculate_shipping(cart) if shipping_option.present?
+  end
+
+  def shipping_type_for(cart)
+    shipping_option = shipping_options.where(country: cart.user.country).take
+    shipping_option.type if shipping_option.present?
+  end
+
   protected ###################################################################
 
   # before_save

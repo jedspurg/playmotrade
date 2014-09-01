@@ -4,15 +4,23 @@ class CheckoutController < ApplicationController
   def new
     if @cart.blank?
       flash[:error] = "Cannot checkout without a cart."
-      redirect_to root_url(:subdomain => nil)
+      redirect_to carts_path
       return
     end
-    @publishable_key = @cart.store.stripe_publishable_key
-    if @publishable_key.blank?
-      flash[:error] = "This store is not set up for payment processing."
-      redirect_to root_url(:subdomain => nil)
+
+    if @cart.store.stripe_publishable_key.blank?
+      flash[:warning] = "This store is not set up for payment processing."
+      redirect_to cart_store_path(@cart.store)
       return
     end
+
+    if @cart.store.shipping_available_for_cart?(@cart)
+      flash[:warning] = "This store does not ship to your country."
+      redirect_to cart_store_path(@cart.store)
+      return
+    end
+
+    @shipping = @cart.store.calculate_shipping(@cart)
   end
 
   def create
@@ -55,11 +63,12 @@ class CheckoutController < ApplicationController
 
   def create_order!
     ActiveRecord::Base.transaction do
-      shipping_total = @cart.calculate_shipping(params[:store_shipping_option_id])
-      order_total    = @cart.total_cost + shipping_total
+      store           = @cart.store
+      shipping_total  = store.calculate_shipping(@cart)
+      order_total     = @cart.total_cost + shipping_total
       @order = Order.create({
         user:            @cart.user,
-        store:           @cart.store,
+        store:           store,
         shipping:        shipping_total,
         total:           order_total,
         application_fee: (order_total * APPLICATION_FEE_PERCENTAGE),
@@ -72,7 +81,7 @@ class CheckoutController < ApplicationController
           store_inventory_item_id: item.store_inventory_item_id,
           catalog_item_id:         item.associated_object.catalog_item_id,
           catalog_item_type:       item.associated_object.catalog_item_type,
-          store_id:                @cart.store.id
+          store_id:                store.id
         })
       end
       @order.save!

@@ -8,6 +8,7 @@ class StoreInventoryPart < ActiveRecord::Base
 
   monetize :quantity_price_cents
   monetize :price_cents
+  monetize :shipping_price_cents
 
   scope :active, -> { where("quantity > 0 AND price_cents > 0")}
 

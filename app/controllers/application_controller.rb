@@ -3,6 +3,12 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+  alias :std_redirect_to :redirect_to
+  def redirect_to(*args)
+     flash.keep
+     std_redirect_to *args
+  end
+
   protected ###################################################################
 
   def configure_permitted_parameters

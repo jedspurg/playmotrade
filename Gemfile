@@ -68,6 +68,7 @@ gem 'tinymce-rails-imageupload', github: 'PerfectlyNormal/tinymce-rails-imageupl
 
 # Money conversion
 gem 'money-rails'
+gem 'google_currency', github: 'RubyMoney/google_currency'
 
 # Open Auth
 gem 'oauth2'

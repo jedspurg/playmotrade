@@ -45,9 +45,4 @@ class Cart < ActiveRecord::Base
     end
   end
 
-  # TODO - Make this work...
-  def calculate_shipping(shipping_option_id=nil)
-    Money.new(5)
-  end
-
 end

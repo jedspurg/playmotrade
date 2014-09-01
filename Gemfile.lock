@@ -7,6 +7,13 @@ GIT
       tinymce-rails (~> 4.0)
 
 GIT
+  remote: git://github.com/RubyMoney/google_currency.git
+  revision: 3304e75ce75a06ba49417bce5952e07d430c6136
+  specs:
+    google_currency (3.1.0)
+      money (~> 6.0)
+
+GIT
   remote: https://github.com/stripe/stripe-ruby
   revision: bb9388384f8bade9cf257e5907679e7afaab85a6
   specs:
@@ -265,6 +272,7 @@ DEPENDENCIES
   devise
   gon
   google-analytics-rails
+  google_currency!
   haml
   haml-rails
   hirb (>= 0.7.1)

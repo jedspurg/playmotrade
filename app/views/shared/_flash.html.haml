@@ -1,8 +1,10 @@
-- if flash[:error].present?
+- if flash[:error].present? || flash[:warning].present?
   .row-fluid
     .span12
-      .alert.alert-error= flash[:error].to_s.html_safe
+      .alert.alert-error
+        = flash[:error].to_s.html_safe
+        = flash[:warning].to_s.html_safe
 - elsif flash[:notice].present?
   .row-fluid
     .span12
-      .alert.alert-success= flash[:notice].to_s.html_safe
+      .alert.alert-info= flash[:notice].to_s.html_safe

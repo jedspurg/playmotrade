@@ -13,6 +13,7 @@
       .clearfix
     .matter
       .container-fluid
+        = render "shared/flash"
         .row-fluid
           - if @carts.present?
             .span12
@@ -38,7 +39,7 @@
                             = link_to cart.store.name, root_url(:subdomain => cart.store.alias)
                           %td= cart.total_unique_items
                           %td= cart.total_items
-                          %td $#{number_with_precision cart.total_cost, :precision => 2}
+                          %td= humanized_money_with_symbol(cart.total_cost, no_cents_if_whole: false)
                           %td
                             = link_to "View Cart", cart_store_url(cart.store, :subdomain => cart.store.alias), :class => "btn btn-danger"
                             &nbsp;&nbsp;
