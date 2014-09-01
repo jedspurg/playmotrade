@@ -31,7 +31,7 @@ class Store < ActiveRecord::Base
   end
 
   def shipping_available_for_cart?(cart)
-    shipping_options.where(country_id: cart.user.country.try(:id).present?
+    shipping_options.where(country_id: cart.user.country.try(:id)).present?
   end
 
   def calculate_shipping(cart)
