@@ -122,12 +122,12 @@
                               %tr
                                 %td{:colspan => 3}
                                   %h6.pull-right
-                                    SHIPPING:
+                                    SHIPPING: #{humanized_money_with_symbol(@shipping, no_cents_if_whole: false)}
                         .widget-foot
                           %h6.pull-left
                             Unique Items: #{@cart.total_unique_items} | Total Items: #{@cart.total_items}
                           %h4.pull-right
-                            Total: $#{number_with_precision @cart.total_cost, :precision => 2}
+                            Total: #{humanized_money_with_symbol((@cart.total_cost + @shipping), no_cents_if_whole: false)}
                           .clearfix
   .clearfix
   = render 'shared/footer'
