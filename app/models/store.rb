@@ -41,7 +41,7 @@ class Store < ActiveRecord::Base
 
   def shipping_type_for(cart)
     shipping_option = shipping_options.where(country: cart.user.country).take
-    shipping_option.type if shipping_option.present?
+    shipping_option.option if shipping_option.present?
   end
 
   protected ###################################################################
