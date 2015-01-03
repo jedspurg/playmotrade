@@ -19,8 +19,8 @@ class Ability
         can :manage, Store, :user_id => current_user.id
       end
 
-      if current_user.pages.present?
-        can :manage, Page, :user_id => current_user.id
+      if current_user.store.present? && current_user.store.pages.present?
+        can :manage, Page, :store_id => current_user.store.id
       end
 
     end
