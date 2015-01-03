@@ -35,4 +35,8 @@ module ApplicationHelper
     send("#{catalog_item.catalogable_type.underscore}_url", catalog_item.catalogable_id, options)
   end
 
+  def footer_links(page_category_name)
+    Page.where('store_id IS NULL').by_page_category_name(page_category_name).limit(3)
+  end
+
 end

@@ -1,12 +1,13 @@
 class PagesController < ApplicationController
+
+  before_filter :find_store
   before_filter :setup_categories, :only => [:new, :edit]
-  before_filter :find_store_by_name_or_id
 
   def index
     if params[:category_id].present?
       @pages = Page.where(category_id: params[:category_id].to_i)
     else
-      @pages = current_user.admin? ? Page.site_pages.grouped_by_category : current_user.pages
+      @pages = (current_user.admin? && @store.blank?) ? Page.site_pages.grouped_by_category : @store.pages
     end
   end
 
@@ -19,11 +20,11 @@ class PagesController < ApplicationController
   end
 
   def show
-    @page = Page.active.find_by(id: params[:id]) || Page.active.find_by(slug: params[:id])
+    @page = Page.active.find_by(id: params[:id], store_id: @store.try(:id)) || Page.active.find_by(slug: params[:id], store_id: @store.try(:id))
   end
 
   def create
-    @page = Page.new(page_params.merge(user: current_user))
+    @page = Page.new(page_params.merge(store: @store))
     if @page.save
       flash[:notice] = "Page Created"
       redirect_to pages_path
@@ -68,27 +69,14 @@ class PagesController < ApplicationController
   private #####################################################################
 
   def setup_categories
-    @available_categories = []
-
-    if current_user.admin?
-      @available_categories = PageCategory.where(name: ['general', 'documentation', 'terms and service', 'blog'])
-    elsif current_user.store.present?
-      @available_categories = PageCategory.find_or_create_by(name: "store_#{current_user.store.id}")
-    end
+    @available_categories = PageCategory.all
   end
 
   def page_params
     params.require(:page).permit(:title, :slug, :body, :page_category_id, :active, :position, :file)
   end
 
-  def find_store_by_name_or_id
-    if request.subdomain.present?
-      if request.subdomain == 'www'
-        redirect_to root_url(:subdomain => nil)
-        return
-      else
-        @store = Store.find_by(:alias => request.subdomain)
-      end
-    end
+  def find_store
+    @store = Store.find_by(:alias => request.subdomain)
   end
 end

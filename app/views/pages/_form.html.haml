@@ -15,13 +15,11 @@
       %label.control-label{:for => "page[body]"} Content
       .controls
         = f.text_area :body, :class => "input-large tinymce"
-    - if current_user.admin?
+    - if current_user.admin? && @store.blank?
       .control-group
         %label.control-label Category
         .controls
           = f.collection_select :page_category_id, @available_categories, :id, :name
-    - else
-      = f.hidden_field :page_category_id, :value => @available_categories.id
     - unless @page.new_record?
       .control-group
         %label.control-label Position

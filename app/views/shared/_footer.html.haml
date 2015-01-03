@@ -5,30 +5,30 @@
         .padd
           .sidebar.sidebar-footer
             %ul.navi
-              %li.ngrey
-                = link_to "Link", root_url
-              %li.ngrey
-                = link_to "Link", root_url
-              %li.ngrey
-                = link_to "Link", root_url
+              - footer_links('blog').each do |link|
+                %li.ngrey
+                  = link_to link.title, page_url(link.slug)
       .span4
         .padd
           .sidebar.sidebar-footer
             %ul.navi
-              %li.ngrey
-                = link_to "Link", root_url
-              %li.ngrey
-                = link_to "Link", root_url
-              %li.ngrey
-                = link_to "Link", root_url
+              - footer_links('general').each do |link|
+                %li.ngrey
+                  = link_to link.title, page_url(link.slug)
       .span4
         .padd
           .sidebar.sidebar-footer
             %ul.navi
-              %li.ngrey
-                = link_to "Link", root_url
-              %li.ngrey
-                = link_to "Link", root_url
-              %li.ngrey
-                = link_to "Link", root_url
+              - footer_links('terms and service').each do |link|
+                %li.ngrey
+                  = link_to link.title, page_url(link.slug)
+    %br.clearfix
+    .row-fluid
+      .span12
+        %p
+          %small
+            ©2015 Playmotrade, LLC. All rights reserved.
+            %br
+            Some Playmobil sets contain small parts that are NOT suitable for and may pose a hazard to children under 3 years of age. Playmobil® is a trademark of Geobra Brandstätter GmbH & Co. KG which does not sponsor, authorize, or endorse this site. The trademarks PLAYMOBIL®, PLAYMOBIL® SYSTEM X, PLAYMOBIL® RC TRAIN and PLAYMOBIL® FUNPARK and the copyrighted images of PLAYMOBIL® products are the sole and exclusive property of Geobra Brandstätter GmbH & Co. KG, which reserves all rights therein. Use of this web site constitutes acceptance of the Terms Of Service agreement and Privacy Policy
+
 
