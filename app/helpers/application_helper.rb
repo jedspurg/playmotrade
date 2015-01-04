@@ -39,4 +39,12 @@ module ApplicationHelper
     Page.where('store_id IS NULL').by_page_category_name(page_category_name).limit(num_pages)
   end
 
+  def instruction_link_exists?(catalog_set_number)
+    url = URI.parse("http://playmobil.scene7.com/is/content/Playmobil/#{catalog_set_number}pdf.pdf")
+    req = Net::HTTP.new(url.host, url.port)
+    res = req.request_head(url.path)
+
+    res.code == "200"
+  end
+
 end

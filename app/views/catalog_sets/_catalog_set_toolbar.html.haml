@@ -5,17 +5,24 @@
   .widget-content
     .sidebar.sidebar-right
       %ul.navi
+        - if can? :edit, @catalog_part
+          %li.ngrey
+            = link_to edit_catalog_set_path(@catalog_set) do
+              %i.icon-pencil
+              Edit Set
+              %span.pull-right
+                %i.icon-angle-right
         %li.ngrey
           = link_to inventory_catalog_set_path(@catalog_set) do
             %i.icon-sitemap
             View Set Inventory
             %span.pull-right
               %i.icon-angle-right
-        - if can? :edit, @catalog_part
+        - if instruction_link_exists?(@catalog_set.number)
           %li.ngrey
-            = link_to edit_catalog_set_path(@catalog_set) do
-              %i.icon-pencil
-              Edit Set
+            = link_to "http://playmobil.scene7.com/is/content/Playmobil/#{@catalog_set.number}pdf.pdf", :target => "_blank" do
+              %i.icon-book
+              View Set Instructions
               %span.pull-right
                 %i.icon-angle-right
         %li.ngrey
