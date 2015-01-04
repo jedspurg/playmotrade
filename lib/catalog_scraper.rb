@@ -379,6 +379,44 @@ class CatalogScraper
     end
   end
 
+  def playmobil_part_images
+    @range.each do |number|
+      page = "http://www.playmobil.de/on/demandware.store/Sites-DE-Site/de_DE/Product-Show?pid=#{number}&showSpareParts=true"
+
+      begin
+        doc = Nokogiri::HTML(open(page))
+        # This doesn't yet work because these elements are loaded in via AJAX/Flash after page load....
+        parts = doc.xpath('//sparepart-content//name') rescue nil
+
+        parts.each do |part|
+          part_number = part.text.split(" ").first.strip
+          part_name   = part.text.gsub(part_number,'').strip
+          part_image  = open(URI.parse("http://playmobil.scene7.com/is/image/Playmobil/template_sparepart?$product=#{part_number}_sparepart")) rescue nil
+
+          site_safe_number = part_number.gsub(part_number.last(4), " " + part_number.last(4)).gsub(part_number.first(2), part_number.first(2) + " ")
+
+          existing_catalog_item = CatalogItem.find_by(:number => site_safe_number.to_s)
+          catalog_part          = CatalogPart.find_by(:id => existing_catalog_item.try(:catalogable_id))
+
+          if part_image.present?
+            if catalog_part.present? && catalog_part.image.blank?
+              catalog_part.update_attributes!({
+                :image => image
+              })
+            else
+              CatalogPart.create({
+                :name   => part_name,
+                :number => site_safe_number,
+                :image  => part_image
+              })
+            end
+          end
+        end
+      rescue OpenURI::HTTPError
+      end
+    end
+  end
+
   def rakuten
     @range.each do |number|
       image = open(URI.parse("http://thumbnail.image.rakuten.co.jp/@0_mall/are-sore/cabinet/playmobil/pm#{number}.jpg")) rescue nil
