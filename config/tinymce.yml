@@ -13,6 +13,7 @@ default:
     - visualchars
     - nonbreaking
     - uploadimage
+    - link
   theme_advanced_buttons1:
     - bold
     - italic
