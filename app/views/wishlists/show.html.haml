@@ -21,7 +21,7 @@
             - if user_signed_in?
               .widget.wviolet
                 .widget-head
-                  My Wishlists
+                  = "#{@wishlist.user.name}'s Wishlists"
                   .clearfix
                 .widget-content
                   %table.table
