@@ -49,6 +49,7 @@ Playmotrade::Application.routes.draw do
       post :uploads
     end
   end
+  resources :help_requests
   match '/tinymce_assets', :as => :tinymce_assets, :via => :post, :to => 'pages#uploads'
   resources :wishlists do
     collection do

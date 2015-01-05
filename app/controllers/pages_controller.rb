@@ -21,6 +21,9 @@ class PagesController < ApplicationController
 
   def show
     @page = Page.active.find_by(id: params[:id], store_id: @store.try(:id)) || Page.active.find_by(slug: params[:id], store_id: @store.try(:id))
+    if @page.slug == 'help' && @page.site_page?
+      @help_request = HelpRequest.new(help_request_params)
+    end
   end
 
   def create
@@ -74,6 +77,10 @@ class PagesController < ApplicationController
 
   def page_params
     params.require(:page).permit(:title, :slug, :body, :page_category_id, :active, :position, :file)
+  end
+
+  def help_request_params
+    params.require(:help_request).permit(:name, :email, :comment) if params[:help_request].present?
   end
 
   def find_store

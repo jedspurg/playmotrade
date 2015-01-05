@@ -8,7 +8,8 @@
     .page-head
       %h2
         %span.pull-left= @page.title
-        %span.pull-right= link_to "Edit", edit_page_path(@page), :class => 'btn btn-warning'
+        - if can? :edit, @page
+          %span.pull-right= link_to "Edit", edit_page_path(@page), :class => 'btn btn-warning'
       .clearfix
     .matter
       .container-fluid
@@ -17,5 +18,24 @@
           .span12
             = @page.body.to_s.html_safe
           .clearfix
+        - if @help_request.present?
+          .row-fluid
+            .span12
+              = form_for(@help_request, :html => {:class => "form-horizontal"}) do |f|
+                .control-group
+                  %label.control-label{:for => "name"} Name
+                  .controls
+                    = f.text_field(:name)
+                .control-group
+                  %label.control-label{:for => "email"} Email
+                  .controls
+                    = f.text_field(:email)
+                .control-group
+                  %label.control-label{:for => "comment"} Comment
+                  .controls
+                    = f.text_area(:comment)
+                .form-actions
+                  = submit_tag("Submit", class: "btn btn-primary")
+            .clearfix
   .clearfix
   = render 'shared/footer'
