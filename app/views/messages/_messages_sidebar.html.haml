@@ -1,0 +1,27 @@
+.widget.wblue
+  .widget-head
+    Message Folders
+    .clearfix
+  .widget-content
+    .sidebar.sidebar-right
+      %ul.navi
+        %li.ngrey
+          = link_to(messages_path) do
+            %i.icon-inbox
+            Inbox
+            %span.pull-right
+              %i.icon-angle-right
+        %li.ngrey
+          = link_to(messages_path(type: 'sent')) do
+            %i.icon-folder-open
+            Sent
+            %span.pull-right
+              %i.icon-angle-right
+        %li.ngrey
+          = link_to(messages_path(type: 'archived')) do
+            %i.icon-archive
+            Archive
+            %span.pull-right
+              %i.icon-angle-right
+  .widget-foot
+    .clearfix

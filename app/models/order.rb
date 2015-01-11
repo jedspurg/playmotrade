@@ -14,6 +14,7 @@ class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :store
   has_many :order_items, :dependent => :destroy
+  has_many :messages
 
   scope :open, -> { where(:status => OPEN_STATES) }
   scope :closed, -> { where(:status => CLOSED_STATES) }

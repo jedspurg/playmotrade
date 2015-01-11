@@ -1,0 +1,23 @@
+- provide(:title, "Messages")
+.content
+  = render "shared/sidebar"
+  .mainbar
+    .page-head
+      %h2.pull-left Messages
+      .bread-crumb.pull-right
+        = link_to root_path do
+          %i.icon-home
+          Home
+        %span.divider / Messages
+      .clearfix
+    .matter
+      .container-fluid
+        = render "shared/flash"
+        .row-fluid
+          .span9
+            = render "messages/shared/list", messages: @messages
+          .span3
+            = render "messages/messages_sidebar"
+          .clearfix
+  .clearfix
+  = render 'shared/footer'

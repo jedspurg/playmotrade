@@ -31,23 +31,27 @@
                     - if @user.store.present?
                       .member-store
                         = "Playmotrade Store:  #{link_to @user.store.try(:name), root_url(:subdomain => @user.store.try(:alias))}".html_safe
+                    - if current_user.present?
+                      .member-private-message
+                        = link_to "Send Message".html_safe, new_message_path(recipient_id: @user.id, disposition: 'private'), :class => 'btn btn-primary'
                   .span8
-                    %h6= "#{@user.username}'s Wishlists"
-                    %table.table
-                      %thead
-                        %tr
-                          %th Name
-                          %th Number of Items
-                          %th Created
-                          %th Last Updated
-                      %tbody
-                        - @user.wishlists.public.each do |wishlist|
+                    - if @user.wishlists.public.present?
+                      %h6= "#{@user.username}'s Wishlists"
+                      %table.table
+                        %thead
                           %tr
-                            %td
-                              %strong= link_to wishlist.name, wishlist_path(wishlist)
-                            %td= wishlist.wishlist_items.count
-                            %td= wishlist.created_at.strftime("%m/%d/%Y")
-                            %td= wishlist.updated_at.strftime("%m/%d/%Y")
+                            %th Name
+                            %th Number of Items
+                            %th Created
+                            %th Last Updated
+                        %tbody
+                          - @user.wishlists.public.each do |wishlist|
+                            %tr
+                              %td
+                                %strong= link_to wishlist.name, wishlist_path(wishlist)
+                              %td= wishlist.wishlist_items.count
+                              %td= wishlist.created_at.strftime("%m/%d/%Y")
+                              %td= wishlist.updated_at.strftime("%m/%d/%Y")
                 .clearfix
   .clearfix
   = render 'shared/footer'

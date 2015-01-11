@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :carts
   has_many :orders
   has_many :wishlists
+  has_many :messages
 
   belongs_to :country
 
@@ -30,6 +31,15 @@ class User < ActiveRecord::Base
 
   def catalog_admin?
     role == 'catalog_admin'
+  end
+
+  def received_messages
+    Message.inbox.where(recipient_id: self.id)
+  end
+
+  # This will eventually be a user attribute
+  def receive_email?
+    true
   end
 
 end

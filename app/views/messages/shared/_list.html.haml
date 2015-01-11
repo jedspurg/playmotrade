@@ -1,0 +1,34 @@
+.widget.worange
+  .widget-head
+    = params[:type].to_s.titleize
+    Messages
+    .clearfix
+  .widget-content
+    %table.table.table-bordered
+      %thead
+        %tr
+          %th &nbsp;
+          %th Date
+          - if @sent
+            %th To
+          - else
+            %th From
+          %th Subject
+      %tbody
+        - messages.each do |message|
+          %tr{class: "#{message.read? ? 'bold' : ''}"}
+            %td
+              - if message.read?
+                %i.icon-envelope-alt
+              - else
+                %i.icon-envelope
+            %td= message.created_at.strftime("%a %-m/%e/%Y %l:%M %P")
+            - if @sent
+              %td= message.recipient.name
+            - else
+              %td= message.user.name
+            %td= link_to message.subject, message_path(message)
+  .widget-foot
+    = will_paginate messages, :class => 'pagination pull-right'
+    .clearfix
+

@@ -1,0 +1,39 @@
+- provide(:title, "Messages")
+.content
+  = render "shared/sidebar"
+  .mainbar
+    .page-head
+      %h2.pull-left Messages
+      .bread-crumb.pull-right
+        = link_to root_path do
+          %i.icon-home
+          Home
+        %span.divider /
+        = link_to "Messages", messages_path
+      .clearfix
+    .matter
+      .container-fluid
+        .row-fluid
+          .span12
+            .widget.worange
+              .widget-head
+                .pull-left
+                  = @message.subject
+                .pull-right
+                  = @message.created_at.strftime("%a %-m/%e/%Y %l:%M %P")
+                .clearfix
+              .widget-content
+                .padd
+                  = @message.body.to_s.html_safe
+              .widget-foot
+                = link_to "Back to Messages", messages_path, :class => 'btn btn-danger pull-right'
+                - if !@sent
+                  = link_to new_message_path(recipient_id: @message.user_id, parent_message_id: @message.id, subject: "re: #{@message.subject}"), :class => 'btn pull-left' do
+                    %i.icon-reply
+                    Reply
+                  = link_to message_path(@message, archive: true), :class => 'btn pull-left', method: :put do
+                    %i.icon-archive
+                    Archive
+                .clearfix
+  .clearfix
+  = render 'shared/footer'

@@ -10,14 +10,19 @@
       .clearfix
     .widget-content
       .sidebar.sidebar-right
-        - if @store.pages.present?
-          %ul.navi
-            - @store.pages.each do |page|
-              %li.ngrey
-                = link_to page_url(page.slug, :subdomain => @store.alias) do
-                  = page.title
-                  %span.pull-right
-                    %i.icon-angle-right
+        %ul.navi
+          - if current_user.present?
+            %li.ngrey
+              = link_to new_message_path(recipient_id: @store.user.id, disposition: 'private') do
+                Contact Owner
+                %span.pull-right
+                  %i.icon-angle-right
+          - @store.pages.each do |page|
+            %li.ngrey
+              = link_to page_url(page.slug, :subdomain => @store.alias) do
+                = page.title
+                %span.pull-right
+                  %i.icon-angle-right
     .widget-foot
       .clearfix
 

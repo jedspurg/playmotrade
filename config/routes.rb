@@ -44,6 +44,7 @@ Playmotrade::Application.routes.draw do
 
   resources :search
   resources :orders
+  resources :messages
   resources :pages do
     collection do
       post :uploads
