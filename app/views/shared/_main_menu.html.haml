@@ -22,6 +22,12 @@
                     = link_to cart_checkout_url(@cart, :subdomain => nil, :protocol => "https") do
                       %i.icon-truck
                       Checkout
+            %li.dropdown
+              = link_to(messages_path) do
+                %i.icon-envelope
+                Inbox
+                %span.badge.badge-info
+                  = current_user.received_messages.count
             %li.dropdown.pull-right
               %a{:class => "dropdown-toggle", :href => "#", "data-toggle" => "dropdown"}
                 = image_tag current_user.avatar.url(:small)
