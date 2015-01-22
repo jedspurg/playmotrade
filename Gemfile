@@ -66,6 +66,9 @@ gem 'gon'
 gem 'tinymce-rails'
 gem 'tinymce-rails-imageupload', github: 'PerfectlyNormal/tinymce-rails-imageupload'
 
+# Spam Protection
+gem "recaptcha", :require => "recaptcha/rails"
+
 # Money conversion
 gem 'money-rails'
 gem 'google_currency', github: 'RubyMoney/google_currency'
