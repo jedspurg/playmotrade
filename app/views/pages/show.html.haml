@@ -33,6 +33,7 @@
                 .control-group
                   %label.control-label{:for => "comment"} Comment
                   .controls
+                    = f.text_area(:comment)
                 .control-group
                   .controls
                     = recaptcha_tags

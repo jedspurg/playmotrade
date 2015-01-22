@@ -2,7 +2,7 @@ class HelpRequestsController < ApplicationController
 
   def create
     @help_request = HelpRequest.new(help_request_params.merge(user: current_user))
-    if @help_request.save
+    if verify_recaptcha(:model => @help_request, :message => "Captcha code was incorrect!") && @help_request.save
       flash[:notice] = "Thank you for your submission"
     else
       flash[:error] = @help_request.errors.full_messages.to_sentence
