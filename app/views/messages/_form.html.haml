@@ -5,6 +5,7 @@
       .controls
         = text_field_tag :recipient, @message.recipient.try(:name), :class => "input-large", disabled: true
         = f.hidden_field :recipient_id, value: @message.recipient.try(:id)
+        = f.hidden_field :disposition, value: @message.disposition
     .control-group
       %label.control-label{:for => "message[subject]"} Subject
       .controls

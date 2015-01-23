@@ -1,0 +1,11 @@
+%html
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=UTF-8'}/
+  %body
+    %h2= @message.subject
+    %br
+    ===============================================
+    %br
+    = @message.body.to_s.html_safe
+    %br
+    = "Reply to this message here: #{@url}"

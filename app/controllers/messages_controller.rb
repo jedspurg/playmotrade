@@ -24,6 +24,7 @@ class MessagesController < ApplicationController
   def create
     @message = current_user.messages.new(message_params.merge(user: current_user))
     if @message.save
+      MessageMailer.send("#{@message.disposition.underscore}_message".to_sym, @message).deliver
       flash[:notice] = "Message Sent"
       redirect_to messages_path
     else

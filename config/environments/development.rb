@@ -31,4 +31,9 @@ Playmotrade::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'playmotrade.com' }
   config.session_options[:domain] = ".playmotrade.dev"
+
+  config.action_mailer.smtp_settings = {
+    :address => "localhost",
+    :port => 1025
+  }
 end
